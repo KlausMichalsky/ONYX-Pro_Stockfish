@@ -1,5 +1,5 @@
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : motors.cpp
 //  Autor      : Klaus Michalsky
@@ -38,9 +38,9 @@ static bool motorEnabledZ = false;
 void motorsInit() {
     // ‼️ Adaptar también en config.h las señales ENABLE_ACTIVE/INACTIVE
     // (DIR, STEP, ENABLE) true = invertir señal. Aqui: LOW=ON HIGH=OFF
-    motor1.setPinsInverted(false, false, false);
-    motor2.setPinsInverted(true, false, false);
-    motor3.setPinsInverted(false, false, false);
+    motor1.setPinsInverted(false, false, false); // Change to true if your motor moves in the wrong direction
+    motor2.setPinsInverted(false, false, false); // Change to true if your motor moves in the wrong direction
+    motor3.setPinsInverted(false, false, false); // Change to true if your motor moves in the wrong direction
 
     pinMode(motor1Config.enablePin, OUTPUT);
     pinMode(motor2Config.enablePin, OUTPUT);

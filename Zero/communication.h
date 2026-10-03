@@ -1,22 +1,19 @@
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
-//  Archivo    : command.h
+//  Archivo    : communication.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Declaración de funciones para la gestión de comandos
-//        recibidos por UART
+//      - Declaración de la interfaz de comunicación UART
 // =======================================================================
-
-#pragma once
 
 #include <Arduino.h>
 
-#include "config.h"
+#pragma once
 
-bool commandAvailable();
-void processCommand(const String &command);
-String readCommand();
-void commandSendStatusReport();
+#define DEBUG_UART 0 // 1 = debug activado, 0 = debug desactivado
+
+void debug(const String &msg); // función para debug condicional
+void communicationInit();

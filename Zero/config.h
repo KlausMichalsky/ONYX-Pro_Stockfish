@@ -1,27 +1,25 @@
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : config.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Pines de configuración
-//      - Parametros de configuración plano xy
-//      - Parametros de configuración eje z
-//      - Niveles lógicos de enable del tmc2209
-//      - Configuracion de steps y microstepping
-//      - Configuracion del tablero en mm
-//      - Configuracion de los brazos en mm
-//      - Tipos de datos y definición de maquina de estados
-//      - Estructuras de configuración de motores
+//      - PINES DE CONFIGURACIÓN
+//      - PARAMETROS DE CONFIGURACIÓN PLANO XY
+//      - PARAMETROS DE CONFIGURACIÓN EJE Z
+//      - NIVELES LÓGICOS DE ENABLE DEL TMC2209
+//      - CONFIURACION DE STEPS Y MICROSTEPING
+//      - CONFIGURACION DEL TABLERO en MM
+//      - CONFIGURACION DE LOS BRAZOS EN MM
+//      - TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
+//      - ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
 // =======================================================================
 
 #pragma once
 
 #include <Arduino.h>
-
-#define COMM Serial // Cambia a Serial1 si usas UART hardware en pines 0 y 1
 
 // PINES DE CONFIGURACIÓN
 // -----------------------------------------------------------------------
@@ -58,12 +56,8 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 12150            // cantidad de pasos desde el Sensor
-                                      // hasta el punto mas bajo -> posicion de agarre
-#define Z_HOME_OFFSET 8000            // cantidad de pasos desde Sensor hast HOME -> posicion de referencia
-#define Z_TRAVEL_POS (-Z_HOME_OFFSET) // cantidad de pasos desde HOME hasta la posición de viaje
-                                      // para levantar la pieza (Z arriba)
-#define Z_DELAY 100                   // delay entre movimientos para darle tiempo al iman
+#define Z_STEPS_DOWN 3000 // cantidad de pasos para bajar
+#define Z_DELAY 100       // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
@@ -75,18 +69,18 @@ constexpr bool ENABLE_INACTIVE = HIGH;
 constexpr int MOTOR_STEPS = 200;
 constexpr int MOTOR1_MICROSTEPPING = 16;
 constexpr int MOTOR2_MICROSTEPPING = 16;
-constexpr int MOTOR3_MICROSTEPPING = 8;
+constexpr int MOTOR3_MICROSTEPPING = 16;
 
 // CONFIGURACION DEL TABLERO en MM
 // -----------------------------------------------------------------------
-constexpr float SQUARE_SIZE = 25.0f;                                     // Tamaño de casilla en mm
+constexpr float SQUARE_SIZE = 40.0f;                                     // Tamaño de casilla en mm
 constexpr float A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0f); // Distancia desde DOF1 a centro Fila A
-constexpr float A1_OFFSET_Y = 80.0f;                                     // Distancia desde DOF1 a centro Rango 1
+constexpr float A1_OFFSET_Y = 120.0f;                                    // Distancia desde DOF1 a centro Rango 1
 
 // CONFIGURACION DE LOS BRAZOS EN MM
 // -----------------------------------------------------------------------
-constexpr float LINK1 = 175;
-constexpr float LINK2 = 95;
+constexpr float LINK1 = 285;
+constexpr float LINK2 = 170;
 
 // TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
 // -----------------------------------------------------------------------
@@ -100,7 +94,6 @@ enum class Command {
     HOME,
     HOMING,
     MOVE,
-    REMOVE,
     SQUARE,
     UNKNOWN
 };
@@ -133,6 +126,7 @@ enum class HomingStateXY {
 // Maquina de estados para el homing del motor3
 enum class HomingStateZ {
     INACTIVE,
+    CHECK_SENSOR,
     FIND_EDGE_DOWNWARD,
     FIND_EDGE_UPWARD,
     MOVE_TO_REFERENCE,
@@ -182,22 +176,7 @@ enum class MoveSequenceState {
     MOVING_START,
     PICKING,
     MOVING_END,
-    PLACING,
-    GO_HOME
-};
-
-// Maquina de estados para secuencia de captura completa
-enum class CaptureSequenceState {
-    IDLE,
-    CAPTURE_START,
-    PICKING_OPPONENT,
-    TAKE_PIECE_OUT,
-    PLACING_OPPONENT,
-    MOVING_OWN_PIECE_START,
-    PICKING_OWN_PIECE,
-    MOVING_OWN_PIECE_END,
-    PLACING_OWN_PIECE,
-    GO_HOME
+    PLACING
 };
 
 // ESTRUCTURAS DE CONFIGURACIÓN DE MOTORES
@@ -225,18 +204,20 @@ struct MotorConfig {
 };
 
 // Configuracion de Homing para cada motor, con parámetros mecánicos específicos
+// ‼️cambiar la dirección física del motor/sensor en config.h si se monta al reves
+// ‼️En motorsInit() cambiar la direccion de giro del motor con motor.setPinsInverted() si se monta al reves
 inline const MotorConfig motor1Config = {
     .microstepping = MOTOR1_MICROSTEPPING,
     .reduction = 9,
     .stepsPerRevolution = MOTOR_STEPS,
     .motorDirection = -1, // ‼️ -1 porque el motor/sensor esta fisicamente montado al revez
-    .slowSpeed = 3200.0,
-    .fastSpeed = 50000.0,
+    .slowSpeed = 2 * 800.0,
+    .fastSpeed = 2 * 1500.0,
     .steps90Deg = MOTOR1_MICROSTEPPING * MOTOR_STEPS / 4,
     .stepsLimit = 0, // no existe para motor1
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 8000.0,
+    .acceleration = 2 * 1000.0,
     .enablePin = MOTOR1_ENABLE};
 
 inline const MotorConfig motor2Config = {
@@ -244,13 +225,13 @@ inline const MotorConfig motor2Config = {
     .reduction = 6,
     .stepsPerRevolution = MOTOR_STEPS,
     .motorDirection = 1,
-    .slowSpeed = 2500.0,
-    .fastSpeed = 40000.0,
+    .slowSpeed = 2 * 533.0,
+    .fastSpeed = 2 * 1000.0,
     .steps90Deg = MOTOR2_MICROSTEPPING * MOTOR_STEPS / 4,
     .stepsLimit = 0, // no existe para motor2
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 7000.0,
+    .acceleration = 2 * 1000.0,
     .enablePin = MOTOR2_ENABLE};
 
 inline const MotorConfig motor3Config = {
@@ -258,11 +239,11 @@ inline const MotorConfig motor3Config = {
     .reduction = 1,
     .stepsPerRevolution = 200,
     .motorDirection = 1,
-    .slowSpeed = 3000.0,
-    .fastSpeed = 6000.0,
+    .slowSpeed = 2500.0,
+    .fastSpeed = 4000.0,
     .steps90Deg = 0,     // no existe para motor3
-    .stepsLimit = -9000, // pasos máximos si arranca fuera del imán (solo motor3)
+    .stepsLimit = -4000, // pasos máximos si arranca fuera del imán (solo motor3)
     .timeout = 12000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 2000.0,
+    .acceleration = 1000.0,
     .enablePin = MOTOR3_ENABLE};

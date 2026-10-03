@@ -1,12 +1,13 @@
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
-//  Archivo    : core.h
+//  Archivo    : command.h
 //  Autor      : Klaus Michalsky
-//  Fecha      : Mar-2026
+//  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
 //  ▫️ DESCRIPCIÓN
-//      - Declaración de funciones centrales del robot.
+//      - Declaración de funciones para la gestión de comandos
+//        recibidos por UART
 // =======================================================================
 
 #pragma once
@@ -14,14 +15,8 @@
 #include <Arduino.h>
 
 #include "config.h"
-#include "homing.h"
 
-extern bool dynamicAngle1;
-extern bool dynamicAngle2;
-extern float sensor1Offset;
-extern float sensor2Offset;
-
-void coreInit();
-void coreHomeAll();
-void coreHomeSingleMotor();
-void coreUpdate();
+bool commandAvailable();
+void processCommand(const String &command);
+String readCommand();
+void commandSendStatusReport();

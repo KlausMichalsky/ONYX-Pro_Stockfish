@@ -1,4 +1,4 @@
-# ♟️ ChessBot---Zero
+# ♟️ CNYX-Pro_Stockfish
 
 Sistema de control para un robot de ajedrez basado en RP2040,
 con comunicación UART entre Pi Zero y RP2040 Zero, visualización

@@ -1,5 +1,5 @@
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : homing.cpp
 //  Autor      : Klaus Michalsky
@@ -268,8 +268,18 @@ void homingStepZ(AccelStepper &motor,
     }
 
     switch (st.state) {
+        case HomingStateZ::CHECK_SENSOR:
+            // Verifica si el sensor detecta el imán al inicio del homing
+            if (imanPresente) {
+                st.state = HomingStateZ::FIND_EDGE_DOWNWARD; // imán presente → buscar flanco descendente
+            } else {
+                Serial1.println("Homing Z: imán no detectado al inicio");
+                st.state = HomingStateZ::FIND_EDGE_UPWARD; // imán no presente → buscar flanco ascendente
+            }
+            break;
+
         case HomingStateZ::FIND_EDGE_DOWNWARD:
-            motor.setSpeed(dir * cfg.fastSpeed);
+            motor.setSpeed(dir * cfg.slowSpeed);
             motor.runSpeed();
             if (!imanPresente) {
                 st.edge = motor.currentPosition();
@@ -279,14 +289,10 @@ void homingStepZ(AccelStepper &motor,
             break;
 
         case HomingStateZ::FIND_EDGE_UPWARD:
-            motor.setSpeed(-cfg.slowSpeed);
+            motor.setSpeed(-dir * cfg.slowSpeed);
             motor.runSpeed();
             if (imanPresente) {
                 st.edge = motor.currentPosition();
-
-                Serial1.print("EDGE=");
-                Serial1.println(st.edge);
-
                 st.state = HomingStateZ::MOVE_TO_REFERENCE;
             } else if (motor.currentPosition() <= cfg.stepsLimit) {
                 st.state = HomingStateZ::ERROR;
@@ -294,10 +300,9 @@ void homingStepZ(AccelStepper &motor,
             break;
 
         case HomingStateZ::MOVE_TO_REFERENCE:
-            motor.setSpeed(cfg.slowSpeed); // bajar
+            motor.setSpeed(-dir * cfg.slowSpeed);
             motor.runSpeed();
-
-            if (motor.currentPosition() >= st.edge + Z_HOME_OFFSET) {
+            if (motor.currentPosition() <= st.edge - 500) {
                 motor.stop();
                 motor.setCurrentPosition(0);
                 digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
@@ -307,7 +312,7 @@ void homingStepZ(AccelStepper &motor,
 
         case HomingStateZ::OK:
             digitalWrite(LED, HIGH);
-            digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
+            digitalWrite(cfg.enablePin, ENABLE_ACTIVE);
             break;
 
         case HomingStateZ::ERROR:
