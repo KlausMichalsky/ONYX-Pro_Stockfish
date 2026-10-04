@@ -1,6 +1,6 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\core.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\core.h"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : core.h
 //  Autor      : Klaus Michalsky

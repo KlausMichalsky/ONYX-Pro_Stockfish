@@ -147,77 +147,76 @@ bool inverseKinematics(
     // Ese -theta2 está seleccionando la otra solución dependiendo del lado del tablero/plano.
     // if (x < 0.0f) {
     //     theta2 = -theta2;
-}
 
-// Cinemática inversa
-// componentes auxiliares para calcular theta1
-// Geométricamente forman el vector resultante desde la base hasta el objetivo intermedio del brazo.
-// k1 es la componente horizontal efectiva.
-// l1 → primer brazo + l2*cos(theta2) → proyección horizontal del segundo brazo
-// k2 es la componente vertical del segundo brazo -> cuánto sube/baja el segundo segmento
-// atan2(y,x) -> ángulo hacia el objetivo
-// atan2(k2,k1) = ángulo interno del triángulo del brazo
-// y la resta da el ángulo real del hombro
-// Visualmente: base ---- l1 ---- joint ---- l2 ---- target
-// k1 y k2 son básicamente las coordenadas del vector combinado del brazo respecto a la articulación base
-float k1 = l1 + l2 * cosf(theta2);
-float k2 = l2 * sinf(theta2);
+    // Cinemática inversa
+    // componentes auxiliares para calcular theta1
+    // Geométricamente forman el vector resultante desde la base hasta el objetivo intermedio del brazo.
+    // k1 es la componente horizontal efectiva.
+    // l1 → primer brazo + l2*cos(theta2) → proyección horizontal del segundo brazo
+    // k2 es la componente vertical del segundo brazo -> cuánto sube/baja el segundo segmento
+    // atan2(y,x) -> ángulo hacia el objetivo
+    // atan2(k2,k1) = ángulo interno del triángulo del brazo
+    // y la resta da el ángulo real del hombro
+    // Visualmente: base ---- l1 ---- joint ---- l2 ---- target
+    // k1 y k2 son básicamente las coordenadas del vector combinado del brazo respecto a la articulación base
+    float k1 = l1 + l2 * cosf(theta2);
+    float k2 = l2 * sinf(theta2);
 
-float theta1_raw = atan2f(y, x) - atan2f(k2, k1);
+    float theta1_raw = atan2f(y, x) - atan2f(k2, k1);
 
-// Offset mecánico
-// sirve para:
-// rotar el sistema de referencia
-// adaptar la matemática al robot real
-// cambiar dónde está el “0°”
-// posiblemente invertir el sentido de giro
-// matemáticamente atan2() usa este sistema:
-// 0° → eje X positivo (derecha)
-// 90° → arriba
-// pero muchos brazos robóticos usan otro sistema, por ejemplo:
-// 0° → arriba
-// +ángulos → sentido horario
-// Entonces necesitás convertir entre:
-// coordenadas matemáticas
-// coordenadas mecánicas del robot
-// Supongamos:
-// theta1_raw = 0°
-// Eso en matemáticas significa:
-// apuntando a la derecha
-// Pero quizá en tu robot:
-// 0° debe ser hacia arriba
-// Entonces hacés:
-// 90° - 0° = 90°
-// y el sistema queda alineado con tu montaje físico.
-theta1 = (float)(2 * M_PI_2) - theta1_raw; // theta1 = 180° - theta1_raw
+    // Offset mecánico
+    // sirve para:
+    // rotar el sistema de referencia
+    // adaptar la matemática al robot real
+    // cambiar dónde está el “0°”
+    // posiblemente invertir el sentido de giro
+    // matemáticamente atan2() usa este sistema:
+    // 0° → eje X positivo (derecha)
+    // 90° → arriba
+    // pero muchos brazos robóticos usan otro sistema, por ejemplo:
+    // 0° → arriba
+    // +ángulos → sentido horario
+    // Entonces necesitás convertir entre:
+    // coordenadas matemáticas
+    // coordenadas mecánicas del robot
+    // Supongamos:
+    // theta1_raw = 0°
+    // Eso en matemáticas significa:
+    // apuntando a la derecha
+    // Pero quizá en tu robot:
+    // 0° debe ser hacia arriba
+    // Entonces hacés:
+    // 90° - 0° = 90°
+    // y el sistema queda alineado con tu montaje físico.
+    theta1 = (float)(2 * M_PI_2) - theta1_raw; // theta1 = 180° - theta1_raw
 
-// Simetría física
-// Si el robot tiene una simetría que hace que el mismo ángulo de motor
-// produzca un movimiento en dirección opuesta, entonces se puede invertir el ángulo.
-// Por ejemplo, si el motor está montado de tal forma que un giro positivo
-// hace que el brazo se mueva hacia la izquierda en lugar de hacia la derecha, entonces invertir theta1
-theta1 = -theta1;
+    // Simetría física
+    // Si el robot tiene una simetría que hace que el mismo ángulo de motor
+    // produzca un movimiento en dirección opuesta, entonces se puede invertir el ángulo.
+    // Por ejemplo, si el motor está montado de tal forma que un giro positivo
+    // hace que el brazo se mueva hacia la izquierda en lugar de hacia la derecha, entonces invertir theta1
+    theta1 = -theta1;
 
-// Normalización [-pi, pi]
-// normaliza theta1 para que siempre quede dentro del rango: −π≤θ1​≤π
-theta1 = fmodf(theta1 + (float)M_PI, 2.0f * (float)M_PI); // fmodf(a,b) devuelve el resto de la división:
-if (theta1 < 0)
-    theta1 += 2.0f * (float)M_PI;
-theta1 -= (float)M_PI;
+    // Normalización [-pi, pi]
+    // normaliza theta1 para que siempre quede dentro del rango: −π≤θ1​≤π
+    theta1 = fmodf(theta1 + (float)M_PI, 2.0f * (float)M_PI); // fmodf(a,b) devuelve el resto de la división:
+    if (theta1 < 0)
+        theta1 += 2.0f * (float)M_PI;
+    theta1 -= (float)M_PI;
 
-// reflejan los ángulos
-// cambian el cuadrante
-// mantienen continuidad
-// evitan que el brazo dé una vuelta completa innecesaria
-if (x < 0.0f) {
-    theta1 = (float)M_PI - theta1;
-    theta2 = -((float)M_PI) - theta2;
-} else if (x > 0.0f) {
-    theta1 = -((float)M_PI) - theta1;
-    theta2 = (float)M_PI - theta2;
-}
+    // reflejan los ángulos
+    // cambian el cuadrante
+    // mantienen continuidad
+    // evitan que el brazo dé una vuelta completa innecesaria
+    if (x < 0.0f) {
+        theta1 = (float)M_PI - theta1;
+        theta2 = -((float)M_PI) - theta2;
+    } else if (x > 0.0f) {
+        theta1 = -((float)M_PI) - theta1;
+        theta2 = (float)M_PI - theta2;
+    }
 
-return true;
+    return true;
 }
 
 // CONVERSION DE CASSILA A ANGULOS

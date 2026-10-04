@@ -1,8 +1,8 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\xy_plane.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\xy_plane.h"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
-//  Archivo    : xy_axis.h
+//  Archivo    : xy_plane.h
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------

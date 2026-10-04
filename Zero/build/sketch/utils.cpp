@@ -1,6 +1,6 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\utils.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\utils.cpp"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : utils.cpp
 //  Autor      : Klaus Michalsky
@@ -146,9 +146,8 @@ bool inverseKinematics(
     // Entonces el brazo conserva la misma distancia al objetivo, pero se dobla hacia el otro lado.
     // En cinemática inversa de brazos 2D siempre existen dos soluciones: codo arriba y codo abajo
     // Ese -theta2 está seleccionando la otra solución dependiendo del lado del tablero/plano.
-    if (x < 0.0f) {
-        theta2 = -theta2;
-    }
+    // if (x < 0.0f) {
+    //     theta2 = -theta2;
 
     // Cinemática inversa
     // componentes auxiliares para calcular theta1
@@ -190,7 +189,7 @@ bool inverseKinematics(
     // Entonces hacés:
     // 90° - 0° = 90°
     // y el sistema queda alineado con tu montaje físico.
-    theta1 = (float)(M_PI_2)-theta1_raw; // theta1 = 90° - theta1_raw
+    theta1 = (float)(2 * M_PI_2) - theta1_raw; // theta1 = 180° - theta1_raw
 
     // Simetría física
     // Si el robot tiene una simetría que hace que el mismo ángulo de motor

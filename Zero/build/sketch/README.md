@@ -1,5 +1,5 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\README.md"
-# ♟️ ChessBot---Zero
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\README.md"
+# ♟️ CNYX-Pro_Stockfish
 
 Sistema de control para un robot de ajedrez basado en RP2040,
 con comunicación UART entre Pi Zero y RP2040 Zero, visualización

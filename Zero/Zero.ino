@@ -23,6 +23,7 @@
 #include "motors.h"
 #include "sensors.h"
 #include "utils.h"
+#include "z_axis.h"
 
 // SETUP
 // -----------------------------------------------------------------------
@@ -35,9 +36,7 @@ void setup() {
     homingInitZ(motor3Homing);
     motorsInit();
     sensorsInit();
-
-    pinMode(MAGNET, OUTPUT);
-    digitalWrite(MAGNET, LOW);
+    magnetInit();
     pinMode(LED, OUTPUT);
 }
 

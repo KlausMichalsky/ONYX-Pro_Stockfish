@@ -23,6 +23,7 @@ extern MovingStateZ movingStateZ;
 void zMoveHome();
 void zMoveDown();
 void zMoveTravel();
+void magnetInit();
 void magnetON();
 void magnetOFF();
 void startZPick();

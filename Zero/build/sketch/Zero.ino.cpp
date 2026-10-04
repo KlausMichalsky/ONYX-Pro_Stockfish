@@ -1,8 +1,8 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\RP2040-Zero.ino"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\Zero.ino"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                          🔹 O N Y X   -   P R O 🔹
 // =======================================================================
-//  Archivo    : RP2040-Zero.ino
+//  Archivo    : Zero.ino
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------
@@ -24,14 +24,15 @@
 #include "motors.h"
 #include "sensors.h"
 #include "utils.h"
+#include "z_axis.h"
 
 // SETUP
 // -----------------------------------------------------------------------
-#line 29 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\RP2040-Zero.ino"
+#line 30 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\Zero.ino"
 void setup();
-#line 46 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\RP2040-Zero.ino"
+#line 45 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\Zero.ino"
 void loop();
-#line 29 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\RP2040-Zero.ino"
+#line 30 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\Zero.ino"
 void setup() {
     delay(1000);
     communicationInit();
@@ -41,9 +42,7 @@ void setup() {
     homingInitZ(motor3Homing);
     motorsInit();
     sensorsInit();
-
-    pinMode(MAGNET, OUTPUT);
-    digitalWrite(MAGNET, LOW);
+    magnetInit();
     pinMode(LED, OUTPUT);
 }
 

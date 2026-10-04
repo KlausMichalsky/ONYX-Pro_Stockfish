@@ -1,4 +1,4 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\.vscode\\arduino.json"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\.vscode\\arduino.json"
 {
   "port": "COM7",
   "configuration": "flash=2097152_0,freq=200,opt=Small,os=none,profile=Disabled,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk,ipbtstack=ipv4only,uploadmethod=default",
@@ -16,5 +16,6 @@
     "dataBits": 8,
     "parity": "none",
     "stopBits": "one"
-  }
+  },
+  "schemaVersion": 1
 }

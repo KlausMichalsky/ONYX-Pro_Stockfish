@@ -1,6 +1,6 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\Z_Axis.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\z_axis.h"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : z_axis.h
 //  Autor      : Klaus Michalsky
@@ -24,6 +24,7 @@ extern MovingStateZ movingStateZ;
 void zMoveHome();
 void zMoveDown();
 void zMoveTravel();
+void magnetInit();
 void magnetON();
 void magnetOFF();
 void startZPick();

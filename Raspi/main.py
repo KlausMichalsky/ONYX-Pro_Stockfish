@@ -32,7 +32,7 @@ THINK_TIME = 0.1
 # INIT SERIAL
 # =========================
 
-print("🤖 Iniciando KAYRON...")
+print("🤖 Iniciando ONYX-Pro...")
 
 ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
 

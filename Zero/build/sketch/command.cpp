@@ -1,6 +1,6 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\command.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\command.cpp"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : command.cpp
 //  Autor      : Klaus Michalsky
@@ -81,7 +81,7 @@ String readCommand() {
             buffer += c;
         }
     }
-    return ""; // no hay comando completo todavía
+    return ""; // return si no hay comando completo todavía
 }
 
 // MAPEO DE STRING A ENUM CLASS COMMAND
@@ -103,6 +103,10 @@ Command parseCommand(const String &cmd) {
         return Command::HOMING;
     else if (cmd.startsWith("MOVE"))
         return Command::MOVE;
+    else if (cmd == "PICK")
+        return Command::PICK;
+    else if (cmd == "PLACE")
+        return Command::PLACE;
     else if (cmd.startsWith("REMOVE"))
         return Command::REMOVE;
     else if (cmd.startsWith("SQUARE"))
@@ -214,6 +218,17 @@ void processCommand(const String &cmdStr) {
             break;
         }
 
+        case Command::PICK:
+            Serial1.println("PICKING PIECE!");
+            startZPick(); // bloqueante: sube/baja Z y activa imán
+            // después de esto, XY puede moverse sin problemas
+            break;
+
+        case Command::PLACE:
+            Serial1.println("PLACING PIECE!");
+            startZPlace(); // bloqueante: sube/baja Z y desactiva imán
+            break;
+
         case Command::REMOVE: {
             char captureSquare[4] = {0};
             char finalSquare[4] = {0};
@@ -245,6 +260,34 @@ void processCommand(const String &cmdStr) {
             startCaptureSequence(capT1, capT2, finT1, finT2);
 
             COMM.println("REMOVE STARTED");
+            break;
+        }
+
+        case Command::SQUARE: {
+            char square[3];
+
+            int parsed = sscanf(trimmedCmd.c_str(), "SQUARE %2s", square);
+            // "SQUARE %2s" leer máximo 2 caracteres.
+
+            if (parsed != 1) {
+                Serial1.println("ERROR: SQUARE format invalid");
+                break;
+            }
+
+            float shoulderDeg;
+            float elbowDeg;
+
+            // CASILLA -> ANGULOS
+            if (!chessSquareToAngles(
+                    String(square),
+                    shoulderDeg,
+                    elbowDeg)) {
+                Serial1.println("ERROR: Invalid square or unreachable");
+                break;
+            }
+
+            // MOVER BRAZO
+            moveToAngles(shoulderDeg, elbowDeg);
             break;
         }
 

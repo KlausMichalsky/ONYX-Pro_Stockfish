@@ -1,8 +1,8 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\xy_plane.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\xy_plane.cpp"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
-//  Archivo    : xy_axis.cpp
+//  Archivo    : xy_plane.cpp
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 // -----------------------------------------------------------------------

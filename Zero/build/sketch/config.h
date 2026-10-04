@@ -1,6 +1,6 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\config.h"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\config.h"
 // =======================================================================
-//                          🔹 K A Y R O N 🔹
+//                      🔹 O N Y X   -   P R O 🔹
 // =======================================================================
 //  Archivo    : config.h
 //  Autor      : Klaus Michalsky
@@ -47,7 +47,9 @@
 #define MOTOR3_STEP 11
 // Pines de indicador LED y electroimán
 #define LED 2
-#define MAGNET 28
+#define MAGNET_IN1 0
+#define MAGNET_IN2 1
+#define MAGNET_RELEASE_TIME 50 // ms
 
 // PARAMETROS DE CONFIGURACIÓN PLANO XY
 // -----------------------------------------------------------------------
@@ -59,12 +61,12 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 12150            // cantidad de pasos desde el Sensor
-                                      // hasta el punto mas bajo -> posicion de agarre
-#define Z_HOME_OFFSET 8000            // cantidad de pasos desde Sensor hast HOME -> posicion de referencia
-#define Z_TRAVEL_POS (-Z_HOME_OFFSET) // cantidad de pasos desde HOME hasta la posición de viaje
-                                      // para levantar la pieza (Z arriba)
-#define Z_DELAY 100                   // delay entre movimientos para darle tiempo al iman
+#define Z_STEPS_DOWN 2600 // cantidad de pasos desde el Sensor
+//                                       // hasta el punto mas bajo -> posicion de agarre
+// #define Z_HOME_OFFSET 8000 / 4        // cantidad de pasos desde Sensor hast HOME -> posicion de referencia
+// #define Z_TRAVEL_POS (-Z_HOME_OFFSET) // cantidad de pasos desde HOME hasta la posición de viaje
+// para levantar la pieza (Z arriba)
+#define Z_DELAY 100 // delay entre movimientos para darle tiempo al iman
 
 // NIVELES LÓGICOS DE ENABLE DEL TMC2209
 // -----------------------------------------------------------------------
@@ -80,14 +82,14 @@ constexpr int MOTOR3_MICROSTEPPING = 8;
 
 // CONFIGURACION DEL TABLERO en MM
 // -----------------------------------------------------------------------
-constexpr float SQUARE_SIZE = 25.0f;                                     // Tamaño de casilla en mm
+constexpr float SQUARE_SIZE = 40.0f;                                     // Tamaño de casilla en mm
 constexpr float A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0f); // Distancia desde DOF1 a centro Fila A
-constexpr float A1_OFFSET_Y = 80.0f;                                     // Distancia desde DOF1 a centro Rango 1
+constexpr float A1_OFFSET_Y = 120.0f;                                    // Distancia desde DOF1 a centro Rango 1
 
 // CONFIGURACION DE LOS BRAZOS EN MM
 // -----------------------------------------------------------------------
-constexpr float LINK1 = 175;
-constexpr float LINK2 = 95;
+constexpr float LINK1 = 285;
+constexpr float LINK2 = 170;
 
 // TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
 // -----------------------------------------------------------------------
@@ -101,6 +103,8 @@ enum class Command {
     HOME,
     HOMING,
     MOVE,
+    PICK,
+    PLACE,
     REMOVE,
     SQUARE,
     UNKNOWN
@@ -134,6 +138,7 @@ enum class HomingStateXY {
 // Maquina de estados para el homing del motor3
 enum class HomingStateZ {
     INACTIVE,
+    CHECK_SENSOR,
     FIND_EDGE_DOWNWARD,
     FIND_EDGE_UPWARD,
     MOVE_TO_REFERENCE,
@@ -232,12 +237,12 @@ inline const MotorConfig motor1Config = {
     .stepsPerRevolution = MOTOR_STEPS,
     .motorDirection = -1, // ‼️ -1 porque el motor/sensor esta fisicamente montado al revez
     .slowSpeed = 3200.0,
-    .fastSpeed = 50000.0,
+    .fastSpeed = 25000.0, // max. 50000
     .steps90Deg = MOTOR1_MICROSTEPPING * MOTOR_STEPS / 4,
     .stepsLimit = 0, // no existe para motor1
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 8000.0,
+    .acceleration = 6000.0, // max. 8000
     .enablePin = MOTOR1_ENABLE};
 
 inline const MotorConfig motor2Config = {
@@ -246,12 +251,12 @@ inline const MotorConfig motor2Config = {
     .stepsPerRevolution = MOTOR_STEPS,
     .motorDirection = 1,
     .slowSpeed = 2500.0,
-    .fastSpeed = 40000.0,
+    .fastSpeed = 20000.0, // max. 40000
     .steps90Deg = MOTOR2_MICROSTEPPING * MOTOR_STEPS / 4,
     .stepsLimit = 0, // no existe para motor2
     .timeout = 15000,
     .baseSpeed = BASE_SPEED,
-    .acceleration = 7000.0,
+    .acceleration = 6000.0, // max. 7000
     .enablePin = MOTOR2_ENABLE};
 
 inline const MotorConfig motor3Config = {

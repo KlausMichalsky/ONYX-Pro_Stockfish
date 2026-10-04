@@ -1,6 +1,15 @@
-#line 1 "C:\\Users\\Klaus\\Documents\\KAYRON\\RP2040-Zero\\Z_Axis.cpp"
+#line 1 "C:\\Users\\Klaus\\Documents\\ONYX-Pro_Stockfish\\Zero\\z_axis.cpp"
 // =======================================================================
-//                 🔹 C H E S S B O T  —   Z E R O 🔹
+//                      🔹 O N Y X   -   P R O 🔹
+// =======================================================================
+//  Archivo    : z_axis.cpp
+//  Autor      : Klaus Michalsky
+//  Fecha      : Feb-2026
+// -----------------------------------------------------------------------
+//  ▫️ DESCRIPCIÓN
+//      - Definición de funciones de movimientos del eje Z
+//      - Activación y desactivación del electroimán
+//      - Secuencia de movimientos Z (Pick → Place)
 // =======================================================================
 
 #include <Arduino.h>
@@ -25,23 +34,44 @@ void zMoveHome() {
 void zMoveDown() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
-    motor3.moveTo(Z_STEPS_DOWN - Z_HOME_OFFSET); // mover hacia abajo hasta la posición de agarre
+    motor3.moveTo(Z_STEPS_DOWN);
+    // motor3.moveTo(Z_STEPS_DOWN - Z_HOME_OFFSET); // mover hacia abajo hasta la posición de agarre
 }
 
 void zMoveTravel() { // Subir a altura segura para mover alzar la pieza (Z arriba)
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
-    motor3.moveTo(Z_TRAVEL_POS);
+    motor3.moveTo(0);
+    // motor3.moveTo(Z_TRAVEL_POS);
 }
 
 // ELECTROIMÁN
 // -----------------------------------------------------------------------
+void magnetInit() {
+    pinMode(MAGNET_IN1, OUTPUT);
+    pinMode(MAGNET_IN2, OUTPUT);
+
+    // DRV8871 apagado
+    digitalWrite(MAGNET_IN1, LOW);
+    digitalWrite(MAGNET_IN2, LOW);
+}
+
 void magnetON() {
-    digitalWrite(MAGNET, HIGH);
+    // Electroimán ON
+    digitalWrite(MAGNET_IN1, HIGH);
+    digitalWrite(MAGNET_IN2, LOW);
 }
 
 void magnetOFF() {
-    digitalWrite(MAGNET, LOW);
+    // Pulso inverso para eliminar magnetismo residual
+    digitalWrite(MAGNET_IN1, LOW);
+    digitalWrite(MAGNET_IN2, HIGH);
+
+    delay(MAGNET_RELEASE_TIME);
+
+    // DRV8871 apagado
+    digitalWrite(MAGNET_IN1, LOW);
+    digitalWrite(MAGNET_IN2, LOW);
 }
 
 // INICIO DE SECUENCIAS

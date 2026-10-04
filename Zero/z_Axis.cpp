@@ -33,23 +33,44 @@ void zMoveHome() {
 void zMoveDown() {
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
-    motor3.moveTo(Z_STEPS_DOWN - Z_HOME_OFFSET); // mover hacia abajo hasta la posición de agarre
+    motor3.moveTo(Z_STEPS_DOWN);
+    // motor3.moveTo(Z_STEPS_DOWN - Z_HOME_OFFSET); // mover hacia abajo hasta la posición de agarre
 }
 
 void zMoveTravel() { // Subir a altura segura para mover alzar la pieza (Z arriba)
     motor3.setMaxSpeed(6000);
     motor3.setAcceleration(15000);
-    motor3.moveTo(Z_TRAVEL_POS);
+    motor3.moveTo(0);
+    // motor3.moveTo(Z_TRAVEL_POS);
 }
 
 // ELECTROIMÁN
 // -----------------------------------------------------------------------
+void magnetInit() {
+    pinMode(MAGNET_IN1, OUTPUT);
+    pinMode(MAGNET_IN2, OUTPUT);
+
+    // DRV8871 apagado
+    digitalWrite(MAGNET_IN1, LOW);
+    digitalWrite(MAGNET_IN2, LOW);
+}
+
 void magnetON() {
-    digitalWrite(MAGNET, HIGH);
+    // Electroimán ON
+    digitalWrite(MAGNET_IN1, HIGH);
+    digitalWrite(MAGNET_IN2, LOW);
 }
 
 void magnetOFF() {
-    digitalWrite(MAGNET, LOW);
+    // Pulso inverso para eliminar magnetismo residual
+    digitalWrite(MAGNET_IN1, LOW);
+    digitalWrite(MAGNET_IN2, HIGH);
+
+    delay(MAGNET_RELEASE_TIME);
+
+    // DRV8871 apagado
+    digitalWrite(MAGNET_IN1, LOW);
+    digitalWrite(MAGNET_IN2, LOW);
 }
 
 // INICIO DE SECUENCIAS
