@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "RP2040-Zero"
+			"path": "Zero"
 		},
 		{
-			"path": "."
+			"path": "Raspi"
 		}
 	],
 	"settings": {}
