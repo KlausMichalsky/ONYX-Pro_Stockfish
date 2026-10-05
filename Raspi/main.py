@@ -143,7 +143,7 @@ def wait_any(*expected):
 # =========================
 
 
-print("🤖 ZERO-CHESS READY")
+print("🤖 ONYX-Pro READY")
 
 do_homing()
 
