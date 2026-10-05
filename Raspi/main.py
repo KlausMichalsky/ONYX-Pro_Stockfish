@@ -1,9 +1,16 @@
-"""
-KAYRON
-main.py - Controlador para Raspberry Pi
-Raspberry Pi Controller
-Stockfish + UART RP2040 + HOMING automático
-"""
+# =======================================================================
+#                         🔹 O N Y X - P R O 🔹
+# =======================================================================
+#  Archivo   : main.py
+#  Autor     : Klaus Michalsky
+#  Fecha     : Oct-2026
+# -----------------------------------------------------------------------
+#  ▫️ DESCRIPCIÓN
+#     - Control principal de ONYX-Pro
+#     - Gestión de partida de ajedrez
+#     - Comunicación con RP2040
+#     - Control de Stockfish
+# =======================================================================
 
 import glob
 import time
