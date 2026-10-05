@@ -17,7 +17,9 @@ import time
 import chess
 import chess.engine
 import serial
-from chess.engine import EngineTerminatedError
+
+from config import BAUDRATE, SERIAL_TIMEOUT, STOCKFISH_PATH, THINK_TIME
+
 
 # =========================
 # CONFIG
@@ -31,9 +33,6 @@ if not ports:
 SERIAL_PORT = ports[0]
 print("Usando puerto:", SERIAL_PORT)
 
-BAUDRATE = 115200
-STOCKFISH_PATH = "/usr/games/stockfish"
-THINK_TIME = 0.1
 
 # =========================
 # INIT SERIAL
@@ -41,7 +40,11 @@ THINK_TIME = 0.1
 
 print("🤖 Iniciando ONYX-Pro...")
 
-ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=1)
+ser = serial.Serial(
+    SERIAL_PORT,
+    BAUDRATE,
+    timeout=SERIAL_TIMEOUT
+)
 
 time.sleep(2)
 
