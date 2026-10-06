@@ -104,6 +104,8 @@ while True:
 
         print("👤 Humano:", move)
 
+        human_turn = False
+
     # =====================
     # TURNO ROBOT
     # =====================
