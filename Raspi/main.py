@@ -12,55 +12,23 @@
 #     - Control de Stockfish
 # =======================================================================
 
-import glob
 import time
 import chess
 import chess.engine
-import serial
 
-from config import BAUDRATE, SERIAL_TIMEOUT, STOCKFISH_PATH, THINK_TIME
-
-
-# =========================
-# CONFIG
-# =========================
-
-ports = glob.glob("/dev/ttyACM*") + glob.glob("/dev/ttyUSB*")
-
-if not ports:
-    raise Exception("No se encontró RP2040 conectado")
-
-SERIAL_PORT = ports[0]
-print("Usando puerto:", SERIAL_PORT)
-
-
-# =========================
-# INIT SERIAL
-# =========================
-
-print("🤖 Iniciando ONYX-Pro...")
-
-ser = serial.Serial(
-    SERIAL_PORT,
-    BAUDRATE,
-    timeout=SERIAL_TIMEOUT
+from config import STOCKFISH_PATH, THINK_TIME
+from robot import (
+    ser,
+    reset_robot,
+    send_to_robot,
+    wait_done,
+    do_homing,
+    wait_any,
+    shutdown_robot,
 )
 
-time.sleep(2)
-
-# =========================
-# RESET ROBOT
-# =========================
-
-
-def reset_robot(ser):
-    ser.write(b"RESET\n")
-    time.sleep(0.5)
-    ser.reset_input_buffer()
-
-
 print("Reset RP2040...")
-reset_robot(ser)
+reset_robot()
 
 # =========================
 # STOCKFISH INIT
@@ -81,39 +49,6 @@ board = chess.Board()
 
 time.sleep(1)
 
-# =========================
-# UART HELPERS
-# =========================
-
-
-def send_to_robot(cmd):
-    ser.write((cmd + "\n").encode())
-
-
-def wait_done():
-    while True:
-        line = ser.readline().decode(errors="ignore").strip()
-        if line:
-            print("RP2040:", line)
-            if "DONE" in line:
-                break
-
-# =========================
-# HOMING
-# =========================
-
-
-def do_homing():
-    print("🤖 Enviando HOMING...")
-    ser.write(b"HOMING\n")
-
-    while True:
-        line = ser.readline().decode(errors="ignore").strip()
-        if line:
-            print("RP2040:", line)
-            if "DONE" in line:
-                print("✅ HOMING COMPLETO")
-                break
 
 # =========================
 # STOCKFISH MOVE
@@ -134,24 +69,13 @@ def shutdown():
         engine.quit()
     except:
         pass
-    try:
-        ser.close()
-    except:
-        pass
 
+    shutdown_robot()
 
-def wait_any(*expected):
-    while True:
-        line = ser.readline().decode(errors="ignore").strip()
-        if line:
-            print("RP2040:", line)
-            if any(e in line for e in expected):
-                return
 
 # =========================
 # START
 # =========================
-
 
 print("🤖 ONYX-Pro READY")
 
