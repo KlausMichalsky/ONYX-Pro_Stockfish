@@ -14,9 +14,7 @@
 
 import time
 import chess
-import chess.engine
 
-from config import STOCKFISH_PATH, THINK_TIME
 from robot import (
     ser,
     reset_robot,
@@ -26,24 +24,13 @@ from robot import (
     wait_any,
     shutdown_robot,
 )
+from stockfish import (
+    get_best_move,
+    shutdown_stockfish,
+)
 
 print("Reset RP2040...")
 reset_robot()
-
-# =========================
-# STOCKFISH INIT
-# =========================
-
-print("Iniciando Stockfish...")
-t0 = time.time()
-
-engine = chess.engine.SimpleEngine.popen_uci(
-    STOCKFISH_PATH,
-    timeout=30.0
-)
-
-print("Stockfish OK")
-print(f"Tiempo de inicio: {time.time() - t0:.2f} segundos")
 
 board = chess.Board()
 
@@ -51,25 +38,11 @@ time.sleep(1)
 
 
 # =========================
-# STOCKFISH MOVE
-# =========================
-
-
-def get_best_move():
-    result = engine.play(board, chess.engine.Limit(time=THINK_TIME))
-    return result.move.uci()
-
-# =========================
 # SHUTDOWN
 # =========================
 
-
 def shutdown():
-    try:
-        engine.quit()
-    except:
-        pass
-
+    shutdown_stockfish()
     shutdown_robot()
 
 
@@ -130,7 +103,7 @@ while True:
 
         ser.reset_input_buffer()
 
-        stockfish_move = get_best_move()
+        stockfish_move = get_best_move(board)
         move = chess.Move.from_uci(stockfish_move)
 
         print("🤖 Stockfish:", stockfish_move)
