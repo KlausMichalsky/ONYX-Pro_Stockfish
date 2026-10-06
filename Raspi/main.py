@@ -13,7 +13,6 @@
 # =======================================================================
 
 import time
-import chess
 
 from robot import (
     ser,
@@ -29,10 +28,21 @@ from stockfish import (
     shutdown_stockfish,
 )
 
+from game import (
+    create_board,
+    create_move,
+    validate_human_move,
+    push_move,
+    is_capture,
+    get_capture_squares,
+    is_game_over,
+    get_result,
+)
+
 print("Reset RP2040...")
 reset_robot()
 
-board = chess.Board()
+board = create_board()
 
 time.sleep(1)
 
@@ -80,9 +90,9 @@ while True:
             break
 
         try:
-            human_move = chess.Move.from_uci(move)
+            human_move = validate_human_move(board, move)
 
-            if human_move not in board.legal_moves:
+            if human_move is None:
                 print("❌ Jugada ilegal")
                 continue
 
@@ -90,10 +100,9 @@ while True:
             print("❌ Formato inválido")
             continue
 
-        board.push(human_move)
-        print("👤 Humano:", move)
+        push_move(board, human_move)
 
-        human_turn = False
+        print("👤 Humano:", move)
 
     # =====================
     # TURNO ROBOT
@@ -104,17 +113,16 @@ while True:
         ser.reset_input_buffer()
 
         stockfish_move = get_best_move(board)
-        move = chess.Move.from_uci(stockfish_move)
+        move = create_move(stockfish_move)
 
         print("🤖 Stockfish:", stockfish_move)
 
         # =====================
         # CAPTURA
         # =====================
-        if board.is_capture(move):
+        if is_capture(board, move):
 
-            capture_square = chess.square_name(move.to_square)
-            from_square = chess.square_name(move.from_square)
+            capture_square, from_square = get_capture_squares(move)
 
             send_to_robot(f"REMOVE {capture_square} {from_square}")
 
@@ -128,7 +136,7 @@ while True:
             send_to_robot(stockfish_move)
             wait_done()
 
-        board.push(move)
+        push_move(board, move)
 
         human_turn = True
 
@@ -136,8 +144,10 @@ while True:
     # FIN PARTIDA
     # =====================
 
-    if board.is_game_over():
+    if is_game_over(board):
+
         print("\n🏁 Fin de partida")
-        print(board.result())
+        print(get_result(board))
+
         shutdown()
         break
