@@ -44,7 +44,9 @@ reset_robot()
 
 board = create_board()
 
-time.sleep(1)
+# pausa de 1 segundo;
+# motivo específico en este programa todavía no identificado
+# time.sleep(1)
 
 
 # =========================
@@ -64,6 +66,7 @@ print("🤖 ONYX-Pro READY")
 
 do_homing()
 
+# strip() es un método de un objeto str elimina espacios en blanco al inicio y al final de la cadena de texto.
 mode = input("¿Quién empieza? (1=Humano, 2=Robot): ").strip()
 human_turn = (mode == "1")
 
@@ -94,7 +97,7 @@ while True:
 
             if human_move is None:
                 print("❌ Jugada ilegal")
-                continue
+                continue  # No sigas ejecutando esta vuelta del loop; vuelve directamente al principio del while
 
         except ValueError:
             print("❌ Formato inválido")
@@ -104,7 +107,7 @@ while True:
 
         print("👤 Humano:", move)
 
-        human_turn = False
+        human_turn = False  # cambiar el turno al robot
 
     # =====================
     # TURNO ROBOT
@@ -112,9 +115,12 @@ while True:
 
     else:
 
-        ser.reset_input_buffer()
+        ser.reset_input_buffer()  # limpiar mensajes anteriores del buffer de entrada
 
+        # El board contiene la posición actual de la partida.
         stockfish_move = get_best_move(board)
+        # Crea un objeto Move a partir de stockfish_move,
+        # guárdalo en move para luego dárselo a chess
         move = create_move(stockfish_move)
 
         print("🤖 Stockfish:", stockfish_move)
@@ -128,8 +134,7 @@ while True:
 
             send_to_robot(f"REMOVE {capture_square} {from_square}")
 
-            # 🔥 SOLO esperar final real del sistema completo
-            # o "CAPTURE DONE + FINAL DONE" mejor aún
+            # 🔥 Espera hasta que el RP2040 envíe MOVE DONE o CAPTURE DONE
             wait_any("MOVE DONE", "CAPTURE DONE")
 
             print("✅ Captura completada")
