@@ -303,7 +303,7 @@ void homingStepZ(AccelStepper &motor,
         case HomingStateZ::MOVE_TO_REFERENCE:
             motor.setSpeed(-dir * cfg.slowSpeed);
             motor.runSpeed();
-            if (motor.currentPosition() <= st.edge - 500) {
+            if (motor.currentPosition() <= st.edge - 700) {
                 motor.stop();
                 motor.setCurrentPosition(0);
                 digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
