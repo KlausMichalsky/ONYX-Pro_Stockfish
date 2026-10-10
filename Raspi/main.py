@@ -104,7 +104,7 @@ while True:
                 print("❌ Jugada ilegal")
                 continue  # No sigas ejecutando esta vuelta del loop; vuelve directamente al principio del while
 
-        except ValueError:
+        except (ValueError, IndexError):
             print("❌ Formato inválido")
             continue
 
