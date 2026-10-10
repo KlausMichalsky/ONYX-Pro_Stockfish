@@ -37,6 +37,8 @@ from game import (
     get_capture_squares,
     is_game_over,
     get_result,
+    mirror_square,
+    mirror_move,
 )
 
 print("Reset RP2040...")
@@ -69,6 +71,8 @@ do_homing()
 # strip() es un método de un objeto str elimina espacios en blanco al inicio y al final de la cadena de texto.
 mode = input("¿Quién empieza? (1=Humano, 2=Robot): ").strip()
 human_turn = (mode == "1")
+# Así, mirror_coordinates será True cuando empiece el humano y False cuando empiece el robot
+mirror_coordinates = (mode == "1")
 
 print("\n♟️ Iniciando partida...\n")
 
@@ -132,6 +136,10 @@ while True:
 
             capture_square, from_square = get_capture_squares(move)
 
+            if mirror_coordinates:
+                capture_square = mirror_square(capture_square)
+                from_square = mirror_square(from_square)
+
             send_to_robot(f"REMOVE {capture_square} {from_square}")
 
             # 🔥 Espera hasta que el RP2040 envíe MOVE DONE o CAPTURE DONE
@@ -140,7 +148,9 @@ while True:
             print("✅ Captura completada")
 
         else:
-            send_to_robot(stockfish_move)
+            robot_move = mirror_move(
+                stockfish_move) if mirror_coordinates else stockfish_move
+            send_to_robot(robot_move)
             wait_done()
 
         push_move(board, move)
