@@ -101,7 +101,7 @@ void homingStartZ(AccelStepper &motor,
 
     st.startTime = millis();
     st.fault = false;
-    st.state = HomingStateZ::FIND_EDGE_DOWNWARD;
+    st.state = HomingStateZ::CHECK_SENSOR;
 }
 
 // HOMING ACTIVO?
@@ -284,7 +284,6 @@ void homingStepZ(AccelStepper &motor,
             motor.runSpeed();
             if (!imanPresente) {
                 st.edge = motor.currentPosition();
-                motor.moveTo(st.edge + 500); // avanza 500 pasos para alejarse un poquito del imán
                 st.state = HomingStateZ::FIND_EDGE_UPWARD;
             }
             break;
@@ -303,10 +302,10 @@ void homingStepZ(AccelStepper &motor,
         case HomingStateZ::MOVE_TO_REFERENCE:
             motor.setSpeed(-dir * cfg.slowSpeed);
             motor.runSpeed();
-            if (motor.currentPosition() <= st.edge - 700) {
+            if (motor.currentPosition() <= st.edge - 600) {
                 motor.stop();
                 motor.setCurrentPosition(0);
-                digitalWrite(cfg.enablePin, ENABLE_INACTIVE);
+                digitalWrite(cfg.enablePin, ENABLE_ACTIVE);
                 st.state = HomingStateZ::OK;
             }
             break;

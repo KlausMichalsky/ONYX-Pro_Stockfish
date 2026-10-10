@@ -61,7 +61,7 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 2920 // cantidad de pasos desde el Sensor
+#define Z_STEPS_DOWN 2900 // cantidad de pasos desde el Sensor
 //                                       // hasta el punto mas bajo -> posicion de agarre
 // #define Z_HOME_OFFSET 8000 / 4        // cantidad de pasos desde Sensor hast HOME -> posicion de referencia
 // #define Z_TRAVEL_POS (-Z_HOME_OFFSET) // cantidad de pasos desde HOME hasta la posición de viaje
@@ -264,7 +264,7 @@ inline const MotorConfig motor3Config = {
     .reduction = 1,
     .stepsPerRevolution = 200,
     .motorDirection = 1,
-    .slowSpeed = 3000.0,
+    .slowSpeed = 700.0,
     .fastSpeed = 6000.0,
     .steps90Deg = 0,     // no existe para motor3
     .stepsLimit = -9000, // pasos máximos si arranca fuera del imán (solo motor3)
