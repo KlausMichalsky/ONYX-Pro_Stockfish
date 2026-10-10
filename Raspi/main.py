@@ -97,7 +97,8 @@ while True:
             break
 
         try:
-            human_move = validate_human_move(board, move)
+            logical_move = mirror_move(move) if mirror_coordinates else move
+            human_move = validate_human_move(board, logical_move)
 
             if human_move is None:
                 print("❌ Jugada ilegal")
