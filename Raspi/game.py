@@ -87,3 +87,30 @@ def get_result(board):
     # recibe un objeto Board
     # y devuelve el resultado de la partida en formato string
     return board.result()
+
+
+def mirror_square(square):
+    # square[0] Obtiene el primer carácter de la casilla
+    # ord(square[0]) Obtiene el valor ASCII del primer carácter
+    # ord("a") → 97, ord("e") → 101, ord("h") → 104
+    # ord(square[0]) - ord("a") calcula cuántas posiciones hay desde la columna A. Para E, esto sería 4.
+    # ord("h") - (ord(square[0]) - ord("a")) calcula la columna espejo. Para E, esto sería 104 - 4 = 100, que es la letra D.
+    # chr(...) convierte el valor ASCII de vuelta a un carácter. Para 100, esto sería "d".
+    file = chr(ord("h") - (ord(square[0]) - ord("a")))
+    # similar para el rango, pero en lugar de usar valores ASCII,
+    # usamos la posición numérica de la fila.
+    rank = str(9 - int(square[1]))
+    # devuelve la casilla espejo en formato UCI
+    return file + rank
+
+
+def mirror_move(move_uci):  # recibe una jugada en formato UCI
+    # Dame los caracteres desde el principio hasta la posición 2, sin incluir la posición 2
+    from_square = move_uci[:2]
+    # caracteres desde el índice 2 hasta el 4, sin incluir el 4
+    to_square = move_uci[2:4]
+    promotion = move_uci[4:]  # caracteres desde el índice 4 hasta el final
+
+    # aqui en el return de abajo la función mirror_square() se ejecuta dos veces:
+    # devuelve la jugada espejo en formato UCI
+    return mirror_square(from_square) + mirror_square(to_square) + promotion
