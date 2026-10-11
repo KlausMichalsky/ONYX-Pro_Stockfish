@@ -133,7 +133,7 @@ while True:
         move = create_move(stockfish_move)
 
         # Mostrar la jugada original calculada por Stockfish, sin reflejar.
-        print("🤖 Stockfish_Board:", stockfish_move)
+        print("🤖 Robot_Stockfish_Board:", stockfish_move)
 
         # Reflejar las coordenadas para el tablero físico,
         # porque la orientación del tablero nunca cambia.
