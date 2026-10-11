@@ -110,7 +110,8 @@ while True:
 
         push_move(board, human_move)
 
-        print("👤 Humano:", move)
+        print("👤 Human_Physical_Board:", move)
+        print("👤 Human_Stockfish_Board:", logical_move)
 
         human_turn = False  # cambiar el turno al robot
 
@@ -120,42 +121,62 @@ while True:
 
     else:
 
-        ser.reset_input_buffer()  # limpiar mensajes anteriores del buffer de entrada
+        # Limpiar mensajes anteriores del buffer de entrada del puerto serie
+        ser.reset_input_buffer()
 
         # El board contiene la posición actual de la partida.
+        # Stockfish calcula su mejor jugada usando las coordenadas lógicas del tablero.
         stockfish_move = get_best_move(board)
-        # Crea un objeto Move a partir de stockfish_move,
-        # guárdalo en move para luego dárselo a chess
+
+        # Convertir la jugada en texto UCI a un objeto Move de python-chess.
+        # Este objeto se utiliza para comprobar capturas y actualizar el tablero.
         move = create_move(stockfish_move)
 
-        print("🤖 Stockfish:", stockfish_move)
+        # Mostrar la jugada original calculada por Stockfish, sin reflejar.
+        print("🤖 Stockfish_Board:", stockfish_move)
+
+        # Reflejar las coordenadas para el tablero físico,
+        # porque la orientación del tablero nunca cambia.
+        robot_move = mirror_move(
+            stockfish_move) if mirror_coordinates else stockfish_move
+
+        # Mostrar la jugada que se enviará al RP2040.
+        print("🤖 Robot_Physical_Board:", robot_move)
 
         # =====================
         # CAPTURA
         # =====================
+        # Comprobar si la jugada de Stockfish captura una pieza.
         if is_capture(board, move):
 
+            # Obtener las casillas de destino y origen de la captura.
             capture_square, from_square = get_capture_squares(move)
 
+            # Reflejar ambas casillas si el tablero físico requiere transformación.
             if mirror_coordinates:
                 capture_square = mirror_square(capture_square)
                 from_square = mirror_square(from_square)
 
+            # Enviar al RP2040 la orden para retirar la pieza capturada.
             send_to_robot(f"REMOVE {capture_square} {from_square}")
 
-            # 🔥 Espera hasta que el RP2040 envíe MOVE DONE o CAPTURE DONE
+            # Esperar la confirmación del RP2040.
             wait_any("MOVE DONE", "CAPTURE DONE")
 
             print("✅ Captura completada")
 
         else:
-            robot_move = mirror_move(
-                stockfish_move) if mirror_coordinates else stockfish_move
+            # Enviar al RP2040 la jugada transformada para el tablero físico.
             send_to_robot(robot_move)
+
+            # Esperar a que el robot termine el movimiento.
             wait_done()
 
+        # Actualizar el tablero lógico con la jugada original de Stockfish,
+        # nunca con las coordenadas reflejadas del tablero físico.
         push_move(board, move)
 
+        # Cambiar el turno al humano.
         human_turn = True
 
     # =====================

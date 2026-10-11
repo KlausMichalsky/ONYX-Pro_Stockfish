@@ -84,7 +84,7 @@ constexpr int MOTOR3_MICROSTEPPING = 8;
 // -----------------------------------------------------------------------
 constexpr float SQUARE_SIZE = 40.0f;                                     // Tamaño de casilla en mm
 constexpr float A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0f); // Distancia desde DOF1 a centro Fila A
-constexpr float A1_OFFSET_Y = 120.0f;                                    // Distancia desde DOF1 a centro Rango 1
+constexpr float A1_OFFSET_Y = 122.0f;                                    // Distancia desde DOF1 a centro Rango 1
 
 // CONFIGURACION DE LOS BRAZOS EN MM
 // -----------------------------------------------------------------------
@@ -264,7 +264,7 @@ inline const MotorConfig motor3Config = {
     .reduction = 1,
     .stepsPerRevolution = 200,
     .motorDirection = 1,
-    .slowSpeed = 700.0,
+    .slowSpeed = 1000.0,
     .fastSpeed = 6000.0,
     .steps90Deg = 0,     // no existe para motor3
     .stepsLimit = -9000, // pasos máximos si arranca fuera del imán (solo motor3)
