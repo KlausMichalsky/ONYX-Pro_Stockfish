@@ -69,7 +69,7 @@ print("🤖 ONYX-Pro READY")
 do_homing()
 
 # strip() es un método de un objeto str elimina espacios en blanco al inicio y al final de la cadena de texto.
-mode = input("¿Quién empieza? (1=Humano, 2=Robot): ").strip()
+mode = input("\n¿Quién empieza? (1=Humano, 2=Robot): ").strip()
 human_turn = (mode == "1")
 # Así, mirror_coordinates será True cuando empiece el humano y False cuando empiece el robot
 mirror_coordinates = (mode == "1")
