@@ -121,7 +121,7 @@ mirror_coordinates = (mode == "1")
 
 sensors.init_sensors()
 
-confirmed_state = sensors.board_state.copy()
+confirmed_state = read_stable_sensor_state()
 
 expected_state = _sensor_occupancy_from_board(
     board, mirror_coordinates
@@ -275,8 +275,7 @@ while True:
         push_move(board, move)
 
         # Sincronizar sensores después del movimiento del robot.
-        sensors.detect_changes()
-        confirmed_state = sensors.board_state.copy()
+        confirmed_state = read_stable_sensor_state()
         change_history.clear()
 
         # Cambiar el turno al humano.
