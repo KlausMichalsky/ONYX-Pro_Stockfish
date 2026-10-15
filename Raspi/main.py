@@ -121,31 +121,67 @@ while True:
 
     if human_turn:
 
-        move = input("\n♟️ Tu jugada (ej: e2e4) | q = salir: ").strip().lower()
+        print("\n♟️ Mové tus piezas y pulsá el botón para confirmar.")
+        print("Podés corregir tus movimientos antes de confirmar.")
 
-        if move == "q":
-            print("👋 Saliendo...")
-            shutdown()
-            break
+        while True:
 
-        try:
-            logical_move = mirror_move(move) if mirror_coordinates else move
-            human_move = validate_human_move(board, logical_move)
+            # Registrar los cambios detectados por los sensores.
+            change_history.extend(sensors.detect_changes())
 
-            if human_move is None:
-                print("❌ Jugada ilegal")
-                continue  # No sigas ejecutando esta vuelta del loop; vuelve directamente al principio del while
+            if sensors.button_pressed():
 
-        except (ValueError, IndexError):
-            print("❌ Formato inválido")
-            continue
+                sensors.wait_button_release()
 
-        push_move(board, human_move)
+                # Leer los últimos cambios antes de confirmar.
+                change_history.extend(sensors.detect_changes())
+                current_state = sensors.board_state.copy()
 
-        print("👤 Human_Physical_Board:", move)
-        print("👤 Human_Stockfish_Board:", logical_move)
+                try:
+                    # Identificar la jugada final usando el estado
+                    # inicial, el estado actual y el historial.
+                    logical_move = detect_human_move(
+                        board,
+                        confirmed_state,
+                        current_state,
+                        change_history,
+                        mirror_coordinates,
+                    )
 
-        human_turn = False  # cambiar el turno al robot
+                    # Validar la jugada contra el tablero lógico.
+                    human_move = validate_human_move(
+                        board, logical_move
+                    )
+
+                    if human_move is None:
+                        print("❌ Jugada ilegal. Corregí las piezas.")
+                        continue
+
+                except (ValueError, IndexError) as error:
+                    print(f"❌ Jugada no confirmada: {error}")
+                    print("Corregí las piezas y volvé a pulsar.")
+                    continue
+
+                # Mostrar las coordenadas físicas y lógicas.
+                physical_move = (
+                    mirror_move(logical_move)
+                    if mirror_coordinates
+                    else logical_move
+                )
+
+                push_move(board, human_move)
+
+                print("👤 Human_Physical_Board:", physical_move)
+                print("👤 Human_Stockfish_Board:", logical_move)
+
+                # Guardar la posición confirmada.
+                confirmed_state = current_state.copy()
+                change_history.clear()
+
+                human_turn = False
+                break
+
+            time.sleep(0.05)
 
     # =====================
     # TURNO ROBOT
@@ -207,6 +243,11 @@ while True:
         # Actualizar el tablero lógico con la jugada original de Stockfish,
         # nunca con las coordenadas reflejadas del tablero físico.
         push_move(board, move)
+
+        # Sincronizar sensores después del movimiento del robot.
+        sensors.detect_changes()
+        confirmed_state = sensors.board_state.copy()
+        change_history.clear()
 
         # Cambiar el turno al humano.
         human_turn = True
