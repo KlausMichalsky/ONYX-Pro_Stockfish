@@ -14,9 +14,6 @@
 #     - Gestión del botón de confirmación
 # =======================================================================
 
-
-from tkinter.ttk import Button
-
 from smbus2 import SMBus
 from gpiozero import Button
 import time
