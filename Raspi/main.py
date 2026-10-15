@@ -76,7 +76,9 @@ def shutdown():
 # =========================
 
 def read_stable_sensor_state():
-    """Espera hasta leer el mismo estado 3 veces consecutivas."""
+    """Espera a que las piezas se asienten y estabiliza las lecturas."""
+    time.sleep(1.0)  # Espera inicial para que las piezas se asienten
+
     last_state = None
     stable_reads = 0
 
