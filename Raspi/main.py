@@ -72,8 +72,38 @@ def shutdown():
 
 
 # =========================
+# Lectura Estable de Sensores
+# =========================
+
+def read_stable_sensor_state():
+    """Espera hasta leer el mismo estado 3 veces consecutivas."""
+    last_state = None
+    stable_reads = 0
+
+    for _ in range(20):
+        sensors.detect_changes()
+        current_state = sensors.board_state.copy()
+
+        if current_state == last_state:
+            stable_reads += 1
+        else:
+            last_state = current_state
+            stable_reads = 1
+
+        if stable_reads >= 3:
+            return current_state
+
+        time.sleep(0.05)
+
+    raise RuntimeError(
+        "Los sensores no se estabilizaron después de varios intentos."
+    )
+
+
+# =========================
 # START
 # =========================
+
 
 print("🤖 ONYX-Pro READY")
 
