@@ -14,6 +14,8 @@
 
 import time
 
+import sensors
+
 from robot import (
     ser,
     reset_robot,
@@ -39,6 +41,8 @@ from game import (
     get_result,
     mirror_square,
     mirror_move,
+    detect_human_move,
+    _sensor_occupancy_from_board,
 )
 
 print("Reset RP2040...")
