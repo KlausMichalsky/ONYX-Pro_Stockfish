@@ -60,6 +60,13 @@ board = create_board()
 # =========================
 
 def shutdown():
+    # para que también cierre los sensores y el botón
+    if sensors.button is not None:
+        sensors.button.close()
+
+    if sensors.i2c is not None:
+        sensors.i2c.close()
+
     shutdown_stockfish()
     shutdown_robot()
 
@@ -77,6 +84,27 @@ mode = input("\n¿Quién empieza? (1=Humano, 2=Robot): ").strip()
 human_turn = (mode == "1")
 # Así, mirror_coordinates será True cuando empiece el humano y False cuando empiece el robot
 mirror_coordinates = (mode == "1")
+
+# =========================
+# SENSORES Y BOTÓN
+# =========================
+
+sensors.init_sensors()
+
+confirmed_state = sensors.board_state.copy()
+
+expected_state = _sensor_occupancy_from_board(
+    board, mirror_coordinates
+)
+
+if confirmed_state != expected_state:
+    print("❌ Los sensores no coinciden con la posición inicial.")
+    shutdown()
+    raise SystemExit(1)
+
+change_history = []
+
+print("✅ Sensores y botón listos")
 
 print("\n♟️ Iniciando partida...\n")
 
