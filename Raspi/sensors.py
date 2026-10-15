@@ -249,20 +249,27 @@ def read_all_sensors():
 # DETECTAR CAMBIOS EN EL TABLERO
 # ============================================================
 
+
 def detect_changes():
+
+    global previous_state
+
+    # Leer el estado actual de los 64 sensores
+    read_all_sensors()
 
     changes = []
 
+    # Comparar el estado actual con el anterior
     for square in board_state:
 
         current = board_state[square]
         previous = previous_state.get(square, current)
 
         if current != previous:
+            changes.append((square, current))
 
-            changes.append(
-                (square, current)
-            )
+    # Guardar el estado actual para la próxima comparación
+    previous_state = board_state.copy()
 
     return changes
 
