@@ -114,3 +114,111 @@ def mirror_move(move_uci):  # recibe una jugada en formato UCI
     # aqui en el return de abajo la función mirror_square() se ejecuta dos veces:
     # devuelve la jugada espejo en formato UCI
     return mirror_square(from_square) + mirror_square(to_square) + promotion
+
+
+def _sensor_occupancy_from_board(board, mirror_coordinates=False):
+    """Convierte la posición de ajedrez en el estado esperado de los sensores."""
+    occupancy = {}
+
+    for square_index in chess.SQUARES:
+        square = chess.square_name(square_index)
+
+        if mirror_coordinates:
+            square = mirror_square(square)
+
+        occupancy[square.upper()] = (
+            board.piece_at(square_index) is not None
+        )
+
+    return occupancy
+
+
+def detect_human_move(
+    board,
+    initial_state,
+    current_state,
+    change_history,
+    mirror_coordinates=False,
+):
+    """
+    Identifica la jugada legal que corresponde al estado final del tablero.
+
+    Devuelve la jugada en coordenadas lógicas UCI.
+    Lanza ValueError si no hay una única jugada identificable.
+    """
+
+    # Normalizar las coordenadas recibidas de los sensores.
+    initial = {
+        square.upper(): bool(occupied)
+        for square, occupied in initial_state.items()
+    }
+
+    current = {
+        square.upper(): bool(occupied)
+        for square, occupied in current_state.items()
+    }
+
+    # Comprobar que tenemos los 64 sensores.
+    if len(initial) != 64 or len(current) != 64:
+        raise ValueError("Faltan datos de uno o más sensores.")
+
+    # El tablero inicial debe coincidir con la partida actual.
+    expected_initial = _sensor_occupancy_from_board(
+        board, mirror_coordinates
+    )
+
+    if initial != expected_initial:
+        raise ValueError(
+            "Los sensores no coinciden con la posición actual del juego."
+        )
+
+    # Registrar las casillas que quedaron vacías temporalmente.
+    emptied_squares = {
+        square.upper()
+        for square, occupied in change_history
+        if not occupied
+    }
+
+    candidates = []
+
+    # Probar todas las jugadas legales.
+    for move in board.legal_moves:
+        physical_move = (
+            mirror_move(move.uci())
+            if mirror_coordinates
+            else move.uci()
+        )
+
+        destination = physical_move[2:4].upper()
+
+        # Una captura necesita haber vaciado temporalmente el destino
+        # si este estaba ocupado al principio y sigue ocupado al final.
+        if (
+            initial[destination]
+            and current[destination]
+            and destination not in emptied_squares
+        ):
+            continue
+
+        # Calcular cómo quedaría el tablero con esa jugada.
+        test_board = board.copy()
+        test_board.push(move)
+
+        expected_final = _sensor_occupancy_from_board(
+            test_board, mirror_coordinates
+        )
+
+        if expected_final == current:
+            candidates.append(move.uci())
+
+    if len(candidates) == 0:
+        raise ValueError(
+            "No se pudo identificar una jugada legal con el estado final."
+        )
+
+    if len(candidates) > 1:
+        raise ValueError(
+            "Jugada ambigua. Candidatas: " + ", ".join(candidates)
+        )
+
+    return candidates[0]
