@@ -290,8 +290,6 @@ void updateCaptureSequence() {
         case CaptureSequenceState::PLACING_OPPONENT:
 
             if (movingStateZ == MovingStateZ::IDLE) {
-                COMM.println("CAPTURE DONE");
-
                 moveToHomeXY();
                 captureSeqState = CaptureSequenceState::MOVING_OWN_PIECE_START;
             }
@@ -333,11 +331,20 @@ void updateCaptureSequence() {
             }
             break;
 
-        // 9. HOME final
+        // 9. Iniciar regreso a HOME después de colocar la pieza propia
         case CaptureSequenceState::GO_HOME:
 
             if (movingStateZ == MovingStateZ::IDLE) {
                 moveToHomeXY();
+                captureSeqState = CaptureSequenceState::WAIT_HOME;
+            }
+            break;
+
+        // 10. Esperar a que XY termine de regresar a HOME
+        case CaptureSequenceState::WAIT_HOME:
+
+            if (!xyIsMoving()) {
+                COMM.println("CAPTURE DONE");
                 captureSeqState = CaptureSequenceState::IDLE;
             }
             break;
