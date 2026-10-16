@@ -278,6 +278,27 @@ while True:
 
         # Sincronizar sensores después del movimiento del robot.
         confirmed_state = read_stable_sensor_state()
+
+        expected_state = _sensor_occupancy_from_board(
+            board, mirror_coordinates
+        )
+
+        differences = [
+            square
+            for square in sorted(expected_state)
+            if confirmed_state[square] != expected_state[square]
+        ]
+
+        if differences:
+            print("❌ Diferencias después del movimiento del robot:")
+            for square in differences:
+                print(
+                    f"{square}: sensor={confirmed_state[square]}, "
+                    f"esperado={expected_state[square]}"
+                )
+        else:
+            print("✅ Referencia de sensores correcta después del robot.")
+
         change_history.clear()
 
         # Cambiar el turno al humano.
