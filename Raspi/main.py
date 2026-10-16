@@ -77,12 +77,12 @@ def shutdown():
 
 def read_stable_sensor_state():
     """Espera a que las piezas se asienten y estabiliza las lecturas."""
-    time.sleep(1.0)  # Espera inicial para que las piezas se asienten
+    time.sleep(2.0)
 
     last_state = None
     stable_reads = 0
 
-    for _ in range(20):
+    for _ in range(40):
         sensors.detect_changes()
         current_state = sensors.board_state.copy()
 
@@ -92,7 +92,8 @@ def read_stable_sensor_state():
             last_state = current_state
             stable_reads = 1
 
-        if stable_reads >= 3:
+        # Exigir 10 lecturas consecutivas idénticas.
+        if stable_reads >= 10:
             return current_state
 
         time.sleep(0.05)
