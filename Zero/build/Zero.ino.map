@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o (_ZN7TwoWire5beginEv)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
-                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o (Serial1)
+                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o (Serial1)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUSB.cpp.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o (_ZN9SerialUSB9availableEv)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(USB.cpp.o)
@@ -15,7 +15,7 @@ C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Stream.cpp.o)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(String.cpp.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o (_ZN7arduino6StringD2Ev)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(delay.cpp.o)
-                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o (delay)
+                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o (delay)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
                               C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/crt0.o (main)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(malloc-lock.cpp.o)
@@ -23,7 +23,7 @@ C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(malloc-lock.c
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(stdlib_noniso.cpp.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(String.cpp.o) (ltoa)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_digital.cpp.o)
-                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o (pinMode)
+                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o (pinMode)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_private.cpp.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o) (interrupts)
 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(CoreMutex.cpp.o)
@@ -371,7 +371,7 @@ C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(newlib_interf
 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_thumb1_case_sqi.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o (__gnu_thumb1_case_sqi)
 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_thumb1_case_uqi.o)
-                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o (__gnu_thumb1_case_uqi)
+                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o (__gnu_thumb1_case_uqi)
 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_thumb1_case_shi.o)
                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o (__gnu_thumb1_case_shi)
 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_thumb1_case_uhi.o)
@@ -406,6 +406,11 @@ Discarded input sections
  .debug_str     0x00000000       0x7e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/crt0.o
  .ARM.attributes
                 0x00000000       0x1b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb/crt0.o
+ .text          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .data          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .bss           0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .text._Z11zMoveTravelv
+                0x00000000        0x8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
  .text          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .data          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .bss           0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
@@ -468,11 +473,6 @@ Discarded input sections
                 0x00000000       0x30 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .rodata.motor1Config
                 0x00000000       0x30 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .text          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
- .data          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
- .bss           0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
- .text._Z11zMoveTravelv
-                0x00000000        0x8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
  .group         0x00000000        0x8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .text          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .data          0x00000000        0x0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
@@ -2557,189 +2557,189 @@ LOAD C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-
                 0x10003170                _init
  *(EXCLUDE_FILE(*dvi.c.o *PicoDVI.cpp.o *divider.S.obj *interp.c.obj *libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .text*)
  .text          0x10003174       0x98 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
- .text.setup    0x1000320c       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
-                0x1000320c                setup
- .text.loop     0x10003254       0x2a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
-                0x10003254                loop
- *fill*         0x1000327e        0x2 
- .text.__tcf_0  0x10003280       0x10 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
- .text._Z23commandSendStatusReportv
-                0x10003290       0xb0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-                0x10003290                _Z23commandSendStatusReportv
- .text._Z12parseCommandRKN7arduino6StringE
-                0x10003340      0x110 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-                0x10003340                _Z12parseCommandRKN7arduino6StringE
- .text._Z14processCommandRKN7arduino6StringE
-                0x10003450      0x378 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-                0x10003450                _Z14processCommandRKN7arduino6StringE
- .text._Z16commandAvailablev
-                0x100037c8       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-                0x100037c8                _Z16commandAvailablev
- .text._Z11readCommandv
-                0x100037dc       0x80 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-                0x100037dc                _Z11readCommandv
- .text._Z17communicationInitv
-                0x1000385c       0x28 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
-                0x1000385c                _Z17communicationInitv
- .text._Z8coreInitv
-                0x10003884       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
-                0x10003884                _Z8coreInitv
- .text._Z19coreHomeSingleMotorv
-                0x10003898       0xd4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
-                0x10003898                _Z19coreHomeSingleMotorv
- .text._Z11coreHomeAllv
-                0x1000396c      0x134 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
-                0x1000396c                _Z11coreHomeAllv
- .text._Z10coreUpdatev
-                0x10003aa0       0x54 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
-                0x10003aa0                _Z10coreUpdatev
- .text._Z12homingInitXYR8HomingXY
-                0x10003af4       0x10 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003af4                _Z12homingInitXYR8HomingXY
- .text._Z11homingInitZR7HomingZ
-                0x10003b04       0x10 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003b04                _Z11homingInitZR7HomingZ
- .text._Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi
-                0x10003b14       0x50 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003b14                _Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi
- .text._Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi
-                0x10003b64       0x50 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003b64                _Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi
- .text._Z16homingXYisActiveRK8HomingXY
-                0x10003bb4        0xa C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003bb4                _Z16homingXYisActiveRK8HomingXY
- .text._Z15homingZisActiveRK7HomingZ
-                0x10003bbe        0xa C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003bbe                _Z15homingZisActiveRK7HomingZ
- .text._Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi
-                0x10003bc8      0x188 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003bc8                _Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi
- .text._Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi
-                0x10003d50      0x110 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
-                0x10003d50                _Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi
- .text._Z14motorsEnableXYv
-                0x10003e60       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10003e60                _Z14motorsEnableXYv
- .text._Z12motorEnableZv
-                0x10003e74        0xc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10003e74                _Z12motorEnableZv
- .text._Z15motorsDisableXYv
-                0x10003e80       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10003e80                _Z15motorsDisableXYv
- .text._Z13motorDisableZv
-                0x10003e94        0xc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10003e94                _Z13motorDisableZv
- .text._Z10motorsInitv
-                0x10003ea0       0x9c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10003ea0                _Z10motorsInitv
- .text._Z11motorStatus7MotorID
-                0x10003f3c      0x168 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10003f3c                _Z11motorStatus7MotorID
- .text._Z13stopAllMotorsv
-                0x100040a4       0x64 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x100040a4                _Z13stopAllMotorsv
- .text._Z22setCurrentPositionHomev
-                0x10004108       0x4c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                0x10004108                _Z22setCurrentPositionHomev
- .text.startup._GLOBAL__sub_I_motor1
-                0x10004154       0x4c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
- .text._Z18sensorReadRawAngleR7TwoWire
-                0x100041a0       0x5c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
-                0x100041a0                _Z18sensorReadRawAngleR7TwoWire
- .text._Z18sensorHomingOffsetR7TwoWire
-                0x100041fc       0xa4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
-                0x100041fc                _Z18sensorHomingOffsetR7TwoWire
- .text._Z20sensorCorrectedAngleR7TwoWiref
-                0x100042a0       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
-                0x100042a0                _Z20sensorCorrectedAngleR7TwoWiref
- .text._Z19estimateSensorAnglefffa
-                0x100042e8       0x5c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
-                0x100042e8                _Z19estimateSensorAnglefffa
- .text._Z14calculateErrorfR7TwoWireRK11MotorConfigf
-                0x10004344       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
-                0x10004344                _Z14calculateErrorfR7TwoWireRK11MotorConfigf
- .text._Z11sensorsInitv
-                0x100043bc       0x54 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
-                0x100043bc                _Z11sensorsInitv
- .text._Z11angleToStepf7MotorID
-                0x10004410       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x10004410                _Z11angleToStepf7MotorID
- .text._Z12rawToDegreest
-                0x10004488       0x24 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x10004488                _Z12rawToDegreest
- .text._Z13round1Decimalf
-                0x100044ac       0x38 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x100044ac                _Z13round1Decimalf
- .text._Z15chessSquareToXYRKN7arduino6StringERfS3_
-                0x100044e4       0x70 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x100044e4                _Z15chessSquareToXYRKN7arduino6StringERfS3_
- .text._Z17inverseKinematicsffffRfS_
-                0x10004554      0x1b0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x10004554                _Z17inverseKinematicsffffRfS_
- .text._Z19chessSquareToAnglesRKN7arduino6StringERfS3_
-                0x10004704       0x80 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x10004704                _Z19chessSquareToAnglesRKN7arduino6StringERfS3_
- .text._Z12printBoardXYv
-                0x10004784       0xe0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x10004784                _Z12printBoardXYv
- .text._Z13shortestAngleff
-                0x10004864       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
-                0x10004864                _Z13shortestAngleff
- .text._Z12moveToAnglesff
-                0x100048ac       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x100048ac                _Z12moveToAnglesff
- .text._Z16correctErrorOncev
-                0x10004924       0xd4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004924                _Z16correctErrorOncev
- .text._Z8updateXYv
-                0x100049f8       0xe8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x100049f8                _Z8updateXYv
- .text._Z17startMoveSequenceffff
-                0x10004ae0       0x34 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004ae0                _Z17startMoveSequenceffff
- .text._Z20startCaptureSequenceffff
-                0x10004b14       0x34 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004b14                _Z20startCaptureSequenceffff
- .text._Z12moveToHomeXYv
-                0x10004b48        0xc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004b48                _Z12moveToHomeXYv
- .text._Z18updateMoveSequencev
-                0x10004b54       0x9c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004b54                _Z18updateMoveSequencev
- .text._Z21updateCaptureSequencev
-                0x10004bf0       0xf4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004bf0                _Z21updateCaptureSequencev
- .text._Z12resetXYStatev
-                0x10004ce4       0x8c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004ce4                _Z12resetXYStatev
- .text._Z18cancelMoveSequencev
-                0x10004d70       0x74 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-                0x10004d70                _Z18cancelMoveSequencev
  .text._Z9zMoveHomev
-                0x10004de4       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004de4                _Z9zMoveHomev
+                0x1000320c       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x1000320c                _Z9zMoveHomev
  .text._Z9zMoveDownv
-                0x10004e10       0x30 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004e10                _Z9zMoveDownv
+                0x10003238       0x30 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x10003238                _Z9zMoveDownv
  .text._Z10magnetInitv
-                0x10004e40       0x24 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004e40                _Z10magnetInitv
+                0x10003268       0x24 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x10003268                _Z10magnetInitv
  .text._Z8magnetONv
-                0x10004e64       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004e64                _Z8magnetONv
+                0x1000328c       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x1000328c                _Z8magnetONv
  .text._Z9magnetOFFv
-                0x10004e78       0x2a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004e78                _Z9magnetOFFv
- *fill*         0x10004ea2        0x2 
+                0x100032a0       0x2a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x100032a0                _Z9magnetOFFv
+ *fill*         0x100032ca        0x2 
  .text._Z10startZPickv
-                0x10004ea4       0x18 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004ea4                _Z10startZPickv
+                0x100032cc       0x18 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x100032cc                _Z10startZPickv
  .text._Z11startZPlacev
-                0x10004ebc       0x18 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004ebc                _Z11startZPlacev
+                0x100032e4       0x18 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x100032e4                _Z11startZPlacev
  .text._Z7updateZv
-                0x10004ed4       0xc8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-                0x10004ed4                _Z7updateZv
+                0x100032fc       0xc8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                0x100032fc                _Z7updateZv
+ .text.setup    0x100033c4       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                0x100033c4                setup
+ .text.loop     0x1000340c       0x2a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                0x1000340c                loop
+ *fill*         0x10003436        0x2 
+ .text.__tcf_0  0x10003438       0x10 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+ .text._Z23commandSendStatusReportv
+                0x10003448       0xb0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x10003448                _Z23commandSendStatusReportv
+ .text._Z12parseCommandRKN7arduino6StringE
+                0x100034f8      0x110 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x100034f8                _Z12parseCommandRKN7arduino6StringE
+ .text._Z14processCommandRKN7arduino6StringE
+                0x10003608      0x378 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x10003608                _Z14processCommandRKN7arduino6StringE
+ .text._Z16commandAvailablev
+                0x10003980       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x10003980                _Z16commandAvailablev
+ .text._Z11readCommandv
+                0x10003994       0x80 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x10003994                _Z11readCommandv
+ .text._Z17communicationInitv
+                0x10003a14       0x28 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+                0x10003a14                _Z17communicationInitv
+ .text._Z8coreInitv
+                0x10003a3c       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x10003a3c                _Z8coreInitv
+ .text._Z19coreHomeSingleMotorv
+                0x10003a50       0xd4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x10003a50                _Z19coreHomeSingleMotorv
+ .text._Z11coreHomeAllv
+                0x10003b24      0x134 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x10003b24                _Z11coreHomeAllv
+ .text._Z10coreUpdatev
+                0x10003c58       0x54 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x10003c58                _Z10coreUpdatev
+ .text._Z12homingInitXYR8HomingXY
+                0x10003cac       0x10 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003cac                _Z12homingInitXYR8HomingXY
+ .text._Z11homingInitZR7HomingZ
+                0x10003cbc       0x10 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003cbc                _Z11homingInitZR7HomingZ
+ .text._Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi
+                0x10003ccc       0x50 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003ccc                _Z13homingStartXYR12AccelStepperRK11MotorConfigR8HomingXYi
+ .text._Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi
+                0x10003d1c       0x50 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003d1c                _Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi
+ .text._Z16homingXYisActiveRK8HomingXY
+                0x10003d6c        0xa C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003d6c                _Z16homingXYisActiveRK8HomingXY
+ .text._Z15homingZisActiveRK7HomingZ
+                0x10003d76        0xa C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003d76                _Z15homingZisActiveRK7HomingZ
+ .text._Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi
+                0x10003d80      0x188 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003d80                _Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi
+ .text._Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi
+                0x10003f08      0x110 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x10003f08                _Z11homingStepZR12AccelStepperRK11MotorConfigR7HomingZi
+ .text._Z14motorsEnableXYv
+                0x10004018       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x10004018                _Z14motorsEnableXYv
+ .text._Z12motorEnableZv
+                0x1000402c        0xc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x1000402c                _Z12motorEnableZv
+ .text._Z15motorsDisableXYv
+                0x10004038       0x14 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x10004038                _Z15motorsDisableXYv
+ .text._Z13motorDisableZv
+                0x1000404c        0xc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x1000404c                _Z13motorDisableZv
+ .text._Z10motorsInitv
+                0x10004058       0x9c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x10004058                _Z10motorsInitv
+ .text._Z11motorStatus7MotorID
+                0x100040f4      0x168 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x100040f4                _Z11motorStatus7MotorID
+ .text._Z13stopAllMotorsv
+                0x1000425c       0x64 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x1000425c                _Z13stopAllMotorsv
+ .text._Z22setCurrentPositionHomev
+                0x100042c0       0x4c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x100042c0                _Z22setCurrentPositionHomev
+ .text.startup._GLOBAL__sub_I_motor1
+                0x1000430c       0x4c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+ .text._Z18sensorReadRawAngleR7TwoWire
+                0x10004358       0x5c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x10004358                _Z18sensorReadRawAngleR7TwoWire
+ .text._Z18sensorHomingOffsetR7TwoWire
+                0x100043b4       0xa4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x100043b4                _Z18sensorHomingOffsetR7TwoWire
+ .text._Z20sensorCorrectedAngleR7TwoWiref
+                0x10004458       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x10004458                _Z20sensorCorrectedAngleR7TwoWiref
+ .text._Z19estimateSensorAnglefffa
+                0x100044a0       0x5c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x100044a0                _Z19estimateSensorAnglefffa
+ .text._Z14calculateErrorfR7TwoWireRK11MotorConfigf
+                0x100044fc       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x100044fc                _Z14calculateErrorfR7TwoWireRK11MotorConfigf
+ .text._Z11sensorsInitv
+                0x10004574       0x54 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x10004574                _Z11sensorsInitv
+ .text._Z11angleToStepf7MotorID
+                0x100045c8       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x100045c8                _Z11angleToStepf7MotorID
+ .text._Z12rawToDegreest
+                0x10004640       0x24 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x10004640                _Z12rawToDegreest
+ .text._Z13round1Decimalf
+                0x10004664       0x38 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x10004664                _Z13round1Decimalf
+ .text._Z15chessSquareToXYRKN7arduino6StringERfS3_
+                0x1000469c       0x70 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x1000469c                _Z15chessSquareToXYRKN7arduino6StringERfS3_
+ .text._Z17inverseKinematicsffffRfS_
+                0x1000470c      0x1b0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x1000470c                _Z17inverseKinematicsffffRfS_
+ .text._Z19chessSquareToAnglesRKN7arduino6StringERfS3_
+                0x100048bc       0x80 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x100048bc                _Z19chessSquareToAnglesRKN7arduino6StringERfS3_
+ .text._Z12printBoardXYv
+                0x1000493c       0xe0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x1000493c                _Z12printBoardXYv
+ .text._Z13shortestAngleff
+                0x10004a1c       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x10004a1c                _Z13shortestAngleff
+ .text._Z12moveToAnglesff
+                0x10004a64       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004a64                _Z12moveToAnglesff
+ .text._Z16correctErrorOncev
+                0x10004adc       0xd4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004adc                _Z16correctErrorOncev
+ .text._Z8updateXYv
+                0x10004bb0       0xe8 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004bb0                _Z8updateXYv
+ .text._Z17startMoveSequenceffff
+                0x10004c98       0x34 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004c98                _Z17startMoveSequenceffff
+ .text._Z20startCaptureSequenceffff
+                0x10004ccc       0x34 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004ccc                _Z20startCaptureSequenceffff
+ .text._Z12moveToHomeXYv
+                0x10004d00        0xc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004d00                _Z12moveToHomeXYv
+ .text._Z18updateMoveSequencev
+                0x10004d0c       0x9c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004d0c                _Z18updateMoveSequencev
+ .text._Z21updateCaptureSequencev
+                0x10004da8       0xf4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004da8                _Z21updateCaptureSequencev
+ .text._Z12resetXYStatev
+                0x10004e9c       0x8c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004e9c                _Z12resetXYStatev
+ .text._Z18cancelMoveSequencev
+                0x10004f28       0x74 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x10004f28                _Z18cancelMoveSequencev
  .text._ZN7arduino5Print17availableForWriteEv
                 0x10004f9c        0x4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
                 0x10004f9c                _ZN7arduino5Print17availableForWriteEv
@@ -4625,9 +4625,11 @@ LOAD C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-
 
 .rodata         0x1001c030     0x1b40
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata* .big_const*)
+ .rodata._Z7updateZv.str1.1
+                0x1001c030      0x4c1 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                                 0x2c (size before relaxing)
  .rodata._Z23commandSendStatusReportv.str1.1
-                0x1001c030      0x4c1 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-                                  0x3 (size before relaxing)
+                0x1001c4f1        0x3 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .rodata._Z12parseCommandRKN7arduino6StringE.str1.1
                 0x1001c4f1       0x4d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .rodata._Z14processCommandRKN7arduino6StringE.str1.1
@@ -4664,8 +4666,6 @@ LOAD C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-
                 0x1001c584        0xf C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .rodata._Z18cancelMoveSequencev.str1.1
                 0x1001c584       0x17 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .rodata._Z7updateZv.str1.1
-                0x1001c584       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
  .rodata._ZTV7TwoWire
                 0x1001c584       0x50 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
                 0x1001c584                _ZTV7TwoWire
@@ -5137,7 +5137,7 @@ LOAD C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-
                 0x20002350        0x4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                 0x20002350                movingStateXY
  .bss.movingStateZ
-                0x20002354        0x4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+                0x20002354        0x4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
                 0x20002354                movingStateZ
  .bss.next_buffer_ptr
                 0x20002358        0x4 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(dcd_rp2040.c.o)
@@ -5272,6 +5272,7 @@ LOAD C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-
                 0x00000001                        ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed)
                 0x00000001                        ASSERT (((__binary_info_header_end - __logical_binary_start) <= 0x100), Binary info must be in first 256 bytes of the binary)
 START GROUP
+LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
@@ -5281,7 +5282,6 @@ LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 LOAD C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\MultiStepper.cpp.o
@@ -5313,25 +5313,25 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000001e       0x2c C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
  .ARM.attributes
-                0x0000004a       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                0x0000004a       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
  .ARM.attributes
-                0x00000076       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x00000076       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .ARM.attributes
-                0x000000a2       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+                0x000000a2       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .ARM.attributes
-                0x000000ce       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x000000ce       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
  .ARM.attributes
-                0x000000fa       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x000000fa       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
  .ARM.attributes
-                0x00000126       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x00000126       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
  .ARM.attributes
-                0x00000152       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x00000152       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
  .ARM.attributes
-                0x0000017e       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x0000017e       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
  .ARM.attributes
-                0x000001aa       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x000001aa       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
  .ARM.attributes
-                0x000001d6       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+                0x000001d6       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .ARM.attributes
                 0x00000202       0x2c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .ARM.attributes
@@ -5676,6 +5676,7 @@ LOAD linker stubs
 .comment        0x00000000       0x12
  .comment       0x00000000       0x12 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtbegin.o
                                  0x13 (size before relaxing)
+ .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
@@ -5685,7 +5686,6 @@ LOAD linker stubs
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .comment       0x00000012       0x13 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -5840,16 +5840,16 @@ LOAD linker stubs
  .comment       0x00000012       0x13 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb/crtend.o
 
 .debug_info     0x00000000    0xd271d
- .debug_info    0x00000000     0x3a7f C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
- .debug_info    0x00003a7f     0x5239 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
- .debug_info    0x00008cb8     0x37b1 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
- .debug_info    0x0000c469     0x40ac C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
- .debug_info    0x00010515     0x45db C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
- .debug_info    0x00014af0     0x4cc2 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
- .debug_info    0x000197b2     0x4032 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
- .debug_info    0x0001d7e4     0x45ba C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
- .debug_info    0x00021d9e     0x4816 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .debug_info    0x000265b4     0x3c96 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+ .debug_info    0x00000000     0x3c96 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .debug_info    0x00003c96     0x3a7f C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+ .debug_info    0x00007715     0x5239 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+ .debug_info    0x0000c94e     0x37b1 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+ .debug_info    0x000100ff     0x40ac C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+ .debug_info    0x000141ab     0x45db C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+ .debug_info    0x00018786     0x4cc2 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+ .debug_info    0x0001d448     0x4032 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+ .debug_info    0x0002147a     0x45ba C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+ .debug_info    0x00025a34     0x4816 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .debug_info    0x0002a24a     0x7e92 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_info    0x000320dc     0x5259 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .debug_info    0x00037335     0x6033 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -6019,16 +6019,16 @@ LOAD linker stubs
  .debug_info    0x000d26e1       0x3c C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_ashldi3.o)
 
 .debug_abbrev   0x00000000    0x1fd49
- .debug_abbrev  0x00000000      0x63f C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
- .debug_abbrev  0x0000063f      0x803 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
- .debug_abbrev  0x00000e42      0x582 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
- .debug_abbrev  0x000013c4      0x632 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
- .debug_abbrev  0x000019f6      0x733 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
- .debug_abbrev  0x00002129      0x854 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
- .debug_abbrev  0x0000297d      0x685 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
- .debug_abbrev  0x00003002      0x79d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
- .debug_abbrev  0x0000379f      0x7ef C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .debug_abbrev  0x00003f8e      0x630 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+ .debug_abbrev  0x00000000      0x630 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .debug_abbrev  0x00000630      0x63f C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+ .debug_abbrev  0x00000c6f      0x803 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+ .debug_abbrev  0x00001472      0x582 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+ .debug_abbrev  0x000019f4      0x632 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+ .debug_abbrev  0x00002026      0x733 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+ .debug_abbrev  0x00002759      0x854 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+ .debug_abbrev  0x00002fad      0x685 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+ .debug_abbrev  0x00003632      0x79d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+ .debug_abbrev  0x00003dcf      0x7ef C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .debug_abbrev  0x000045be      0xb76 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_abbrev  0x00005134      0x8f6 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .debug_abbrev  0x00005a2a      0xa0e C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -6197,336 +6197,27 @@ LOAD linker stubs
  .debug_abbrev  0x0001fcfb       0x26 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_dvmd_tls.o)
  .debug_abbrev  0x0001fd21       0x28 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_ashldi3.o)
 
-.debug_loclists
-                0x00000000    0x3ce2f
- .debug_loclists
-                0x00000000       0x17 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
- .debug_loclists
-                0x00000017      0x436 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
- .debug_loclists
-                0x0000044d      0x463 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
- .debug_loclists
-                0x000008b0      0x366 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
- .debug_loclists
-                0x00000c16      0x3fe C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
- .debug_loclists
-                0x00001014      0x562 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
- .debug_loclists
-                0x00001576      0x34b C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .debug_loclists
-                0x000018c1     0x1769 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
- .debug_loclists
-                0x0000302a      0xbfb C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
- .debug_loclists
-                0x00003c25      0xb22 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
- .debug_loclists
-                0x00004747      0x87f C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUSB.cpp.o)
- .debug_loclists
-                0x00004fc6      0xe3e C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(USB.cpp.o)
- .debug_loclists
-                0x00005e04     0x14b5 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
- .debug_loclists
-                0x000072b9     0x1c8c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(String.cpp.o)
- .debug_loclists
-                0x00008f45       0xc0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(delay.cpp.o)
- .debug_loclists
-                0x00009005      0x2bd C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
- .debug_loclists
-                0x000092c2      0x18d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(malloc-lock.cpp.o)
- .debug_loclists
-                0x0000944f      0x5b6 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(stdlib_noniso.cpp.o)
- .debug_loclists
-                0x00009a05      0x3ca C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_digital.cpp.o)
- .debug_loclists
-                0x00009dcf      0x305 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_private.cpp.o)
- .debug_loclists
-                0x0000a0d4       0x83 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(CoreMutex.cpp.o)
- .debug_loclists
-                0x0000a157      0x4d5 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_analog.cpp.o)
- .debug_loclists
-                0x0000a62c       0xf4 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(sync.c.o)
- .debug_loclists
-                0x0000a720      0xe50 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(gpio.c.o)
- .debug_loclists
-                0x0000b570      0xda7 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(irq.c.o)
- .debug_loclists
-                0x0000c317      0x88f C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(mutex.c.o)
- .debug_loclists
-                0x0000cba6     0x121c C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(time.c.o)
- .debug_loclists
-                0x0000ddc2      0xa2e C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(timer.c.o)
- .debug_loclists
-                0x0000e7f0      0x533 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(queue.c.o)
- .debug_loclists
-                0x0000ed23      0x9b6 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(clocks.c.o)
- .debug_loclists
-                0x0000f6d9      0x204 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(pll.c.o)
- .debug_loclists
-                0x0000f8dd       0x92 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(vreg.c.o)
- .debug_loclists
-                0x0000f96f      0x24d C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(bootrom.c.o)
- .debug_loclists
-                0x0000fbbc      0x2db C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(dma.c.o)
- .debug_loclists
-                0x0000fe97      0x287 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(exception.c.o)
- .debug_loclists
-                0x0001011e      0xe67 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(i2c.c.o)
- .debug_loclists
-                0x00010f85      0x6bb C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(uart.c.o)
- .debug_loclists
-                0x00011640       0x51 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(double_init_rom_rp2040.c.o)
- .debug_loclists
-                0x00011691       0x67 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(float_init_rom_rp2040.c.o)
- .debug_loclists
-                0x000116f8     0x1fdc C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(float_math.c.o)
- .debug_loclists
-                0x000136d4      0x7be C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(multicore.c.o)
- .debug_loclists
-                0x00013e92       0x68 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(unique_id.c.o)
- .debug_loclists
-                0x00013efa       0x7e C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(runtime.c.o)
- .debug_loclists
-                0x00013f78       0xe2 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(runtime_init.c.o)
- .debug_loclists
-                0x0001405a       0x74 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(runtime_init_clocks.c.o)
- .debug_loclists
-                0x000140ce     0x19d6 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(usbd.c.o)
- .debug_loclists
-                0x00015aa4      0x2c6 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(usbd_control.c.o)
- .debug_loclists
-                0x00015d6a      0xac3 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(cdc_device.c.o)
- .debug_loclists
-                0x0001682d      0xd34 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(tusb.c.o)
- .debug_loclists
-                0x00017561     0x15fb C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(tusb_fifo.c.o)
- .debug_loclists
-                0x00018b5c      0x282 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(claim.c.o)
- .debug_loclists
-                0x00018dde       0x7d C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(sync_spin_lock.c.o)
- .debug_loclists
-                0x00018e5b       0x41 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(lock_core.c.o)
- .debug_loclists
-                0x00018e9c       0x95 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(critical_section.c.o)
- .debug_loclists
-                0x00018f31      0x318 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(timeout_helper.c.o)
- .debug_loclists
-                0x00019249       0x47 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(ticks.c.o)
- .debug_loclists
-                0x00019290       0x48 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(xosc.c.o)
- .debug_loclists
-                0x000192d8      0xa74 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(flash.c.o)
- .debug_loclists
-                0x00019d4c     0x10e9 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(dcd_rp2040.c.o)
- .debug_loclists
-                0x0001ae35      0x623 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(rp2040_usb.c.o)
- .debug_loclists
-                0x0001b458      0x2eb C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(rp2040_usb_device_enumeration.c.o)
- .debug_loclists
-                0x0001b743       0x53 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(platform.c.o)
- .debug_loclists
-                0x0001b796       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_ops.o)
- .debug_loclists
-                0x0001b7bf       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_opv.o)
- .debug_loclists
-                0x0001b7e8       0x9b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(guard.o)
- .debug_loclists
-                0x0001b883       0x46 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_op.o)
- .debug_loclists
-                0x0001b8c9       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_opv.o)
- .debug_loclists
-                0x0001b8f2       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_op.o)
- .debug_loclists
-                0x0001b91b       0x7e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_handler.o)
- .debug_loclists
-                0x0001b999       0xe3 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncpy.o)
- .debug_loclists
-                0x0001ba7c       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-toupper.o)
- .debug_loclists
-                0x0001baa0       0xbe C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
- .debug_loclists
-                0x0001bb5e      0x215 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-itoa.o)
- .debug_loclists
-                0x0001bd73      0x192 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
- .debug_loclists
-                0x0001bf05     0x22c2 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
- .debug_loclists
-                0x0001e1c7      0x109 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
- .debug_loclists
-                0x0001e2d0     0x49ca C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-svfprintf.o)
- .debug_loclists
-                0x00022c9a     0x110b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
- .debug_loclists
-                0x00023da5       0x71 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sscanf.o)
- .debug_loclists
-                0x00023e16       0x82 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vprintf.o)
- .debug_loclists
-                0x00023e98      0x101 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbtowc_r.o)
- .debug_loclists
-                0x00023f99       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isspace.o)
- .debug_loclists
-                0x00023fbd       0xfe C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncmp.o)
- .debug_loclists
-                0x000240bb       0x57 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strlen-stub.o)
- .debug_loclists
-                0x00024112      0x467 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memmove.o)
- .debug_loclists
-                0x00024579      0x32a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-findfp.o)
- .debug_loclists
-                0x000248a3       0x4a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-calloc.o)
- .debug_loclists
-                0x000248ed      0x101 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fclose.o)
- .debug_loclists
-                0x000249ee      0x102 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
- .debug_loclists
-                0x00024af0      0x1f8 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-callocr.o)
- .debug_loclists
-                0x00024ce8       0x4a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-realloc.o)
- .debug_loclists
-                0x00024d32       0x6b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fiprintf.o)
- .debug_loclists
-                0x00024d9d      0xa8a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mallocr.o)
- .debug_loclists
-                0x00025827      0x197 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memchr-stub.o)
- .debug_loclists
-                0x000259be     0x25ee C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
- .debug_loclists
-                0x00027fac       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcpy.o)
- .debug_loclists
-                0x00027fd5      0x38e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-freer.o)
- .debug_loclists
-                0x00028363     0x3321 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-svfscanf.o)
- .debug_loclists
-                0x0002b684      0x64d C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtol.o)
- .debug_loclists
-                0x0002bcd1       0xf0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wctomb_r.o)
- .debug_loclists
-                0x0002bdc1       0x4a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-malloc.o)
- .debug_loclists
-                0x0002be0b       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-iswspace.o)
- .debug_loclists
-                0x0002be2f      0x1c7 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbrtowc.o)
- .debug_loclists
-                0x0002bff6      0xd53 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reallocr.o)
- .debug_loclists
-                0x0002cd49       0x3c C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mlock.o)
- .debug_loclists
-                0x0002cd85       0x52 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sbrkr.o)
- .debug_loclists
-                0x0002cdd7       0x1b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-exit.o)
- .debug_loclists
-                0x0002cdf2       0x2b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-atexit.o)
- .debug_loclists
-                0x0002ce1d       0xa0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ssprint_r.o)
- .debug_loclists
-                0x0002cebd      0x46b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fvwrite.o)
- .debug_loclists
-                0x0002d328     0x2fb0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-svfiscanf.o)
- .debug_loclists
-                0x000302d8      0x5f8 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
- .debug_loclists
-                0x000308d0      0x292 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-stdio.o)
- .debug_loclists
-                0x00030b62       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isalpha.o)
- .debug_loclists
-                0x00030b86      0x262 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fflush.o)
- .debug_loclists
-                0x00030de8      0x383 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signal.o)
- .debug_loclists
-                0x0003116b       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_nan.o)
- .debug_loclists
-                0x0003118f       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-sf_nan.o)
- .debug_loclists
-                0x000311b3       0xe6 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_frexp.o)
- .debug_loclists
-                0x00031299       0xa0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fwalk.o)
- .debug_loclists
-                0x00031339      0x4fc C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoll.o)
- .debug_loclists
-                0x00031835     0x1dcf C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
- .debug_loclists
-                0x00033604       0x48 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-localeconv.o)
- .debug_loclists
-                0x0003364c     0x5203 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vfprintf.o)
- .debug_loclists
-                0x0003884f      0x16e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sccl.o)
- .debug_loclists
-                0x000389bd       0x3b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sysconf.o)
- .debug_loclists
-                0x000389f8      0x493 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoul.o)
- .debug_loclists
-                0x00038e8b       0x65 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reent.o)
- .debug_loclists
-                0x00038ef0       0x2b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-iswspace_l.o)
- .debug_loclists
-                0x00038f1b      0x4bf C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoull.o)
- .debug_loclists
-                0x000393da     0x2553 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vfiprintf.o)
- .debug_loclists
-                0x0003b92d      0x1b0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ssputs_r.o)
- .debug_loclists
-                0x0003badd       0x6b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wsetup.o)
- .debug_loclists
-                0x0003bb48       0x6e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprintf.o)
- .debug_loclists
-                0x0003bbb6      0x18b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__call_atexit.o)
- .debug_loclists
-                0x0003bd41       0x97 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-writer.o)
- .debug_loclists
-                0x0003bdd8       0x52 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-closer.o)
- .debug_loclists
-                0x0003be2a       0x97 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-lseekr.o)
- .debug_loclists
-                0x0003bec1      0x115 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__atexit.o)
- .debug_loclists
-                0x0003bfd6       0x97 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-readr.o)
- .debug_loclists
-                0x0003c06d      0x247 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-makebuf.o)
- .debug_loclists
-                0x0003c2b4      0x2b5 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ungetc.o)
- .debug_loclists
-                0x0003c569       0x91 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signalr.o)
- .debug_loclists
-                0x0003c5fa       0x6b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprint_r.o)
- .debug_loclists
-                0x0003c665       0x71 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fstatr.o)
- .debug_loclists
-                0x0003c6d6       0x52 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isattyr.o)
- .debug_loclists
-                0x0003c728      0x114 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(lock.cpp.o)
- .debug_loclists
-                0x0003c83c      0x3dd C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(posix.cpp.o)
- .debug_loclists
-                0x0003cc19       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(hid_device.c.o)
- .debug_loclists
-                0x0003cc7c       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(midi_device.c.o)
- .debug_loclists
-                0x0003ccdf       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(msc_device.c.o)
- .debug_loclists
-                0x0003cd42       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(ncm_device.c.o)
- .debug_loclists
-                0x0003cda5       0x8a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(newlib_interface.c.o)
-
 .debug_aranges  0x00000000     0x3560
  .debug_aranges
-                0x00000000       0x28 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                0x00000000       0x60 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
  .debug_aranges
-                0x00000028       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x00000060       0x28 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .debug_aranges
-                0x00000070       0x28 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+                0x00000088       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .debug_aranges
-                0x00000098       0x38 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x000000d0       0x28 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
  .debug_aranges
-                0x000000d0       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x000000f8       0x38 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
  .debug_aranges
-                0x00000148       0x68 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x00000130       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
  .debug_aranges
-                0x000001b0       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x000001a8       0x68 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
  .debug_aranges
-                0x000001f8       0x58 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x00000210       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
  .debug_aranges
-                0x00000250       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x00000258       0x58 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
  .debug_aranges
-                0x000002c8       0x60 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+                0x000002b0       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .debug_aranges
                 0x00000328      0x190 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_aranges
@@ -6865,25 +6556,25 @@ LOAD linker stubs
 .debug_rnglists
                 0x00000000     0x5507
  .debug_rnglists
-                0x00000000       0x19 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                0x00000000       0x44 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
  .debug_rnglists
-                0x00000019       0x67 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                0x00000044       0x19 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .debug_rnglists
-                0x00000080       0x19 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+                0x0000005d       0x67 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .debug_rnglists
-                0x00000099       0x27 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                0x000000c4       0x19 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
  .debug_rnglists
-                0x000000c0       0xae C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                0x000000dd       0x27 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
  .debug_rnglists
-                0x0000016e       0xbc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+                0x00000104       0xae C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
  .debug_rnglists
-                0x0000022a       0x7a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+                0x000001b2       0xbc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
  .debug_rnglists
-                0x000002a4       0x57 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+                0x0000026e       0x7a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
  .debug_rnglists
-                0x000002fb       0x67 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+                0x000002e8       0x57 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
  .debug_rnglists
-                0x00000362       0x44 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+                0x0000033f       0x67 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .debug_rnglists
                 0x000003a6      0x3cb C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_rnglists
@@ -7100,16 +6791,16 @@ LOAD linker stubs
                 0x000054d0       0x37 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(newlib_interface.c.o)
 
 .debug_line     0x00000000    0x55c1b
- .debug_line    0x00000000      0x884 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
- .debug_line    0x00000884      0xfed C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
- .debug_line    0x00001871      0x7b9 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
- .debug_line    0x0000202a      0xac0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
- .debug_line    0x00002aea      0xe9e C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
- .debug_line    0x00003988      0xdd7 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
- .debug_line    0x0000475f      0xb51 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
- .debug_line    0x000052b0      0xc6d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
- .debug_line    0x00005f1d     0x110a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .debug_line    0x00007027      0xa88 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+ .debug_line    0x00000000      0xa88 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .debug_line    0x00000a88      0x884 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+ .debug_line    0x0000130c      0xfed C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+ .debug_line    0x000022f9      0x7b9 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+ .debug_line    0x00002ab2      0xac0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+ .debug_line    0x00003572      0xe9e C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+ .debug_line    0x00004410      0xdd7 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+ .debug_line    0x000051e7      0xb51 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+ .debug_line    0x00005d38      0xc6d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+ .debug_line    0x000069a5     0x110a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .debug_line    0x00007aaf     0x2a45 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_line    0x0000a4f4     0x1677 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .debug_line    0x0000bb6b     0x1e5e C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -7279,8 +6970,9 @@ LOAD linker stubs
  .debug_line    0x00055bc6       0x55 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_ashldi3.o)
 
 .debug_str      0x00000000    0x159da
- .debug_str     0x00000000    0x159da C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
-                               0x290b (size before relaxing)
+ .debug_str     0x00000000    0x159da C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+                               0x28c3 (size before relaxing)
+ .debug_str     0x000159da     0x290b C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
  .debug_str     0x000159da     0x2fdb C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
  .debug_str     0x000159da     0x25dd C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
  .debug_str     0x000159da     0x2daf C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
@@ -7289,7 +6981,6 @@ LOAD linker stubs
  .debug_str     0x000159da     0x296a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
  .debug_str     0x000159da     0x2b94 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
  .debug_str     0x000159da     0x2dee C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .debug_str     0x000159da     0x28c3 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
  .debug_str     0x000159da     0x44f7 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_str     0x000159da     0x3097 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .debug_str     0x000159da     0x3713 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -7459,16 +7150,16 @@ LOAD linker stubs
  .debug_str     0x000159da       0x9f C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/thumb\libgcc.a(_ashldi3.o)
 
 .debug_frame    0x00000000     0x7b08
- .debug_frame   0x00000000       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
- .debug_frame   0x00000048       0xb4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
- .debug_frame   0x000000fc       0x38 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
- .debug_frame   0x00000134       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
- .debug_frame   0x000001ac      0x110 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
- .debug_frame   0x000002bc      0x118 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
- .debug_frame   0x000003d4       0xbc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
- .debug_frame   0x00000490       0xf4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
- .debug_frame   0x00000584      0x148 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
- .debug_frame   0x000006cc       0xec C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+ .debug_frame   0x00000000       0xec C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+ .debug_frame   0x000000ec       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+ .debug_frame   0x00000134       0xb4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+ .debug_frame   0x000001e8       0x38 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
+ .debug_frame   0x00000220       0x78 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+ .debug_frame   0x00000298      0x110 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+ .debug_frame   0x000003a8      0x118 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+ .debug_frame   0x000004c0       0xbc C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+ .debug_frame   0x0000057c       0xf4 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+ .debug_frame   0x00000670      0x148 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
  .debug_frame   0x000007b8      0x4c0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
  .debug_frame   0x00000c78      0x40c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
  .debug_frame   0x00001084      0x314 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -7620,6 +7311,315 @@ LOAD linker stubs
  .debug_frame   0x00007a50       0x70 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(ncm_device.c.o)
  .debug_frame   0x00007ac0       0x48 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(newlib_interface.c.o)
 
+.debug_loclists
+                0x00000000    0x3ce2f
+ .debug_loclists
+                0x00000000       0x17 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+ .debug_loclists
+                0x00000017      0x436 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+ .debug_loclists
+                0x0000044d      0x463 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+ .debug_loclists
+                0x000008b0      0x366 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
+ .debug_loclists
+                0x00000c16      0x3fe C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
+ .debug_loclists
+                0x00001014      0x562 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
+ .debug_loclists
+                0x00001576      0x34b C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
+ .debug_loclists
+                0x000018c1     0x1769 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
+ .debug_loclists
+                0x0000302a      0xbfb C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
+ .debug_loclists
+                0x00003c25      0xb22 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
+ .debug_loclists
+                0x00004747      0x87f C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUSB.cpp.o)
+ .debug_loclists
+                0x00004fc6      0xe3e C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(USB.cpp.o)
+ .debug_loclists
+                0x00005e04     0x14b5 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
+ .debug_loclists
+                0x000072b9     0x1c8c C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(String.cpp.o)
+ .debug_loclists
+                0x00008f45       0xc0 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(delay.cpp.o)
+ .debug_loclists
+                0x00009005      0x2bd C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
+ .debug_loclists
+                0x000092c2      0x18d C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(malloc-lock.cpp.o)
+ .debug_loclists
+                0x0000944f      0x5b6 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(stdlib_noniso.cpp.o)
+ .debug_loclists
+                0x00009a05      0x3ca C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_digital.cpp.o)
+ .debug_loclists
+                0x00009dcf      0x305 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_private.cpp.o)
+ .debug_loclists
+                0x0000a0d4       0x83 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(CoreMutex.cpp.o)
+ .debug_loclists
+                0x0000a157      0x4d5 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_analog.cpp.o)
+ .debug_loclists
+                0x0000a62c       0xf4 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(sync.c.o)
+ .debug_loclists
+                0x0000a720      0xe50 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(gpio.c.o)
+ .debug_loclists
+                0x0000b570      0xda7 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(irq.c.o)
+ .debug_loclists
+                0x0000c317      0x88f C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(mutex.c.o)
+ .debug_loclists
+                0x0000cba6     0x121c C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(time.c.o)
+ .debug_loclists
+                0x0000ddc2      0xa2e C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(timer.c.o)
+ .debug_loclists
+                0x0000e7f0      0x533 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(queue.c.o)
+ .debug_loclists
+                0x0000ed23      0x9b6 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(clocks.c.o)
+ .debug_loclists
+                0x0000f6d9      0x204 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(pll.c.o)
+ .debug_loclists
+                0x0000f8dd       0x92 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(vreg.c.o)
+ .debug_loclists
+                0x0000f96f      0x24d C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(bootrom.c.o)
+ .debug_loclists
+                0x0000fbbc      0x2db C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(dma.c.o)
+ .debug_loclists
+                0x0000fe97      0x287 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(exception.c.o)
+ .debug_loclists
+                0x0001011e      0xe67 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(i2c.c.o)
+ .debug_loclists
+                0x00010f85      0x6bb C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(uart.c.o)
+ .debug_loclists
+                0x00011640       0x51 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(double_init_rom_rp2040.c.o)
+ .debug_loclists
+                0x00011691       0x67 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(float_init_rom_rp2040.c.o)
+ .debug_loclists
+                0x000116f8     0x1fdc C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(float_math.c.o)
+ .debug_loclists
+                0x000136d4      0x7be C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(multicore.c.o)
+ .debug_loclists
+                0x00013e92       0x68 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(unique_id.c.o)
+ .debug_loclists
+                0x00013efa       0x7e C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(runtime.c.o)
+ .debug_loclists
+                0x00013f78       0xe2 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(runtime_init.c.o)
+ .debug_loclists
+                0x0001405a       0x74 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(runtime_init_clocks.c.o)
+ .debug_loclists
+                0x000140ce     0x19d6 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(usbd.c.o)
+ .debug_loclists
+                0x00015aa4      0x2c6 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(usbd_control.c.o)
+ .debug_loclists
+                0x00015d6a      0xac3 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(cdc_device.c.o)
+ .debug_loclists
+                0x0001682d      0xd34 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(tusb.c.o)
+ .debug_loclists
+                0x00017561     0x15fb C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(tusb_fifo.c.o)
+ .debug_loclists
+                0x00018b5c      0x282 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(claim.c.o)
+ .debug_loclists
+                0x00018dde       0x7d C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(sync_spin_lock.c.o)
+ .debug_loclists
+                0x00018e5b       0x41 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(lock_core.c.o)
+ .debug_loclists
+                0x00018e9c       0x95 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(critical_section.c.o)
+ .debug_loclists
+                0x00018f31      0x318 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(timeout_helper.c.o)
+ .debug_loclists
+                0x00019249       0x47 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(ticks.c.o)
+ .debug_loclists
+                0x00019290       0x48 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(xosc.c.o)
+ .debug_loclists
+                0x000192d8      0xa74 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(flash.c.o)
+ .debug_loclists
+                0x00019d4c     0x10e9 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(dcd_rp2040.c.o)
+ .debug_loclists
+                0x0001ae35      0x623 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(rp2040_usb.c.o)
+ .debug_loclists
+                0x0001b458      0x2eb C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(rp2040_usb_device_enumeration.c.o)
+ .debug_loclists
+                0x0001b743       0x53 C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(platform.c.o)
+ .debug_loclists
+                0x0001b796       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_ops.o)
+ .debug_loclists
+                0x0001b7bf       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_opv.o)
+ .debug_loclists
+                0x0001b7e8       0x9b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(guard.o)
+ .debug_loclists
+                0x0001b883       0x46 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_op.o)
+ .debug_loclists
+                0x0001b8c9       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_opv.o)
+ .debug_loclists
+                0x0001b8f2       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(del_op.o)
+ .debug_loclists
+                0x0001b91b       0x7e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libstdc++.a(new_handler.o)
+ .debug_loclists
+                0x0001b999       0xe3 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncpy.o)
+ .debug_loclists
+                0x0001ba7c       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-toupper.o)
+ .debug_loclists
+                0x0001baa0       0xbe C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-assert.o)
+ .debug_loclists
+                0x0001bb5e      0x215 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-itoa.o)
+ .debug_loclists
+                0x0001bd73      0x192 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-puts.o)
+ .debug_loclists
+                0x0001bf05     0x22c2 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtod.o)
+ .debug_loclists
+                0x0001e1c7      0x109 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
+ .debug_loclists
+                0x0001e2d0     0x49ca C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-svfprintf.o)
+ .debug_loclists
+                0x00022c9a     0x110b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
+ .debug_loclists
+                0x00023da5       0x71 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sscanf.o)
+ .debug_loclists
+                0x00023e16       0x82 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vprintf.o)
+ .debug_loclists
+                0x00023e98      0x101 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbtowc_r.o)
+ .debug_loclists
+                0x00023f99       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isspace.o)
+ .debug_loclists
+                0x00023fbd       0xfe C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strncmp.o)
+ .debug_loclists
+                0x000240bb       0x57 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strlen-stub.o)
+ .debug_loclists
+                0x00024112      0x467 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memmove.o)
+ .debug_loclists
+                0x00024579      0x32a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-findfp.o)
+ .debug_loclists
+                0x000248a3       0x4a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-calloc.o)
+ .debug_loclists
+                0x000248ed      0x101 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fclose.o)
+ .debug_loclists
+                0x000249ee      0x102 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-utoa.o)
+ .debug_loclists
+                0x00024af0      0x1f8 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-callocr.o)
+ .debug_loclists
+                0x00024ce8       0x4a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-realloc.o)
+ .debug_loclists
+                0x00024d32       0x6b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fiprintf.o)
+ .debug_loclists
+                0x00024d9d      0xa8a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mallocr.o)
+ .debug_loclists
+                0x00025827      0x197 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-memchr-stub.o)
+ .debug_loclists
+                0x000259be     0x25ee C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-dtoa.o)
+ .debug_loclists
+                0x00027fac       0x29 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strcpy.o)
+ .debug_loclists
+                0x00027fd5      0x38e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-freer.o)
+ .debug_loclists
+                0x00028363     0x3321 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-svfscanf.o)
+ .debug_loclists
+                0x0002b684      0x64d C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtol.o)
+ .debug_loclists
+                0x0002bcd1       0xf0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wctomb_r.o)
+ .debug_loclists
+                0x0002bdc1       0x4a C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-malloc.o)
+ .debug_loclists
+                0x0002be0b       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-iswspace.o)
+ .debug_loclists
+                0x0002be2f      0x1c7 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mbrtowc.o)
+ .debug_loclists
+                0x0002bff6      0xd53 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reallocr.o)
+ .debug_loclists
+                0x0002cd49       0x3c C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mlock.o)
+ .debug_loclists
+                0x0002cd85       0x52 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sbrkr.o)
+ .debug_loclists
+                0x0002cdd7       0x1b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-exit.o)
+ .debug_loclists
+                0x0002cdf2       0x2b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-atexit.o)
+ .debug_loclists
+                0x0002ce1d       0xa0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ssprint_r.o)
+ .debug_loclists
+                0x0002cebd      0x46b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fvwrite.o)
+ .debug_loclists
+                0x0002d328     0x2fb0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-svfiscanf.o)
+ .debug_loclists
+                0x000302d8      0x5f8 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
+ .debug_loclists
+                0x000308d0      0x292 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-stdio.o)
+ .debug_loclists
+                0x00030b62       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isalpha.o)
+ .debug_loclists
+                0x00030b86      0x262 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fflush.o)
+ .debug_loclists
+                0x00030de8      0x383 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signal.o)
+ .debug_loclists
+                0x0003116b       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_nan.o)
+ .debug_loclists
+                0x0003118f       0x24 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-sf_nan.o)
+ .debug_loclists
+                0x000311b3       0xe6 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libm_a-s_frexp.o)
+ .debug_loclists
+                0x00031299       0xa0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fwalk.o)
+ .debug_loclists
+                0x00031339      0x4fc C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoll.o)
+ .debug_loclists
+                0x00031835     0x1dcf C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-mprec.o)
+ .debug_loclists
+                0x00033604       0x48 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-localeconv.o)
+ .debug_loclists
+                0x0003364c     0x5203 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vfprintf.o)
+ .debug_loclists
+                0x0003884f      0x16e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sccl.o)
+ .debug_loclists
+                0x000389bd       0x3b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sysconf.o)
+ .debug_loclists
+                0x000389f8      0x493 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoul.o)
+ .debug_loclists
+                0x00038e8b       0x65 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-reent.o)
+ .debug_loclists
+                0x00038ef0       0x2b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-iswspace_l.o)
+ .debug_loclists
+                0x00038f1b      0x4bf C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-strtoull.o)
+ .debug_loclists
+                0x000393da     0x2553 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-vfiprintf.o)
+ .debug_loclists
+                0x0003b92d      0x1b0 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ssputs_r.o)
+ .debug_loclists
+                0x0003badd       0x6b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-wsetup.o)
+ .debug_loclists
+                0x0003bb48       0x6e C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprintf.o)
+ .debug_loclists
+                0x0003bbb6      0x18b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__call_atexit.o)
+ .debug_loclists
+                0x0003bd41       0x97 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-writer.o)
+ .debug_loclists
+                0x0003bdd8       0x52 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-closer.o)
+ .debug_loclists
+                0x0003be2a       0x97 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-lseekr.o)
+ .debug_loclists
+                0x0003bec1      0x115 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-__atexit.o)
+ .debug_loclists
+                0x0003bfd6       0x97 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-readr.o)
+ .debug_loclists
+                0x0003c06d      0x247 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-makebuf.o)
+ .debug_loclists
+                0x0003c2b4      0x2b5 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-ungetc.o)
+ .debug_loclists
+                0x0003c569       0x91 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-signalr.o)
+ .debug_loclists
+                0x0003c5fa       0x6b C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-sprint_r.o)
+ .debug_loclists
+                0x0003c665       0x71 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-fstatr.o)
+ .debug_loclists
+                0x0003c6d6       0x52 C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-isattyr.o)
+ .debug_loclists
+                0x0003c728      0x114 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(lock.cpp.o)
+ .debug_loclists
+                0x0003c83c      0x3dd C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(posix.cpp.o)
+ .debug_loclists
+                0x0003cc19       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(hid_device.c.o)
+ .debug_loclists
+                0x0003cc7c       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(midi_device.c.o)
+ .debug_loclists
+                0x0003ccdf       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(msc_device.c.o)
+ .debug_loclists
+                0x0003cd42       0x63 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(ncm_device.c.o)
+ .debug_loclists
+                0x0003cda5       0x8a C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(newlib_interface.c.o)
+
 .debug_line_str
                 0x00000000      0x411
  .debug_line_str
@@ -7668,9 +7668,9 @@ Serial                                            C:\Users\Klaus\Documents\ONYX-
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\communication.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
 Serial1                                           C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 Serial2                                           C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
 USB                                               C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(USB.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
@@ -7700,11 +7700,11 @@ _ITM_registerTMCloneTable                         C:/Users/Klaus/AppData/Local/A
 _PathLocale                                       C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-locale.o)
 _Z10coreUpdatev                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
-_Z10magnetInitv                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z10magnetInitv                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
 _Z10motorsInitv                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
-_Z10startZPickv                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z10startZPickv                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
 _Z10xyIsMovingv                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
@@ -7725,10 +7725,10 @@ _Z11readCommandv                                  C:\Users\Klaus\Documents\ONYX-
 _Z11sensorsInitv                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
 _Z11serialEventv                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUSB.cpp.o)
-_Z11startZPlacev                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z11startZPlacev                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
-_Z11zMoveTravelv                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z11zMoveTravelv                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _Z12homingInitXYR8HomingXY                        C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
@@ -7738,7 +7738,7 @@ _Z12homingStartZR12AccelStepperRK11MotorConfigR7HomingZi C:\Users\Klaus\Document
 _Z12homingStepXYR12AccelStepperRK11MotorConfigR8HomingXYi C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
 _Z12motorEnableZv                                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _Z12moveToAnglesff                                C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
 _Z12moveToHomeXYv                                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
@@ -7823,17 +7823,17 @@ _Z5main1v                                         C:\Users\Klaus\Documents\ONYX-
 _Z6__loopv                                        C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
 _Z6_probeihhi                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
 _Z7hexdumpPKvmh                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
-_Z7updateZv                                       C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z7updateZv                                       C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
 _Z8coreInitv                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
-_Z8magnetONv                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z8magnetONv                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _Z8updateXYv                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
-_Z9magnetOFFv                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z9magnetOFFv                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _Z9motorName7MotorID                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-_Z9zMoveDownv                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
-_Z9zMoveHomev                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+_Z9zMoveDownv                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
+_Z9zMoveHomev                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN10SerialUART10_handleIRQEb                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
 _ZN10SerialUART11setFIFOSizeEj                    C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
 _ZN10SerialUART14setPollingModeEb                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
@@ -7860,16 +7860,16 @@ _ZN10SerialUARTC1EP9uart_insthhhh                 C:\Users\Klaus\Documents\ONYX-
 _ZN10SerialUARTC2EP9uart_insthhhh                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
 _ZN10SerialUARTcvbEv                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(SerialUART.cpp.o)
 _ZN12AccelStepper11setMaxSpeedEf                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN12AccelStepper11stepForwardEv                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper12accelerationEv                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper12distanceToGoEv                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\MultiStepper.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN12AccelStepper12setEnablePinEh                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper12stepBackwardEv                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper13enableOutputsEv                C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
@@ -7884,9 +7884,9 @@ _ZN12AccelStepper15currentPositionEv              C:\Users\Klaus\Documents\ONYX-
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
 _ZN12AccelStepper15setAccelerationEf              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN12AccelStepper15setPinsInvertedEbbb            C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
 _ZN12AccelStepper15setPinsInvertedEbbbbb          C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
@@ -7897,9 +7897,9 @@ _ZN12AccelStepper18setCurrentPositionEl           C:\Users\Klaus\Documents\ONYX-
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
 _ZN12AccelStepper3runEv                           C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN12AccelStepper4moveEl                          C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper4stepEl                          C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper4stopEv                          C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
@@ -7916,9 +7916,9 @@ _ZN12AccelStepper5step6El                         C:\Users\Klaus\Documents\ONYX-
 _ZN12AccelStepper5step8El                         C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
 _ZN12AccelStepper6moveToEl                        C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\MultiStepper.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN12AccelStepper8maxSpeedEv                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\MultiStepper.cpp.o
 _ZN12AccelStepper8runSpeedEv                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
@@ -8021,13 +8021,13 @@ _ZN7arduino5Print5writeEPKhj                      C:\Users\Klaus\Documents\ONYX-
 _ZN7arduino5Print6printfEPKcz                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
 _ZN7arduino5Print7printlnEPKNS_19__FlashStringHelperE C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
 _ZN7arduino5Print7printlnEPKc                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 _ZN7arduino5Print7printlnERKNS_6StringE           C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
 _ZN7arduino5Print7printlnERKNS_9PrintableE        C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(Print.cpp.o)
@@ -8404,10 +8404,10 @@ __gnu_thumb1_case_uqi                             C:/Users/Klaus/AppData/Local/A
                                                   C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(usbd.c.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_digital.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 __hexdig                                          C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-gethex.o)
                                                   C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
 __hexnan                                          C:/Users/Klaus/AppData/Local/Arduino15/packages/rp2040/tools/pqt-gcc/4.1.0-1aec55e/bin/../lib/gcc/arm-none-eabi/14.3.0/../../../../arm-none-eabi/lib/thumb\libc.a(libc_a-gdtoa-hexnan.o)
@@ -9504,11 +9504,11 @@ ddiv_shim                                         C:\Users\Klaus\AppData\Local\A
 delay                                             C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(delay.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_analog.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(main.cpp.o)
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\utils.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 delayMicroseconds                                 C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(delay.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(USB.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
@@ -9521,10 +9521,10 @@ digitalRead                                       C:\Users\Klaus\Documents\ONYX-
 digitalWrite                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_digital.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 div_s32s32                                        C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(divider_hardware.S.o)
 div_s64s64                                        C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(divider_hardware.S.o)
 div_u32u32                                        C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(divider_hardware.S.o)
@@ -10038,8 +10038,8 @@ motor2Homing                                      C:\Users\Klaus\Documents\ONYX-
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\command.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
 motor3                                            C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 motor3Config                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
 motor3Homing                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
@@ -10050,7 +10050,7 @@ motorToHome                                       C:\Users\Klaus\Documents\ONYX-
 moveSeqState                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\core.cpp.o
 movingStateXY                                     C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
-movingStateZ                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
+movingStateZ                                      C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\xy_plane.cpp.o
 mscd_control_xfer_cb                              C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(msc_device.c.o)
                                                   C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(usbd.c.o)
@@ -10158,11 +10158,11 @@ pico_get_unique_board_id_string                   C:\Users\Klaus\AppData\Local\A
 pinMode                                           C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build/core\core.a(wiring_digital.cpp.o)
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\AccelStepper\AccelStepper.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\libraries\Wire\Wire.a(Wire.cpp.o)
-                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\z_axis.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\sensors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\motors.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\homing.cpp.o
                                                   C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Zero.ino.cpp.o
+                                                  C:\Users\Klaus\Documents\ONYX-Pro_Stockfish\Zero\build\sketch\Z_Axis.cpp.o
 pll_deinit                                        C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(pll.c.o)
                                                   C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(clocks.c.o)
 pll_init                                          C:\Users\Klaus\AppData\Local\Arduino15\packages\rp2040\hardware\rp2040\5.6.0/lib/rp2040/libpico.a(pll.c.o)
