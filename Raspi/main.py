@@ -14,6 +14,8 @@
 
 import time
 
+import sensors
+
 from robot import (
     ser,
     reset_robot,
@@ -39,6 +41,8 @@ from game import (
     get_result,
     mirror_square,
     mirror_move,
+    detect_human_move,
+    _sensor_occupancy_from_board,
 )
 
 print("Reset RP2040...")
@@ -56,13 +60,53 @@ board = create_board()
 # =========================
 
 def shutdown():
+    # para que también cierre los sensores y el botón
+    if sensors.button is not None:
+        sensors.button.close()
+
+    if sensors.i2c is not None:
+        sensors.i2c.close()
+
     shutdown_stockfish()
     shutdown_robot()
 
 
 # =========================
+# Lectura Estable de Sensores
+# =========================
+
+def read_stable_sensor_state():
+    """Espera a que las piezas se asienten y estabiliza las lecturas."""
+    time.sleep(2.0)
+
+    last_state = None
+    stable_reads = 0
+
+    for _ in range(40):
+        sensors.detect_changes()
+        current_state = sensors.board_state.copy()
+
+        if current_state == last_state:
+            stable_reads += 1
+        else:
+            last_state = current_state
+            stable_reads = 1
+
+        # Exigir 10 lecturas consecutivas idénticas.
+        if stable_reads >= 10:
+            return current_state
+
+        time.sleep(0.05)
+
+    raise RuntimeError(
+        "Los sensores no se estabilizaron después de varios intentos."
+    )
+
+
+# =========================
 # START
 # =========================
+
 
 print("🤖 ONYX-Pro READY")
 
@@ -73,6 +117,27 @@ mode = input("\n¿Quién empieza? (1=Humano, 2=Robot): ").strip()
 human_turn = (mode == "1")
 # Así, mirror_coordinates será True cuando empiece el humano y False cuando empiece el robot
 mirror_coordinates = (mode == "1")
+
+# =========================
+# SENSORES Y BOTÓN
+# =========================
+
+sensors.init_sensors()
+
+confirmed_state = read_stable_sensor_state()
+
+expected_state = _sensor_occupancy_from_board(
+    board, mirror_coordinates
+)
+
+if confirmed_state != expected_state:
+    print("❌ Los sensores no coinciden con la posición inicial.")
+    shutdown()
+    raise SystemExit(1)
+
+change_history = []
+
+print("✅ Sensores y botón listos")
 
 print("\n♟️ Iniciando partida...\n")
 
@@ -89,31 +154,67 @@ while True:
 
     if human_turn:
 
-        move = input("\n♟️ Tu jugada (ej: e2e4) | q = salir: ").strip().lower()
+        print("\n♟️ Mové tus piezas y pulsá el botón para confirmar.")
+        print("Podés corregir tus movimientos antes de confirmar.")
 
-        if move == "q":
-            print("👋 Saliendo...")
-            shutdown()
-            break
+        while True:
 
-        try:
-            logical_move = mirror_move(move) if mirror_coordinates else move
-            human_move = validate_human_move(board, logical_move)
+            # Registrar los cambios detectados por los sensores.
+            change_history.extend(sensors.detect_changes())
 
-            if human_move is None:
-                print("❌ Jugada ilegal")
-                continue  # No sigas ejecutando esta vuelta del loop; vuelve directamente al principio del while
+            if sensors.button_pressed():
 
-        except (ValueError, IndexError):
-            print("❌ Formato inválido")
-            continue
+                sensors.wait_button_release()
 
-        push_move(board, human_move)
+                # Leer los últimos cambios antes de confirmar.
+                change_history.extend(sensors.detect_changes())
+                current_state = sensors.board_state.copy()
 
-        print("👤 Human_Physical_Board:", move)
-        print("👤 Human_Stockfish_Board:", logical_move)
+                try:
+                    # Identificar la jugada final usando el estado
+                    # inicial, el estado actual y el historial.
+                    logical_move = detect_human_move(
+                        board,
+                        confirmed_state,
+                        current_state,
+                        change_history,
+                        mirror_coordinates,
+                    )
 
-        human_turn = False  # cambiar el turno al robot
+                    # Validar la jugada contra el tablero lógico.
+                    human_move = validate_human_move(
+                        board, logical_move
+                    )
+
+                    if human_move is None:
+                        print("❌ Jugada ilegal. Corregí las piezas.")
+                        continue
+
+                except (ValueError, IndexError) as error:
+                    print(f"❌ Jugada no confirmada: {error}")
+                    print("Corregí las piezas y volvé a pulsar.")
+                    continue
+
+                # Mostrar las coordenadas físicas y lógicas.
+                physical_move = (
+                    mirror_move(logical_move)
+                    if mirror_coordinates
+                    else logical_move
+                )
+
+                push_move(board, human_move)
+
+                print("👤 Human_Physical_Board:", physical_move)
+                print("👤 Human_Stockfish_Board:", logical_move)
+
+                # Guardar la posición confirmada.
+                confirmed_state = current_state.copy()
+                change_history.clear()
+
+                human_turn = False
+                break
+
+            time.sleep(0.05)
 
     # =====================
     # TURNO ROBOT
@@ -175,6 +276,31 @@ while True:
         # Actualizar el tablero lógico con la jugada original de Stockfish,
         # nunca con las coordenadas reflejadas del tablero físico.
         push_move(board, move)
+
+        # Sincronizar sensores después del movimiento del robot.
+        confirmed_state = read_stable_sensor_state()
+
+        expected_state = _sensor_occupancy_from_board(
+            board, mirror_coordinates
+        )
+
+        differences = [
+            square
+            for square in sorted(expected_state)
+            if confirmed_state[square] != expected_state[square]
+        ]
+
+        if differences:
+            print("❌ Diferencias después del movimiento del robot:")
+            for square in differences:
+                print(
+                    f"{square}: sensor={confirmed_state[square]}, "
+                    f"esperado={expected_state[square]}"
+                )
+        else:
+            print("✅ Referencia de sensores correcta después del robot.")
+
+        change_history.clear()
 
         # Cambiar el turno al humano.
         human_turn = True

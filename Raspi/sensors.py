@@ -14,8 +14,8 @@
 #     - Gestión del botón de confirmación
 # =======================================================================
 
-
 from smbus2 import SMBus
+from gpiozero import Button
 import time
 
 
@@ -208,6 +208,9 @@ def init_sensors():
     read_all_sensors()
     previous_state = board_state.copy()
 
+    # Inicializar botón de confirmación en GPIO 18
+    button = Button(BUTTON_PIN, pull_up=True, bounce_time=0.05)
+
     print("ONYX-Pro: sensores inicializados")
 
 
@@ -249,20 +252,27 @@ def read_all_sensors():
 # DETECTAR CAMBIOS EN EL TABLERO
 # ============================================================
 
+
 def detect_changes():
+
+    global previous_state
+
+    # Leer el estado actual de los 64 sensores
+    read_all_sensors()
 
     changes = []
 
+    # Comparar el estado actual con el anterior
     for square in board_state:
 
         current = board_state[square]
         previous = previous_state.get(square, current)
 
         if current != previous:
+            changes.append((square, current))
 
-            changes.append(
-                (square, current)
-            )
+    # Guardar el estado actual para la próxima comparación
+    previous_state = board_state.copy()
 
     return changes
 
@@ -365,30 +375,24 @@ def debug_all_sensors():
 # ============================================================
 # DETECTAR BOTÓN
 # ============================================================
-
+# Esto funciona con gpiozero: devuelve True mientras el botón está pulsado
+# y False cuando está suelto.
 def button_pressed():
-
     if button is None:
         return False
 
-    if button.value() == 0:
-
-        time.sleep_ms(50)
-
-        if button.value() == 0:
-            return True
-
-    return False
+    return button.is_pressed
 
 
 # ============================================================
 # ESPERAR LIBERACIÓN DEL BOTÓN
 # ============================================================
-
+# Así espera hasta que sueltes el botón. time.sleep(0.01) sustituye a time.sleep_ms(10),
+# que no existe en Python normal de Linux sino en MicroPython.
+# Esto es para no bloquear el hilo principal durante demasiado tiempo.
 def wait_button_release():
-
     if button is None:
         return
 
-    while button.value() == 0:
-        time.sleep_ms(10)
+    while button.is_pressed:
+        time.sleep(0.01)
