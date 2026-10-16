@@ -83,7 +83,7 @@ def read_stable_sensor_state():
     stable_reads = 0
 
     for _ in range(40):
-        sensors.detect_changes()
+        sensors.read_all_sensors()
         current_state = sensors.board_state.copy()
 
         if current_state == last_state:
