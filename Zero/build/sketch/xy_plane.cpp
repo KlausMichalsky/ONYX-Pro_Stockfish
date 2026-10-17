@@ -42,6 +42,13 @@ float captureT2 = 0;
 static float finalT1 = 0;
 static float finalT2 = 0;
 
+// Datos para la segunda pieza del enroque (torre)
+static bool castlingActive = false;
+static float rookStartT1 = 0;
+static float rookStartT2 = 0;
+static float rookEndT1 = 0;
+static float rookEndT2 = 0;
+
 extern float currentShoulderAngle;
 extern float currentElbowAngle;
 
@@ -188,6 +195,32 @@ void startMoveSequence(float s1, float s2, float e1, float e2) {
     moveToAngles(startT1, startT2);
 }
 
+// INICIAR SECUENCIA DE ENROQUE (REY → TORRE)
+// -----------------------------------------------------------------------
+void startCastlingSequence(float kingS1, float kingS2,
+                           float kingE1, float kingE2,
+                           float rookS1, float rookS2,
+                           float rookE1, float rookE2) {
+    // Guardar las coordenadas del rey
+    startT1 = kingS1;
+    startT2 = kingS2;
+    endT1 = kingE1;
+    endT2 = kingE2;
+
+    // Guardar las coordenadas de la torre
+    rookStartT1 = rookS1;
+    rookStartT2 = rookS2;
+    rookEndT1 = rookE1;
+    rookEndT2 = rookE2;
+
+    // Activar la secuencia especial de enroque
+    castlingActive = true;
+
+    // Comenzar moviendo el rey
+    moveSeqState = MoveSequenceState::MOVING_START;
+    moveToAngles(startT1, startT2);
+}
+
 // INICIAR SECUENCIA DE CAPTURA COMPLETA (XY → Z → HOME)
 // -----------------------------------------------------------------------
 void startCaptureSequence(float captureT1_, float captureT2_, float finalT1_, float finalT2_) {
@@ -203,55 +236,113 @@ void startCaptureSequence(float captureT1_, float captureT2_, float finalT1_, fl
 
 // MAQUINA DE ESTADOS PARA SECUENCIA DE MOVIMIENTO COMPLETA (START → XY → Z → XY → Z)
 // -----------------------------------------------------------------------
+
 void updateMoveSequence() {
     switch (moveSeqState) {
-        // 1. Mover pieza (START → XY)
+        // 1. Ir a la pieza inicial (rey o torre)
         case MoveSequenceState::MOVING_START:
-
             if (!xyIsMoving()) {
-                startZPick(); // 🔥 baja Z y agarra pieza
+                startZPick();
                 moveSeqState = MoveSequenceState::PICKING;
             }
             break;
 
-        // 2. Esperar Pick Terminado (Z)
+        // 2. Esperar a que termine la recogida
         case MoveSequenceState::PICKING:
-
             if (movingStateZ == MovingStateZ::IDLE) {
-                moveToAngles(endT1, endT2); // 🔥 ir a destino
+                moveToAngles(endT1, endT2);
                 moveSeqState = MoveSequenceState::MOVING_END;
             }
             break;
 
-        // 3. Movimiento final (END → XY)
+        // 3. Llevar la pieza a su destino
         case MoveSequenceState::MOVING_END:
-
             if (!xyIsMoving()) {
-                startZPlace(); // 🔥 soltar pieza
+                startZPlace();
                 moveSeqState = MoveSequenceState::PLACING;
             }
             break;
 
-        // 4. Esperar final de Z PLACE
+        // 4. Esperar a que termine la colocación
         case MoveSequenceState::PLACING:
-
             if (movingStateZ == MovingStateZ::IDLE) {
-                COMM.println("MOVE DONE");
-                moveSeqState = MoveSequenceState::GO_HOME;
+                if (castlingActive) {
+                    // El rey ya está colocado.
+                    // Preparar el movimiento de la torre.
+                    startT1 = rookStartT1;
+                    startT2 = rookStartT2;
+                    endT1 = rookEndT1;
+                    endT2 = rookEndT2;
+
+                    moveToAngles(startT1, startT2);
+                    moveSeqState =
+                        MoveSequenceState::CASTLING_ROOK_START;
+
+                } else {
+                    // Movimiento normal: conservar comportamiento actual.
+                    COMM.println("MOVE DONE");
+                    moveSeqState = MoveSequenceState::GO_HOME;
+                }
             }
             break;
 
-        // 5. IR A HOME (nuevo estado limpio)
-        case MoveSequenceState::GO_HOME:
-
+        // 5. Esperar a llegar a la torre
+        case MoveSequenceState::CASTLING_ROOK_START:
             if (!xyIsMoving()) {
-                moveToHomeXY(); // 👉 ahora sí HOME real controlado
+                startZPick();
+                moveSeqState =
+                    MoveSequenceState::CASTLING_ROOK_PICKING;
+            }
+            break;
+
+        // 6. Esperar a recoger la torre
+        case MoveSequenceState::CASTLING_ROOK_PICKING:
+            if (movingStateZ == MovingStateZ::IDLE) {
+                moveToAngles(endT1, endT2);
+                moveSeqState =
+                    MoveSequenceState::CASTLING_ROOK_END;
+            }
+            break;
+
+        // 7. Transportar la torre a su destino
+        case MoveSequenceState::CASTLING_ROOK_END:
+            if (!xyIsMoving()) {
+                startZPlace();
+                moveSeqState =
+                    MoveSequenceState::CASTLING_ROOK_PLACING;
+            }
+            break;
+
+        // 8. Esperar a colocar la torre
+        case MoveSequenceState::CASTLING_ROOK_PLACING:
+            if (movingStateZ == MovingStateZ::IDLE) {
+                // Ambas piezas están colocadas.
+                castlingActive = false;
+
+                // Iniciar regreso a HOME.
+                moveToHomeXY();
+                moveSeqState =
+                    MoveSequenceState::CASTLING_WAIT_HOME;
+            }
+            break;
+
+        // 9. Esperar a terminar el regreso a HOME
+        case MoveSequenceState::CASTLING_WAIT_HOME:
+            if (!xyIsMoving()) {
+                COMM.println("MOVE DONE");
+                moveSeqState = MoveSequenceState::IDLE;
+            }
+            break;
+
+        // 10. Regreso a HOME de un movimiento normal
+        case MoveSequenceState::GO_HOME:
+            if (!xyIsMoving()) {
+                moveToHomeXY();
                 COMM.println("GO HOME START");
                 moveSeqState = MoveSequenceState::IDLE;
             }
             break;
 
-        // IDLE
         case MoveSequenceState::IDLE:
         default:
             break;

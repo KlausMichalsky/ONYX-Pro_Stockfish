@@ -188,6 +188,11 @@ enum class MoveSequenceState {
     PICKING,
     MOVING_END,
     PLACING,
+    CASTLING_ROOK_START,
+    CASTLING_ROOK_PICKING,
+    CASTLING_ROOK_END,
+    CASTLING_ROOK_PLACING,
+    CASTLING_WAIT_HOME, // esperar a que XY termine el regreso a HOME antes de confirmar el movimiento completo
     GO_HOME
 };
 
