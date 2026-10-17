@@ -182,7 +182,6 @@ enum class MovingStateZ {
 };
 
 // Maquina de estados para secuencia de movimiento, captura, enrroque...
-
 enum class MoveSequenceState {
     IDLE,
     MOVING_START,
@@ -193,6 +192,7 @@ enum class MoveSequenceState {
     CASTLING_ROOK_PICKING,
     CASTLING_ROOK_END,
     CASTLING_ROOK_PLACING,
+    CASTLING_WAIT_HOME, // esperar a que XY termine el regreso a HOME antes de confirmar el movimiento completo
     GO_HOME
 };
 
