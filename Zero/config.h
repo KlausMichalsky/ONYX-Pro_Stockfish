@@ -182,12 +182,17 @@ enum class MovingStateZ {
 };
 
 // Maquina de estados para secuencia de movimiento, captura, enrroque...
+
 enum class MoveSequenceState {
     IDLE,
     MOVING_START,
     PICKING,
     MOVING_END,
     PLACING,
+    CASTLING_ROOK_START,
+    CASTLING_ROOK_PICKING,
+    CASTLING_ROOK_END,
+    CASTLING_ROOK_PLACING,
     GO_HOME
 };
 

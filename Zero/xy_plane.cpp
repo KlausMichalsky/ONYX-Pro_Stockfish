@@ -41,6 +41,13 @@ float captureT2 = 0;
 static float finalT1 = 0;
 static float finalT2 = 0;
 
+// Datos para la segunda pieza del enroque (torre)
+static bool castlingActive = false;
+static float rookStartT1 = 0;
+static float rookStartT2 = 0;
+static float rookEndT1 = 0;
+static float rookEndT2 = 0;
+
 extern float currentShoulderAngle;
 extern float currentElbowAngle;
 
