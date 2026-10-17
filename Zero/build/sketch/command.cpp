@@ -213,8 +213,42 @@ void processCommand(const String &cmdStr) {
             }
 
             // SOLO UNA LLAMADA
-            startMoveSequence(s1, s2, e1, e2);
+            String start = String(startSquare);
+            String end = String(endSquare);
 
+            String rookStart = "";
+            String rookEnd = "";
+
+            if (start == "e1" && end == "g1") {
+                rookStart = "h1";
+                rookEnd = "f1";
+            } else if (start == "e1" && end == "c1") {
+                rookStart = "a1";
+                rookEnd = "d1";
+            } else if (start == "e8" && end == "g8") {
+                rookStart = "h8";
+                rookEnd = "f8";
+            } else if (start == "e8" && end == "c8") {
+                rookStart = "a8";
+                rookEnd = "d8";
+            }
+
+            if (rookStart != "") {
+                float rookS1, rookS2;
+                float rookE1, rookE2;
+
+                if (!chessSquareToAngles(rookStart, rookS1, rookS2) ||
+                    !chessSquareToAngles(rookEnd, rookE1, rookE2)) {
+                    COMM.println("ERROR CASTLING ROOK");
+                    break;
+                }
+
+                startCastlingSequence(
+                    s1, s2, e1, e2,
+                    rookS1, rookS2, rookE1, rookE2);
+            } else {
+                startMoveSequence(s1, s2, e1, e2);
+            }
             break;
         }
 
@@ -326,8 +360,47 @@ void processCommand(const String &cmdStr) {
                 COMM.print("END=");
                 COMM.println(endSquare);
 
-                startMoveSequence(s1, s2, e1, e2);
+                String rookStartSquare = "";
+                String rookEndSquare = "";
 
+                if (startSquare == "e1" && endSquare == "g1") {
+                    rookStartSquare = "h1";
+                    rookEndSquare = "f1";
+                } else if (startSquare == "e1" && endSquare == "c1") {
+                    rookStartSquare = "a1";
+                    rookEndSquare = "d1";
+                } else if (startSquare == "e8" && endSquare == "g8") {
+                    rookStartSquare = "h8";
+                    rookEndSquare = "f8";
+                } else if (startSquare == "e8" && endSquare == "c8") {
+                    rookStartSquare = "a8";
+                    rookEndSquare = "d8";
+                } else if (startSquare == "d1" && endSquare == "b1") {
+                    rookStartSquare = "a1";
+                    rookEndSquare = "c1";
+                } else if (startSquare == "d1" && endSquare == "f1") {
+                    rookStartSquare = "h1";
+                    rookEndSquare = "e1";
+                }
+
+                if (rookStartSquare != "") {
+                    float rookS1, rookS2;
+                    float rookE1, rookE2;
+
+                    if (!chessSquareToAngles(
+                            rookStartSquare, rookS1, rookS2) ||
+                        !chessSquareToAngles(
+                            rookEndSquare, rookE1, rookE2)) {
+                        COMM.println("ERROR CASTLING ROOK");
+                        break;
+                    }
+
+                    startCastlingSequence(
+                        s1, s2, e1, e2,
+                        rookS1, rookS2, rookE1, rookE2);
+                } else {
+                    startMoveSequence(s1, s2, e1, e2);
+                }
                 break;
             }
 

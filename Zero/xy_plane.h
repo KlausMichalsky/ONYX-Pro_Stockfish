@@ -28,6 +28,14 @@ bool xyIsMoving();
 void printDebugMove(float motor1Angle, float motor2Angle);
 void correctErrorOnce();
 void startMoveSequence(float s1, float s2, float e1, float e2);
+// kingS: origen del rey.
+// kingE: destino del rey.
+// rookS: origen de la torre.
+// rookE: destino de la torre.
+void startCastlingSequence(float kingS1, float kingS2,
+                           float kingE1, float kingE2,
+                           float rookS1, float rookS2,
+                           float rookE1, float rookE2);
 void startCaptureSequence(float captureT1_, float captureT2_,
                           float finalT1_, float finalT2_);
 void updateCaptureSequence();

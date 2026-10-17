@@ -61,7 +61,7 @@
 
 // PARAMETROS DE CONFIGURACIÓN EJE Z
 // -----------------------------------------------------------------------
-#define Z_STEPS_DOWN 3000 // cantidad de pasos desde el Sensor
+#define Z_STEPS_DOWN 3220 // cantidad de pasos desde el Sensor
 //                                       // hasta el punto mas bajo -> posicion de agarre
 // #define Z_HOME_OFFSET 8000 / 4        // cantidad de pasos desde Sensor hast HOME -> posicion de referencia
 // #define Z_TRAVEL_POS (-Z_HOME_OFFSET) // cantidad de pasos desde HOME hasta la posición de viaje
@@ -84,7 +84,7 @@ constexpr int MOTOR3_MICROSTEPPING = 8;
 // -----------------------------------------------------------------------
 constexpr float SQUARE_SIZE = 40.0f;                                     // Tamaño de casilla en mm
 constexpr float A1_OFFSET_X = -((3 * SQUARE_SIZE) + SQUARE_SIZE / 2.0f); // Distancia desde DOF1 a centro Fila A
-constexpr float A1_OFFSET_Y = 122.0f;                                    // Distancia desde DOF1 a centro Rango 1
+constexpr float A1_OFFSET_Y = 121.0f;                                    // Distancia desde DOF1 a centro Rango 1
 
 // CONFIGURACION DE LOS BRAZOS EN MM
 // -----------------------------------------------------------------------
@@ -189,6 +189,11 @@ enum class MoveSequenceState {
     PICKING,
     MOVING_END,
     PLACING,
+    CASTLING_ROOK_START,
+    CASTLING_ROOK_PICKING,
+    CASTLING_ROOK_END,
+    CASTLING_ROOK_PLACING,
+    CASTLING_WAIT_HOME, // esperar a que XY termine el regreso a HOME antes de confirmar el movimiento completo
     GO_HOME
 };
 
