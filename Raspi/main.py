@@ -291,6 +291,19 @@ while True:
             board, mirror_coordinates
         )
 
+        if confirmed_state != expected_state:
+            print("\n⚠️ El tablero cambió antes de habilitar el turno humano.")
+            print("Colocá las piezas según la posición esperada.")
+            print("El robot no iniciará otra jugada hasta corregirlo.")
+
+            while confirmed_state != expected_state:
+                time.sleep(0.1)
+                sensors.read_all_sensors()
+                confirmed_state = sensors.board_state.copy()
+
+            change_history.clear()
+            print("✅ Tablero sincronizado. Ahora podés mover.")
+
         differences = [
             square
             for square in sorted(expected_state)
