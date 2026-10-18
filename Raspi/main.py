@@ -77,7 +77,7 @@ def shutdown():
 
 def read_stable_sensor_state():
     """Espera a que las piezas se asienten y estabiliza las lecturas."""
-    time.sleep(2.0)
+    time.sleep(0.5)  # Espera inicial para que las piezas se asienten
 
     last_state = None
     stable_reads = 0
@@ -169,6 +169,13 @@ while True:
                 # Leer los últimos cambios antes de confirmar.
                 change_history.extend(sensors.detect_changes())
                 current_state = sensors.board_state.copy()
+
+                # Si el tablero volvió a la posición confirmada,
+                # descartar los cambios pendientes.
+                if current_state == confirmed_state:
+                    change_history.clear()
+                    print("↩️ Tablero restaurado. Podés volver a mover.")
+                    continue
 
                 try:
                     # Identificar la jugada final usando el estado
@@ -283,6 +290,19 @@ while True:
         expected_state = _sensor_occupancy_from_board(
             board, mirror_coordinates
         )
+
+        if confirmed_state != expected_state:
+            print("\n⚠️ El tablero cambió antes de habilitar el turno humano.")
+            print("Colocá las piezas según la posición esperada.")
+            print("El robot no iniciará otra jugada hasta corregirlo.")
+
+            while confirmed_state != expected_state:
+                time.sleep(0.1)
+                sensors.read_all_sensors()
+                confirmed_state = sensors.board_state.copy()
+
+            change_history.clear()
+            print("✅ Tablero sincronizado. Ahora podés mover.")
 
         differences = [
             square
