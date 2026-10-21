@@ -292,3 +292,36 @@ float shortestAngle(float target, float current) {
 
     return current + diff;
 }
+
+// CAPTURE-BOARD: POSICIÓN -> ÁNGULOS
+// Convierte una posición numerada (1-15) en los ángulos del brazo.
+// Las coordenadas están referidas al origen físico (0,0).
+// -----------------------------------------------------------------------
+bool captureBoardToAngles(
+    uint8_t position,
+    float &theta1Deg,
+    float &theta2Deg) {
+    if (position < 1 || position > CAPTURE_BOARD_SLOTS) {
+        return false;
+    }
+
+    // Numeración por columnas: 1, 2, 3; después 4, 5, 6...
+    uint8_t index = position - 1;
+    uint8_t column = index / CAPTURE_BOARD_ROWS;
+    uint8_t row = index % CAPTURE_BOARD_ROWS;
+
+    float x = CAPTURE_X[column];
+    float y = CAPTURE_Y[row];
+
+    // Cinemática inversa con las coordenadas físicas directas
+    if (!inverseKinematics(x, y, LINK1, LINK2,
+                           theta1Deg, theta2Deg)) {
+        return false;
+    }
+
+    // Radianes -> grados
+    theta1Deg *= 180.0f / PI;
+    theta2Deg *= 180.0f / PI;
+
+    return true;
+}

@@ -90,6 +90,20 @@ constexpr float A1_OFFSET_Y = 121.0f;                                    // Dist
 constexpr float LINK1 = 285;
 constexpr float LINK2 = 170;
 
+// COORDENADAS FÍSICAS DE LA ZONA DE CAPTURA EN MM
+// -----------------------------------------------------------------------
+#define CAPTURE_BOARD_COLUMNS 5
+#define CAPTURE_BOARD_ROWS 3
+#define CAPTURE_BOARD_SLOTS 15
+
+// Coordenadas X de las cinco columnas
+constexpr float CAPTURE_X[CAPTURE_BOARD_COLUMNS] = {
+    284.0f, 244.0f, 204.0f, 164.0f, 124.0f};
+
+// Coordenadas Y de las tres filas
+constexpr float CAPTURE_Y[CAPTURE_BOARD_ROWS] = {
+    -40.0f, 0.0f, 40.0f};
+
 // TIPOS DE DATOS Y DEFINICIÓN DE MAQUINA DE ESTADOS
 // -----------------------------------------------------------------------
 // Comandos recibidos por UART
@@ -106,6 +120,7 @@ enum class Command {
     PLACE,
     REMOVE,
     SQUARE,
+    CAPTURETEST,
     UNKNOWN
 };
 
