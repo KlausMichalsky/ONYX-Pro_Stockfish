@@ -45,3 +45,8 @@ bool chessSquareToAngles(
 void printBoardXY(); // Solo para Debug
 
 float shortestAngle(float target, float current);
+
+bool captureBoardToAngles(
+    uint8_t position,
+    float &theta1Deg,
+    float &theta2Deg);

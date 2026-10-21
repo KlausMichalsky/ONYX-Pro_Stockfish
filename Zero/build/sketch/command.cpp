@@ -111,6 +111,8 @@ Command parseCommand(const String &cmd) {
         return Command::REMOVE;
     else if (cmd.startsWith("SQUARE"))
         return Command::SQUARE;
+    else if (cmd == "CAPTURETEST")
+        return Command::CAPTURETEST;
     else
         return Command::UNKNOWN;
 }
@@ -322,6 +324,36 @@ void processCommand(const String &cmdStr) {
 
             // MOVER BRAZO
             moveToAngles(shoulderDeg, elbowDeg);
+            break;
+        }
+
+        case Command::CAPTURETEST: {
+            COMM.println("CAPTURE-BOARD ANGLE TEST");
+
+            for (uint8_t position = 1;
+                 position <= CAPTURE_BOARD_SLOTS;
+                 position++) {
+                float theta1Deg;
+                float theta2Deg;
+
+                COMM.print("Position ");
+                COMM.print(position);
+                COMM.print(": ");
+
+                if (captureBoardToAngles(
+                        position, theta1Deg, theta2Deg)) {
+                    COMM.print("T1 = ");
+                    COMM.print(theta1Deg, 2);
+                    COMM.print(" deg, T2 = ");
+                    COMM.print(theta2Deg, 2);
+                    COMM.println(" deg");
+
+                } else {
+                    COMM.println("ERROR: unreachable or invalid");
+                }
+            }
+
+            COMM.println("CAPTURETEST DONE");
             break;
         }
 
