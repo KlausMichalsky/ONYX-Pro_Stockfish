@@ -122,6 +122,7 @@ enum class Command {
     REMOVE,
     SQUARE,
     CAPTURETEST,
+    CAPTURERESET,
     UNKNOWN
 };
 

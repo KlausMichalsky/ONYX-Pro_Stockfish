@@ -42,6 +42,11 @@ float captureT2 = 0;
 static float finalT1 = 0;
 static float finalT2 = 0;
 
+// Capture-Board: gestión de las 15 posiciones
+static uint8_t nextCaptureSlot = 1;
+static float captureBoardT1 = 0;
+static float captureBoardT2 = 0;
+
 // Datos para la segunda pieza del enroque (torre)
 static bool castlingActive = false;
 static float rookStartT1 = 0;
@@ -223,20 +228,53 @@ void startCastlingSequence(float kingS1, float kingS2,
 
 // INICIAR SECUENCIA DE CAPTURA COMPLETA (XY → Z → HOME)
 // -----------------------------------------------------------------------
-void startCaptureSequence(float captureT1_, float captureT2_, float finalT1_, float finalT2_) {
+bool startCaptureSequence(
+    float captureT1_,
+    float captureT2_,
+    float finalT1_,
+    float finalT2_) {
+    // No iniciar otra captura si hay una secuencia activa.
+    if (captureSeqState != CaptureSequenceState::IDLE ||
+        moveSeqState != MoveSequenceState::IDLE ||
+        movingStateZ != MovingStateZ::IDLE ||
+        xyIsMoving()) {
+        COMM.println("ERROR: ROBOT BUSY");
+        return false;
+    }
+
+    // Comprobar si quedan posiciones disponibles.
+    if (nextCaptureSlot > CAPTURE_BOARD_SLOTS) {
+        COMM.println("ERROR: CAPTURE BOARD FULL");
+        return false;
+    }
+
+    // Calcular los ángulos de la siguiente posición libre.
+    if (!captureBoardToAngles(
+            nextCaptureSlot,
+            captureBoardT1,
+            captureBoardT2)) {
+        COMM.println("ERROR: CAPTURE BOARD SLOT");
+        return false;
+    }
+
+    // Guardar destino y origen de la pieza atacante.
     captureT1 = captureT1_;
     captureT2 = captureT2_;
     finalT1 = finalT1_;
     finalT2 = finalT2_;
 
+    // Iniciar la captura.
     captureSeqState = CaptureSequenceState::CAPTURE_START;
-
     moveToAngles(captureT1, captureT2);
+
+    COMM.print("CAPTURE SLOT: ");
+    COMM.println(nextCaptureSlot);
+
+    return true;
 }
 
 // MAQUINA DE ESTADOS PARA SECUENCIA DE MOVIMIENTO COMPLETA (START → XY → Z → XY → Z)
 // -----------------------------------------------------------------------
-
 void updateMoveSequence() {
     switch (moveSeqState) {
         // 1. Ir a la pieza inicial (rey o torre)
@@ -360,11 +398,11 @@ void updateCaptureSequence() {
             }
             break;
 
-        // 2. Esperar pick enemigo
+            // 2. Esperar pick enemigo
         case CaptureSequenceState::PICKING_OPPONENT:
 
             if (movingStateZ == MovingStateZ::IDLE) {
-                moveToHomeXY();
+                moveToAngles(captureBoardT1, captureBoardT2);
                 captureSeqState = CaptureSequenceState::TAKE_PIECE_OUT;
             }
             break;
@@ -382,8 +420,11 @@ void updateCaptureSequence() {
         case CaptureSequenceState::PLACING_OPPONENT:
 
             if (movingStateZ == MovingStateZ::IDLE) {
+                nextCaptureSlot++;
+
                 moveToHomeXY();
-                captureSeqState = CaptureSequenceState::MOVING_OWN_PIECE_START;
+                captureSeqState =
+                    CaptureSequenceState::MOVING_OWN_PIECE_START;
             }
             break;
 
@@ -445,6 +486,23 @@ void updateCaptureSequence() {
         default:
             break;
     }
+}
+
+bool resetCaptureCounter() {
+    // No reiniciar mientras el robot esté ocupado.
+    if (captureSeqState != CaptureSequenceState::IDLE ||
+        moveSeqState != MoveSequenceState::IDLE ||
+        movingStateZ != MovingStateZ::IDLE ||
+        xyIsMoving()) {
+        COMM.println("ERROR: ROBOT BUSY");
+        return false;
+    }
+
+    // Reiniciar el contador al primer espacio.
+    nextCaptureSlot = 1;
+
+    COMM.println("CAPTURE COUNTER RESET");
+    return true;
 }
 
 // MOVIMIENTO A HOME DEL PLANO XY

@@ -113,6 +113,8 @@ Command parseCommand(const String &cmd) {
         return Command::SQUARE;
     else if (cmd == "CAPTURETEST")
         return Command::CAPTURETEST;
+    else if (cmd == "CAPTURERESET")
+        return Command::CAPTURERESET;
     else
         return Command::UNKNOWN;
 }
@@ -293,9 +295,9 @@ void processCommand(const String &cmdStr) {
             }
 
             // 🔥 ahora sí: captura + movimiento final en FSM
-            startCaptureSequence(capT1, capT2, finT1, finT2);
-
-            COMM.println("REMOVE STARTED");
+            if (startCaptureSequence(capT1, capT2, finT1, finT2)) {
+                COMM.println("REMOVE STARTED");
+            }
             break;
         }
 
@@ -356,6 +358,10 @@ void processCommand(const String &cmdStr) {
             COMM.println("CAPTURETEST DONE");
             break;
         }
+
+        case Command::CAPTURERESET:
+            resetCaptureCounter();
+            break;
 
         default: {
             // ==========================================================
