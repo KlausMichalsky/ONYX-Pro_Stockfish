@@ -47,6 +47,8 @@ from game import (
 
 print("Reset RP2040...")
 reset_robot()
+# Reiniciar contador del Capture-Board
+send_to_robot("CAPTURERESET")
 
 board = create_board()
 
