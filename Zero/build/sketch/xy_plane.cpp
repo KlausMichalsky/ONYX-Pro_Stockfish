@@ -416,13 +416,13 @@ void updateCaptureSequence() {
             }
             break;
 
-        // 4. Esperar place enemigo
+        // 4. Esperar a que termine de depositar la pieza capturada
         case CaptureSequenceState::PLACING_OPPONENT:
 
             if (movingStateZ == MovingStateZ::IDLE) {
                 nextCaptureSlot++;
 
-                moveToHomeXY();
+                // Ir directamente a la pieza atacante, sin pasar por HOME.
                 captureSeqState =
                     CaptureSequenceState::MOVING_OWN_PIECE_START;
             }
