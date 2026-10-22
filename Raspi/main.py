@@ -47,6 +47,7 @@ from game import (
 
 print("Reset RP2040...")
 reset_robot()
+time.sleep(1)  # Esperar a que el RP2040 esté listo
 # Reiniciar contador del Capture-Board
 send_to_robot("CAPTURERESET")
 
