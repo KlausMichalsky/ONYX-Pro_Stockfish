@@ -135,8 +135,22 @@ def wait_any(*expected):  # Acepta una cantidad variable de argumentos
 # SHUTDOWN
 # =========================
 
+
+# =========================
+# SHUTDOWN
+# =========================
+
 def shutdown_robot():
     try:
-        ser.close()
-    except:
-        pass
+        if ser.is_open:
+            ser.write(b"MOTOROFF\n")
+            ser.flush()
+            time.sleep(0.2)
+    except Exception as e:
+        print(f"⚠️ Error al apagar los motores: {e}")
+    finally:
+        try:
+            if ser.is_open:
+                ser.close()
+        except Exception:
+            pass

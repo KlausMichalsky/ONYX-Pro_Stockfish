@@ -13,6 +13,7 @@
 # =======================================================================
 
 import time
+import signal
 
 import sensors
 
@@ -72,6 +73,17 @@ def shutdown():
 
     shutdown_stockfish()
     shutdown_robot()
+
+# Al pulsar Ctrl+C, se ejecutará el apagado del robot y se cerrará la conexión serie
+
+
+def handle_interrupt(signum, frame):
+    print("\n⚠️ Interrupción: apagando ONYX-Pro...")
+    shutdown()
+    raise SystemExit(130)
+
+
+signal.signal(signal.SIGINT, handle_interrupt)
 
 
 # =========================
