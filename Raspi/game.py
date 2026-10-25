@@ -6,6 +6,7 @@
 #  Fecha     : Oct-2026
 # -----------------------------------------------------------------------
 #  ▫️ DESCRIPCIÓN
+#     - Reglas, jugadas, coordenadas y detección de jugadas humanas.
 #     - Gestión del tablero de ajedrez
 #     - Validación de jugadas humanas
 #     - Gestión de movimientos

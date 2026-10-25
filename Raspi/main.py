@@ -87,38 +87,6 @@ signal.signal(signal.SIGINT, handle_interrupt)
 
 
 # =========================
-# Lectura Estable de Sensores
-# =========================
-
-def read_stable_sensor_state():
-    """Espera a que las piezas se asienten y estabiliza las lecturas."""
-    time.sleep(0.5)  # Espera inicial para que las piezas se asienten
-
-    last_state = None
-    stable_reads = 0
-
-    for _ in range(40):
-        sensors.read_all_sensors()
-        current_state = sensors.board_state.copy()
-
-        if current_state == last_state:
-            stable_reads += 1
-        else:
-            last_state = current_state
-            stable_reads = 1
-
-        # Exigir 10 lecturas consecutivas idénticas.
-        if stable_reads >= 10:
-            return current_state
-
-        time.sleep(0.05)
-
-    raise RuntimeError(
-        "Los sensores no se estabilizaron después de varios intentos."
-    )
-
-
-# =========================
 # START
 # =========================
 
@@ -139,7 +107,7 @@ mirror_coordinates = (mode == "1")
 
 sensors.init_sensors()
 
-confirmed_state = read_stable_sensor_state()
+confirmed_state = sensors.read_stable_sensor_state()
 
 expected_state = _sensor_occupancy_from_board(
     board, mirror_coordinates
@@ -300,7 +268,7 @@ while True:
         push_move(board, move)
 
         # Sincronizar sensores después del movimiento del robot.
-        confirmed_state = read_stable_sensor_state()
+        confirmed_state = sensors.read_stable_sensor_state()
 
         expected_state = _sensor_occupancy_from_board(
             board, mirror_coordinates

@@ -7,6 +7,7 @@
 #  Fecha     : Oct-2026
 # -----------------------------------------------------------------------
 #  ▫️ DESCRIPCIÓN
+#     - Hardware, lectura de sensores y botón.
 #     - Comunicación I2C con los MCP23017
 #     - Lectura de la matriz de 64 sensores Hall
 #     - Detección de ocupación de las casillas
@@ -396,3 +397,33 @@ def wait_button_release():
 
     while button.is_pressed:
         time.sleep(0.01)
+
+
+# ============================================================
+# DETECCIÓN DE ESTADO ESTABLE DE LOS SENSORES
+# ============================================================
+def read_stable_sensor_state():
+    """Espera a que las piezas se asienten y estabiliza las lecturas."""
+    time.sleep(0.5)
+
+    last_state = None
+    stable_reads = 0
+
+    for _ in range(40):
+        read_all_sensors()
+        current_state = board_state.copy()
+
+        if current_state == last_state:
+            stable_reads += 1
+        else:
+            last_state = current_state
+            stable_reads = 1
+
+        if stable_reads >= 10:
+            return current_state
+
+        time.sleep(0.05)
+
+    raise RuntimeError(
+        "Los sensores no se estabilizaron después de varios intentos."
+    )
