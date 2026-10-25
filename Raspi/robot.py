@@ -154,3 +154,13 @@ def shutdown_robot():
                 ser.close()
         except Exception:
             pass
+
+
+def execute_robot_move(robot_move, capture_square=None, from_square=None):
+    if capture_square is not None and from_square is not None:
+        send_to_robot(f"REMOVE {capture_square} {from_square}")
+        wait_any("MOVE DONE", "CAPTURE DONE")
+        print("✅ Captura completada")
+    else:
+        send_to_robot(robot_move)
+        wait_done()

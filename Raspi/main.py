@@ -25,7 +25,9 @@ from robot import (
     do_homing,
     wait_any,
     shutdown_robot,
+    execute_robot_move,
 )
+
 from stockfish import (
     get_best_move,
     shutdown_stockfish,
@@ -248,20 +250,14 @@ while True:
                 capture_square = mirror_square(capture_square)
                 from_square = mirror_square(from_square)
 
-            # Enviar al RP2040 la orden para retirar la pieza capturada.
-            send_to_robot(f"REMOVE {capture_square} {from_square}")
-
-            # Esperar la confirmación del RP2040.
-            wait_any("MOVE DONE", "CAPTURE DONE")
-
-            print("✅ Captura completada")
+            execute_robot_move(
+                robot_move,
+                capture_square,
+                from_square,
+            )
 
         else:
-            # Enviar al RP2040 la jugada transformada para el tablero físico.
-            send_to_robot(robot_move)
-
-            # Esperar a que el robot termine el movimiento.
-            wait_done()
+            execute_robot_move(robot_move)
 
         # Actualizar el tablero lógico con la jugada original de Stockfish,
         # nunca con las coordenadas reflejadas del tablero físico.
