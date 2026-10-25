@@ -117,7 +117,7 @@ def mirror_move(move_uci):  # recibe una jugada en formato UCI
     return mirror_square(from_square) + mirror_square(to_square) + promotion
 
 
-def _sensor_occupancy_from_board(board, mirror_coordinates=False):
+def sensor_occupancy_from_board(board, mirror_coordinates=False):
     """Convierte la posición de ajedrez en el estado esperado de los sensores."""
     occupancy = {}
 
@@ -164,7 +164,7 @@ def detect_human_move(
         raise ValueError("Faltan datos de uno o más sensores.")
 
     # El tablero inicial debe coincidir con la partida actual.
-    expected_initial = _sensor_occupancy_from_board(
+    expected_initial = sensor_occupancy_from_board(
         board, mirror_coordinates
     )
 
@@ -205,7 +205,7 @@ def detect_human_move(
         test_board = board.copy()
         test_board.push(move)
 
-        expected_final = _sensor_occupancy_from_board(
+        expected_final = sensor_occupancy_from_board(
             test_board, mirror_coordinates
         )
 

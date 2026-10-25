@@ -427,3 +427,45 @@ def read_stable_sensor_state():
     raise RuntimeError(
         "Los sensores no se estabilizaron después de varios intentos."
     )
+
+
+# ============================================================
+# ESPERAR SINCRONIZACIÓN DEL TABLERO
+# ============================================================
+
+def wait_for_expected_state(expected_state, current_state):
+    """Espera hasta que los sensores coincidan con el estado esperado."""
+
+    while current_state != expected_state:
+        time.sleep(0.1)
+        read_all_sensors()
+        current_state = board_state.copy()
+
+    return current_state
+
+
+# ============================================================
+# ESPERAR CONFIRMACIÓN DE JUGADA HUMANA
+# ============================================================
+
+def wait_for_human_confirmation(confirmed_state, change_history):
+    """Espera el botón y devuelve el estado del tablero al confirmar."""
+
+    while True:
+        change_history.extend(detect_changes())
+
+        if button_pressed():
+            wait_button_release()
+
+            # Leer los últimos cambios antes de confirmar.
+            change_history.extend(detect_changes())
+            current_state = board_state.copy()
+
+            # Si el tablero volvió a su posición original.
+            if current_state == confirmed_state:
+                change_history.clear()
+                return None
+
+            return current_state
+
+        time.sleep(0.05)

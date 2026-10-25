@@ -21,9 +21,7 @@ from robot import (
     ser,
     reset_robot,
     send_to_robot,
-    wait_done,
     do_homing,
-    wait_any,
     shutdown_robot,
     execute_robot_move,
 )
@@ -36,7 +34,6 @@ from stockfish import (
 from game import (
     create_board,
     create_move,
-    validate_human_move,
     process_human_move,
     push_move,
     is_capture,
@@ -45,8 +42,7 @@ from game import (
     get_result,
     mirror_square,
     mirror_move,
-    detect_human_move,
-    _sensor_occupancy_from_board,
+    sensor_occupancy_from_board,
 )
 
 print("Reset RP2040...")
@@ -96,7 +92,7 @@ def initialize_sensors(board, mirror_coordinates):
 
     confirmed_state = sensors.read_stable_sensor_state()
 
-    expected_state = _sensor_occupancy_from_board(
+    expected_state = sensor_occupancy_from_board(
         board, mirror_coordinates
     )
 
@@ -153,65 +149,54 @@ while True:
 
         while True:
 
-            # Registrar los cambios detectados por los sensores.
-            change_history.extend(sensors.detect_changes())
+            # Esperar a que se pulse el botón y obtener el estado del tablero.
+            current_state = sensors.wait_for_human_confirmation(
+                confirmed_state,
+                change_history,
+            )
 
-            if sensors.button_pressed():
+            # Si el tablero volvió a la posición confirmada.
+            if current_state is None:
+                print("↩️ Tablero restaurado. Podés volver a mover.")
+                continue
 
-                sensors.wait_button_release()
-
-                # Leer los últimos cambios antes de confirmar.
-                change_history.extend(sensors.detect_changes())
-                current_state = sensors.board_state.copy()
-
-                # Si el tablero volvió a la posición confirmada,
-                # descartar los cambios pendientes.
-                if current_state == confirmed_state:
-                    change_history.clear()
-                    print("↩️ Tablero restaurado. Podés volver a mover.")
-                    continue
-
-                try:
-                    # Identificar la jugada final usando el estado
-                    # inicial, el estado actual y el historial.
-                    logical_move, human_move = process_human_move(
-                        board,
-                        confirmed_state,
-                        current_state,
-                        change_history,
-                        mirror_coordinates,
-                    )
-
-                except (ValueError, IndexError) as error:
-                    print(f"❌ Jugada no confirmada: {error}")
-                    print("Corregí las piezas y volvé a pulsar.")
-                    continue
-
-                # Mostrar las coordenadas físicas y lógicas.
-                physical_move = (
-                    mirror_move(logical_move)
-                    if mirror_coordinates
-                    else logical_move
+            try:
+                # Identificar y validar la jugada humana.
+                logical_move, human_move = process_human_move(
+                    board,
+                    confirmed_state,
+                    current_state,
+                    change_history,
+                    mirror_coordinates,
                 )
 
-                push_move(board, human_move)
+            except (ValueError, IndexError) as error:
+                print(f"❌ Jugada no confirmada: {error}")
+                print("Corregí las piezas y volvé a pulsar.")
+                continue
 
-                print("👤 Human_Physical_Board:", physical_move)
-                print("👤 Human_Stockfish_Board:", logical_move)
+            # Mostrar las coordenadas físicas y lógicas.
+            physical_move = (
+                mirror_move(logical_move)
+                if mirror_coordinates
+                else logical_move
+            )
 
-                # Guardar la posición confirmada.
-                confirmed_state = current_state.copy()
-                change_history.clear()
+            push_move(board, human_move)
 
-                human_turn = False
-                break
+            print("👤 Human_Physical_Board:", physical_move)
+            print("👤 Human_Stockfish_Board:", logical_move)
 
-            time.sleep(0.05)
+            # Guardar la posición confirmada.
+            confirmed_state = current_state.copy()
+            change_history.clear()
+
+            human_turn = False
+            break
 
     # =====================
     # TURNO ROBOT
     # =====================
-
     else:
 
         # Limpiar mensajes anteriores del buffer de entrada del puerto serie
@@ -266,7 +251,7 @@ while True:
         # Sincronizar sensores después del movimiento del robot.
         confirmed_state = sensors.read_stable_sensor_state()
 
-        expected_state = _sensor_occupancy_from_board(
+        expected_state = sensor_occupancy_from_board(
             board, mirror_coordinates
         )
 
@@ -275,10 +260,10 @@ while True:
             print("Colocá las piezas según la posición esperada.")
             print("El robot no iniciará otra jugada hasta corregirlo.")
 
-            while confirmed_state != expected_state:
-                time.sleep(0.1)
-                sensors.read_all_sensors()
-                confirmed_state = sensors.board_state.copy()
+            confirmed_state = sensors.wait_for_expected_state(
+                expected_state,
+                confirmed_state,
+            )
 
             change_history.clear()
             print("✅ Tablero sincronizado. Ahora podés mover.")
