@@ -316,8 +316,8 @@ void updateMoveSequence() {
                         MoveSequenceState::CASTLING_ROOK_START;
 
                 } else {
-                    // Movimiento normal: conservar comportamiento actual.
-                    COMM.println("MOVE DONE");
+                    // Iniciar regreso a HOME.
+                    moveToHomeXY();
                     moveSeqState = MoveSequenceState::GO_HOME;
                 }
             }
@@ -371,11 +371,10 @@ void updateMoveSequence() {
             }
             break;
 
-        // 10. Regreso a HOME de un movimiento normal
+            // 10. Regreso a HOME de un movimiento normal
         case MoveSequenceState::GO_HOME:
             if (!xyIsMoving()) {
-                moveToHomeXY();
-                COMM.println("GO HOME START");
+                COMM.println("MOVE DONE");
                 moveSeqState = MoveSequenceState::IDLE;
             }
             break;
