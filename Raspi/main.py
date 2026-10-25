@@ -35,6 +35,7 @@ from game import (
     create_board,
     create_move,
     validate_human_move,
+    process_human_move,
     push_move,
     is_capture,
     get_capture_squares,
@@ -171,22 +172,13 @@ while True:
                 try:
                     # Identificar la jugada final usando el estado
                     # inicial, el estado actual y el historial.
-                    logical_move = detect_human_move(
+                    logical_move, human_move = process_human_move(
                         board,
                         confirmed_state,
                         current_state,
                         change_history,
                         mirror_coordinates,
                     )
-
-                    # Validar la jugada contra el tablero lógico.
-                    human_move = validate_human_move(
-                        board, logical_move
-                    )
-
-                    if human_move is None:
-                        print("❌ Jugada ilegal. Corregí las piezas.")
-                        continue
 
                 except (ValueError, IndexError) as error:
                     print(f"❌ Jugada no confirmada: {error}")

@@ -223,3 +223,28 @@ def detect_human_move(
         )
 
     return candidates[0]
+
+
+def process_human_move(
+    board,
+    confirmed_state,
+    current_state,
+    change_history,
+    mirror_coordinates=False,
+):
+    """Identifica y valida una jugada humana sin modificar el tablero."""
+
+    logical_move = detect_human_move(
+        board,
+        confirmed_state,
+        current_state,
+        change_history,
+        mirror_coordinates,
+    )
+
+    human_move = validate_human_move(board, logical_move)
+
+    if human_move is None:
+        raise ValueError("Jugada ilegal. Corregí las piezas.")
+
+    return logical_move, human_move
