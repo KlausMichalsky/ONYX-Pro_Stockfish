@@ -123,6 +123,7 @@ enum class Command {
     SQUARE,
     CAPTURETEST,
     CAPTURERESET,
+    MOTOROFF,
     UNKNOWN
 };
 

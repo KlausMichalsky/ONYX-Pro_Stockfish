@@ -115,6 +115,8 @@ Command parseCommand(const String &cmd) {
         return Command::CAPTURETEST;
     else if (cmd == "CAPTURERESET")
         return Command::CAPTURERESET;
+    else if (cmd == "MOTOROFF")
+        return Command::MOTOROFF;
     else
         return Command::UNKNOWN;
 }
@@ -361,6 +363,16 @@ void processCommand(const String &cmdStr) {
 
         case Command::CAPTURERESET:
             resetCaptureCounter();
+            break;
+
+        case Command::MOTOROFF:
+            cancelMoveSequence();
+            movingStateZ = MovingStateZ::IDLE;
+            magnetOFF();
+            stopAllMotors();
+            motorsDisableXY();
+            motorDisableZ();
+            COMM.println("MOTORS OFF");
             break;
 
         default: {
