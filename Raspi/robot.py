@@ -105,20 +105,30 @@ def initialize_robot():
 
 
 # =========================
+# LEER RESPUESTA SERIE
+# =========================
+
+def read_robot_line():
+    """Lee y muestra una línea recibida del RP2040."""
+
+    line = ser.readline().decode(errors="ignore").strip()
+
+    if line:
+        print("RP2040:", line)
+
+    return line
+
+
+# =========================
 # WAIT DONE
 # =========================
+
 def wait_done():
     while True:
-        # readline() devuelve bytes (Puerto serial)
-        # decode() convierte bytes en str (texto)
-        # strip() elimina espacios en blanco al inicio y al final de la cadena de texto.
-        line = ser.readline().decode(errors="ignore").strip()
+        line = read_robot_line()
 
-        if line:  # Si hemos recibido algo por Serial, haz lo siguiente
-            print("RP2040:", line)
-
-            if "DONE" in line:
-                break
+        if line and "DONE" in line:
+            break
 
 
 # =========================
@@ -130,32 +140,23 @@ def do_homing():
     ser.write(b"HOMING\n")
 
     while True:
-        line = ser.readline().decode(errors="ignore").strip()
+        line = read_robot_line()
 
-        if line:
-            print("RP2040:", line)
-
-            if "DONE" in line:
-                print("✅ HOMING COMPLETO")
-                break
+        if line and "DONE" in line:
+            print("✅ HOMING COMPLETO")
+            break
 
 
 # =========================
 # WAIT ANY
 # =========================
 
-def wait_any(*expected):  # Acepta una cantidad variable de argumentos
+def wait_any(*expected):
     while True:
-        line = ser.readline().decode(errors="ignore").strip()
+        line = read_robot_line()
 
-        if line:
-            print("RP2040:", line)
-            # for e in expected recorre uno por uno los mensajes que pasamos
-            # if any ¿Hay al menos uno que sea verdadero?
-            if any(e in line for e in expected):
-                # return termina la función completa y vuelve al lugar desde donde fue llamada en main por ejemplo.
-                # brake solo termina el bucle while, pero la función sigue ejecutándose.
-                return
+        if line and any(e in line for e in expected):
+            return
 
 
 # =========================
