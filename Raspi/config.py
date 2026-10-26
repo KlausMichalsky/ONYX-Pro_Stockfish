@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------
 #  ▫️ DESCRIPCIÓN
 #     - Configuración general de ONYX-Pro
-#     - Puerto y comunicación UART
+#     - Comunicación serie USB con RP2040
 #     - Configuración de Stockfish
 # =======================================================================
 
