@@ -77,41 +77,6 @@ def handle_interrupt(signum, frame):
 signal.signal(signal.SIGINT, handle_interrupt)
 
 
-def initialize_sensors(board, mirror_coordinates):
-    """Inicializa los sensores y valida la posición inicial del tablero."""
-
-    sensors.init_sensors()
-
-    expected_state = sensor_occupancy_from_board(
-        board, mirror_coordinates
-    )
-
-    confirmed_state = sensors.read_stable_sensor_state()
-
-    if confirmed_state != expected_state:
-        print("\n❌ Los sensores no coinciden con la posición inicial.")
-        print("♟️ Colocá todas las piezas en su posición inicial.")
-        print("Cuando estén listas, pulsá el botón para comprobar el tablero.")
-
-    while confirmed_state != expected_state:
-
-        # Esperar a que se pulse y suelte el botón.
-        while not sensors.button_pressed():
-            time.sleep(0.05)
-
-        sensors.wait_button_release()
-
-        # Volver a comprobar el tablero después de la confirmación.
-        confirmed_state = sensors.read_stable_sensor_state()
-
-        if confirmed_state != expected_state:
-            print("\n⚠️ La posición todavía no coincide con la inicial.")
-            print("Corregí las piezas y volvé a pulsar el botón.")
-
-    print("✅ Sensores y botón listos")
-    return confirmed_state
-
-
 # =========================
 # START
 # =========================
@@ -131,7 +96,14 @@ mirror_coordinates = (mode == "1")
 # SENSORES Y BOTÓN
 # =========================
 
-confirmed_state = initialize_sensors(board, mirror_coordinates)
+expected_state = sensor_occupancy_from_board(
+    board,
+    mirror_coordinates,
+)
+
+confirmed_state = sensors.initialize_and_validate_sensors(
+    expected_state,
+)
 
 change_history = []
 

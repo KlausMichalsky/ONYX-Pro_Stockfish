@@ -510,3 +510,37 @@ def synchronize_board(expected_state, current_state, change_history):
 
     change_history.clear()
     return current_state
+
+
+# ============================================================
+# INICIALIZAR Y VALIDAR POSICIÓN INICIAL
+# ============================================================
+
+def initialize_and_validate_sensors(expected_state):
+    """Inicializa los sensores y espera la posición inicial correcta."""
+    global previous_state
+
+    init_sensors()
+    confirmed_state = read_stable_sensor_state()
+
+    if confirmed_state != expected_state:
+        print("\n❌ Los sensores no coinciden con la posición inicial.")
+        print("♟️ Colocá todas las piezas en su posición inicial.")
+        print("Cuando estén listas, pulsá el botón para comprobar el tablero.")
+
+    while confirmed_state != expected_state:
+
+        while not button_pressed():
+            time.sleep(0.05)
+
+        wait_button_release()
+        confirmed_state = read_stable_sensor_state()
+
+        if confirmed_state != expected_state:
+            print("\n⚠️ La posición todavía no coincide con la inicial.")
+            print("Corregí las piezas y volvé a pulsar el botón.")
+
+    previous_state = confirmed_state.copy()
+
+    print("✅ Sensores y botón listos")
+    return confirmed_state
