@@ -22,6 +22,7 @@ from game import (
     mirror_move,
     prepare_robot_move,
     sensor_occupancy_from_board,
+    is_game_over,
 )
 
 
@@ -138,3 +139,42 @@ def run_robot_turn(board, mirror_coordinates, change_history):
     )
 
     return confirmed_state
+
+
+# =========================
+# BUCLE PRINCIPAL DE PARTIDA
+# =========================
+
+def run_game_loop(
+    board,
+    human_turn,
+    mirror_coordinates,
+    confirmed_state,
+    change_history,
+):
+    """Coordina los turnos hasta que termina la partida."""
+
+    while True:
+
+        if human_turn:
+            confirmed_state = run_human_turn(
+                board,
+                confirmed_state,
+                change_history,
+                mirror_coordinates,
+            )
+
+            human_turn = False
+
+        else:
+            confirmed_state = run_robot_turn(
+                board,
+                mirror_coordinates,
+                change_history,
+            )
+
+            human_turn = True
+
+        # Comprobar el final después de cada turno.
+        if is_game_over(board):
+            return

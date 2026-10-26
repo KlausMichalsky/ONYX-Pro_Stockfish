@@ -36,10 +36,7 @@ from game import (
     sensor_occupancy_from_board,
 )
 
-from controller import (
-    run_human_turn,
-    run_robot_turn,
-)
+from controller import run_game_loop
 
 initialize_serial()
 
@@ -108,41 +105,20 @@ print("\n♟️ Iniciando partida...\n")
 # LOOP PRINCIPAL
 # =========================
 
-while True:
+run_game_loop(
+    board,
+    human_turn,
+    mirror_coordinates,
+    confirmed_state,
+    change_history,
+)
 
-    # =====================
-    # TURNO HUMANO
-    # =====================
+# =========================
+# FIN PARTIDA
+# =========================
 
-    if human_turn:
+if is_game_over(board):
+    print("\n🏁 Fin de partida")
+    print(get_result(board))
 
-        confirmed_state = run_human_turn(
-            board,
-            confirmed_state,
-            change_history,
-            mirror_coordinates,
-        )
-
-        human_turn = False
-
-    else:
-
-        confirmed_state = run_robot_turn(
-            board,
-            mirror_coordinates,
-            change_history,
-        )
-
-        human_turn = True
-
-    # =====================
-    # FIN PARTIDA
-    # =====================
-
-    if is_game_over(board):
-
-        print("\n🏁 Fin de partida")
-        print(get_result(board))
-
-        shutdown()
-        break
+    shutdown()
