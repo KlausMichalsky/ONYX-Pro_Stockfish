@@ -23,22 +23,28 @@ from config import STOCKFISH_PATH, THINK_TIME
 # STOCKFISH INIT
 # =========================
 
-print("Iniciando Stockfish...")
+engine = None
 
-# Guarda aquí el momento exacto en que empezamos.
-t0 = time.time()
 
-# Abre este ejecutable de Stockfish y establece la comunicación con él
-# y el resultado guardamos en 'engine'
-# chess.engine es un módulo de python-chess que proporciona
-# una interfaz para interactuar con motores de ajedrez compatibles con UCI (Universal Chess Interface).
-engine = chess.engine.SimpleEngine.popen_uci(
-    STOCKFISH_PATH,
-    timeout=30.0
-)
+def initialize_stockfish():
+    """Inicializa Stockfish y mide el tiempo de arranque."""
 
-print("Stockfish OK")
-print(f"Tiempo de inicio: {time.time() - t0:.2f} segundos")
+    global engine
+
+    if engine is not None:
+        return
+
+    print("Iniciando Stockfish...")
+
+    t0 = time.time()
+
+    engine = chess.engine.SimpleEngine.popen_uci(
+        STOCKFISH_PATH,
+        timeout=30.0,
+    )
+
+    print("Stockfish OK")
+    print(f"Tiempo de inicio: {time.time() - t0:.2f} segundos")
 
 
 # =========================
@@ -59,9 +65,16 @@ def get_best_move(board):
 # =========================
 
 def shutdown_stockfish():
-    # Intentá ejecutar el código que viene;
-    # si ocurre un error, ignoralo.
+    """Cierra el motor Stockfish si está inicializado."""
+
+    global engine
+
+    if engine is None:
+        return
+
     try:
         engine.quit()
-    except:
+    except Exception:
         pass
+    finally:
+        engine = None

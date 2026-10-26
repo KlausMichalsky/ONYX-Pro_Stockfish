@@ -26,6 +26,7 @@ from robot import (
 )
 
 from stockfish import (
+    initialize_stockfish,
     get_best_move,
     shutdown_stockfish,
 )
@@ -40,6 +41,8 @@ from game import (
     sensor_occupancy_from_board,
     prepare_robot_move,
 )
+
+initialize_stockfish()
 
 initialize_robot()
 
