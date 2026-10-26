@@ -76,6 +76,15 @@ def send_to_robot(cmd):
 
 
 # =========================
+# LIMPIAR BUFFER SERIE
+# =========================
+
+def clear_input_buffer():
+    """Descarta mensajes pendientes en la entrada serie del RP2040."""
+    ser.reset_input_buffer()
+
+
+# =========================
 # INICIALIZAR ROBOT
 # =========================
 def initialize_robot():

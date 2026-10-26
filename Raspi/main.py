@@ -18,11 +18,11 @@ import signal
 import sensors
 
 from robot import (
-    ser,
     do_homing,
     shutdown_robot,
     execute_robot_move,
     initialize_robot,
+    clear_input_buffer,
 )
 
 from stockfish import (
@@ -168,7 +168,7 @@ while True:
     else:
 
         # Limpiar mensajes anteriores del buffer de entrada del puerto serie.
-        ser.reset_input_buffer()
+        clear_input_buffer()
 
         # Stockfish calcula su mejor jugada usando las coordenadas lógicas.
         stockfish_move = get_best_move(board)
