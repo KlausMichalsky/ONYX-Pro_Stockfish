@@ -477,6 +477,7 @@ def wait_for_human_confirmation(confirmed_state, change_history):
 
 def synchronize_board(expected_state, current_state, change_history):
     """Verifica y sincroniza el tablero después de una jugada del robot."""
+    global previous_state
 
     if current_state != expected_state:
         print("\n⚠️ El tablero cambió antes de habilitar el turno humano.")
@@ -490,6 +491,9 @@ def synchronize_board(expected_state, current_state, change_history):
 
         change_history.clear()
         print("✅ Tablero sincronizado. Ahora podés mover.")
+
+    # Establecer la referencia correcta para el siguiente turno humano.
+    previous_state = current_state.copy()
 
     differences = [
         square
