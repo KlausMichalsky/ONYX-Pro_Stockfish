@@ -544,3 +544,17 @@ def initialize_and_validate_sensors(expected_state):
 
     print("✅ Sensores y botón listos")
     return confirmed_state
+
+
+# ============================================================
+# CERRAR SENSORES
+# ============================================================
+
+def shutdown_sensors():
+    """Cierra el botón de confirmación y el bus I2C."""
+
+    if button is not None:
+        button.close()
+
+    if i2c is not None:
+        i2c.close()

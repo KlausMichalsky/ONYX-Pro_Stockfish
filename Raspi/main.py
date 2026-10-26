@@ -51,20 +51,14 @@ board = create_board()
 # =========================
 
 def shutdown():
-    # para que también cierre los sensores y el botón
-    if sensors.button is not None:
-        sensors.button.close()
-
-    if sensors.i2c is not None:
-        sensors.i2c.close()
-
+    """Cierra los sensores, Stockfish y el robot."""
+    sensors.shutdown_sensors()
     shutdown_stockfish()
     shutdown_robot()
 
-# Al pulsar Ctrl+C, se ejecutará el apagado del robot y se cerrará la conexión serie
-
 
 def handle_interrupt(signum, frame):
+    # Al pulsar Ctrl+C, se ejecutará el apagado del robot y se cerrará la conexión serie
     print("\n⚠️ Interrupción: apagando ONYX-Pro...")
     shutdown()
     raise SystemExit(130)
