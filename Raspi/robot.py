@@ -67,7 +67,6 @@ def reset_robot():
 # =========================
 # SEND COMMAND
 # =========================
-
 def send_to_robot(cmd):
     ser.write((cmd + "\n").encode())  # encode() convierte el texto en bytes
 # "e2e4\n"
@@ -77,9 +76,24 @@ def send_to_robot(cmd):
 
 
 # =========================
+# INICIALIZAR ROBOT
+# =========================
+def initialize_robot():
+    """Reinicia el RP2040 y prepara el contador de capturas."""
+
+    print("Reset RP2040...")
+    reset_robot()
+
+    # Esperar a que el RP2040 esté listo.
+    time.sleep(1)
+
+    # Reiniciar el contador del Capture-Board.
+    send_to_robot("CAPTURERESET")
+
+
+# =========================
 # WAIT DONE
 # =========================
-
 def wait_done():
     while True:
         # readline() devuelve bytes (Puerto serial)
@@ -129,11 +143,6 @@ def wait_any(*expected):  # Acepta una cantidad variable de argumentos
                 # return termina la función completa y vuelve al lugar desde donde fue llamada en main por ejemplo.
                 # brake solo termina el bucle while, pero la función sigue ejecutándose.
                 return
-
-
-# =========================
-# SHUTDOWN
-# =========================
 
 
 # =========================

@@ -19,11 +19,10 @@ import sensors
 
 from robot import (
     ser,
-    reset_robot,
-    send_to_robot,
     do_homing,
     shutdown_robot,
     execute_robot_move,
+    initialize_robot,
 )
 
 from stockfish import (
@@ -42,11 +41,7 @@ from game import (
     prepare_robot_move,
 )
 
-print("Reset RP2040...")
-reset_robot()
-time.sleep(1)  # Esperar a que el RP2040 esté listo
-# Reiniciar contador del Capture-Board
-send_to_robot("CAPTURERESET")
+initialize_robot()
 
 board = create_board()
 
