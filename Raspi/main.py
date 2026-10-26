@@ -237,37 +237,11 @@ while True:
             mirror_coordinates,
         )
 
-        if confirmed_state != expected_state:
-            print("\n⚠️ El tablero cambió antes de habilitar el turno humano.")
-            print("Colocá las piezas según la posición esperada.")
-            print("El robot no iniciará otra jugada hasta corregirlo.")
-
-            confirmed_state = sensors.wait_for_expected_state(
-                expected_state,
-                confirmed_state,
-            )
-
-            change_history.clear()
-            print("✅ Tablero sincronizado. Ahora podés mover.")
-
-        differences = [
-            square
-            for square in sorted(expected_state)
-            if confirmed_state[square] != expected_state[square]
-        ]
-
-        if differences:
-            print("❌ Diferencias después del movimiento del robot:")
-
-            for square in differences:
-                print(
-                    f"{square}: sensor={confirmed_state[square]}, "
-                    f"esperado={expected_state[square]}"
-                )
-        else:
-            print("✅ Referencia de sensores correcta después del robot.")
-
-        change_history.clear()
+        confirmed_state = sensors.synchronize_board(
+            expected_state,
+            confirmed_state,
+            change_history,
+        )
 
         # Cambiar el turno al humano.
         human_turn = True

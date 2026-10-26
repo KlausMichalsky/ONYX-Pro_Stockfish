@@ -469,3 +469,44 @@ def wait_for_human_confirmation(confirmed_state, change_history):
             return current_state
 
         time.sleep(0.05)
+
+
+# ============================================================
+# SINCRONIZAR TABLERO DESPUÉS DEL MOVIMIENTO DEL ROBOT
+# ============================================================
+
+def synchronize_board(expected_state, current_state, change_history):
+    """Verifica y sincroniza el tablero después de una jugada del robot."""
+
+    if current_state != expected_state:
+        print("\n⚠️ El tablero cambió antes de habilitar el turno humano.")
+        print("Colocá las piezas según la posición esperada.")
+        print("El robot no iniciará otra jugada hasta corregirlo.")
+
+        current_state = wait_for_expected_state(
+            expected_state,
+            current_state,
+        )
+
+        change_history.clear()
+        print("✅ Tablero sincronizado. Ahora podés mover.")
+
+    differences = [
+        square
+        for square in sorted(expected_state)
+        if current_state[square] != expected_state[square]
+    ]
+
+    if differences:
+        print("❌ Diferencias después del movimiento del robot:")
+
+        for square in differences:
+            print(
+                f"{square}: sensor={current_state[square]}, "
+                f"esperado={expected_state[square]}"
+            )
+    else:
+        print("✅ Referencia de sensores correcta después del robot.")
+
+    change_history.clear()
+    return current_state
