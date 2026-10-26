@@ -12,7 +12,7 @@
 #     - Control de Stockfish
 # =======================================================================
 
-import time
+
 import signal
 
 import sensors
@@ -44,10 +44,6 @@ from game import (
 initialize_robot()
 
 board = create_board()
-
-# pausa de 1 segundo;
-# motivo específico en este programa todavía no identificado
-# time.sleep(1)
 
 
 # =========================
