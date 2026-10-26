@@ -20,28 +20,26 @@ import sensors
 from robot import (
     do_homing,
     shutdown_robot,
-    execute_robot_move,
     initialize_robot,
-    clear_input_buffer,
     initialize_serial,
 )
 
 from stockfish import (
     initialize_stockfish,
-    get_best_move,
     shutdown_stockfish,
 )
 
 from game import (
     create_board,
-    push_move,
     is_game_over,
     get_result,
     sensor_occupancy_from_board,
-    prepare_robot_move,
 )
 
-from controller import run_human_turn
+from controller import (
+    run_human_turn,
+    run_robot_turn,
+)
 
 initialize_serial()
 
@@ -129,54 +127,12 @@ while True:
 
     else:
 
-        # Limpiar mensajes anteriores del buffer de entrada del puerto serie.
-        clear_input_buffer()
-
-        # Stockfish calcula su mejor jugada usando las coordenadas lógicas.
-        stockfish_move = get_best_move(board)
-
-        # Preparar la jugada lógica, las coordenadas físicas
-        # y los datos necesarios si hay una captura.
-        move, robot_move, capture_square, from_square = prepare_robot_move(
-            board,
-            stockfish_move,
-            mirror_coordinates,
-        )
-
-        print("🤖 Robot_Stockfish_Board:", stockfish_move)
-        print("🤖 Robot_Physical_Board:", robot_move)
-
-        # =====================
-        # EJECUTAR MOVIMIENTO
-        # =====================
-
-        if capture_square is not None and from_square is not None:
-            execute_robot_move(
-                robot_move,
-                capture_square,
-                from_square,
-            )
-        else:
-            execute_robot_move(robot_move)
-
-        # Actualizar el tablero lógico con la jugada original de Stockfish.
-        push_move(board, move)
-
-        # Sincronizar sensores después del movimiento del robot.
-        confirmed_state = sensors.read_stable_sensor_state()
-
-        expected_state = sensor_occupancy_from_board(
+        confirmed_state = run_robot_turn(
             board,
             mirror_coordinates,
-        )
-
-        confirmed_state = sensors.synchronize_board(
-            expected_state,
-            confirmed_state,
             change_history,
         )
 
-        # Cambiar el turno al humano.
         human_turn = True
 
     # =====================

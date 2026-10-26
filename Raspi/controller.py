@@ -9,10 +9,19 @@
 
 import sensors
 
+from robot import (
+    clear_input_buffer,
+    execute_robot_move,
+)
+
+from stockfish import get_best_move
+
 from game import (
     process_human_move,
     push_move,
     mirror_move,
+    prepare_robot_move,
+    sensor_occupancy_from_board,
 )
 
 
@@ -76,3 +85,56 @@ def run_human_turn(
         change_history.clear()
 
         return confirmed_state
+
+
+# =========================
+# TURNO ROBOT
+# =========================
+
+def run_robot_turn(board, mirror_coordinates, change_history):
+    """Ejecuta la jugada del robot y sincroniza los sensores."""
+
+    # Limpiar mensajes pendientes del puerto serie.
+    clear_input_buffer()
+
+    # Obtener la mejor jugada de Stockfish.
+    stockfish_move = get_best_move(board)
+
+    # Preparar las coordenadas físicas y los datos de captura.
+    move, robot_move, capture_square, from_square = prepare_robot_move(
+        board,
+        stockfish_move,
+        mirror_coordinates,
+    )
+
+    print("🤖 Robot_Stockfish_Board:", stockfish_move)
+    print("🤖 Robot_Physical_Board:", robot_move)
+
+    # Ejecutar el movimiento o la captura.
+    if capture_square is not None and from_square is not None:
+        execute_robot_move(
+            robot_move,
+            capture_square,
+            from_square,
+        )
+    else:
+        execute_robot_move(robot_move)
+
+    # Actualizar el tablero lógico.
+    push_move(board, move)
+
+    # Sincronizar los sensores con la posición esperada.
+    confirmed_state = sensors.read_stable_sensor_state()
+
+    expected_state = sensor_occupancy_from_board(
+        board,
+        mirror_coordinates,
+    )
+
+    confirmed_state = sensors.synchronize_board(
+        expected_state,
+        confirmed_state,
+        change_history,
+    )
+
+    return confirmed_state
