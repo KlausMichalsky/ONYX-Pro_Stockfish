@@ -24,34 +24,38 @@ from config import BAUDRATE, SERIAL_TIMEOUT
 # SERIAL INIT
 # =========================
 
-# Busca todos los puertos que empiecen por /dev/ttyACM
-# y todos los que empiecen por /dev/ttyUSB, y guarda los resultados juntos en ports
-# Busca automáticamente el puerto USB donde está conectado el RP2040
-ports = glob.glob("/dev/ttyACM*") + glob.glob("/dev/ttyUSB*")
-
-if not ports:
-    raise Exception("No se encontró RP2040 conectado")
-
-SERIAL_PORT = ports[0]
-
-print("Usando puerto:", SERIAL_PORT)
+SERIAL_PORT = None
+ser = None
 
 
-print("🤖 Iniciando ONYX-Pro...")
+def initialize_serial():
+    """Detecta el puerto USB e inicia la conexión serie con el RP2040."""
 
-# Abrime una conexión serie con este dispositivo
-# y dame un objeto para poder comunicarme con él.
-# Serial es una clase de la libreria pyserial
-# que crea el objeto de conexión serie.
-# serial.Serial es equivalente a: ☎️ "Llamá al RP2040."
-# y guarda esa llamada en ser, que es un objeto de tipo Serial.
-ser = serial.Serial(
-    SERIAL_PORT,    # ← ¿a qué puerto?
-    BAUDRATE,       # ← ¿a qué velocidad?
-    timeout=SERIAL_TIMEOUT  # ← ¿cuánto esperar al leer?
-)
+    global SERIAL_PORT, ser
 
-time.sleep(2)
+    if ser is not None and ser.is_open:
+        return
+
+    ports = (
+        glob.glob("/dev/ttyACM*")
+        + glob.glob("/dev/ttyUSB*")
+    )
+
+    if not ports:
+        raise RuntimeError("No se encontró RP2040 conectado")
+
+    SERIAL_PORT = ports[0]
+
+    print("Usando puerto:", SERIAL_PORT)
+    print("🤖 Iniciando ONYX-Pro...")
+
+    ser = serial.Serial(
+        SERIAL_PORT,
+        BAUDRATE,
+        timeout=SERIAL_TIMEOUT,
+    )
+
+    time.sleep(2)
 
 
 # =========================

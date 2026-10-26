@@ -23,6 +23,7 @@ from robot import (
     execute_robot_move,
     initialize_robot,
     clear_input_buffer,
+    initialize_serial,
 )
 
 from stockfish import (
@@ -41,6 +42,8 @@ from game import (
     sensor_occupancy_from_board,
     prepare_robot_move,
 )
+
+initialize_serial()
 
 initialize_stockfish()
 
