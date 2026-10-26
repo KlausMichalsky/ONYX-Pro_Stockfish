@@ -52,10 +52,19 @@ board = create_board()
 # =========================
 
 def shutdown():
-    """Cierra los sensores, Stockfish y el robot."""
-    sensors.shutdown_sensors()
-    shutdown_stockfish()
-    shutdown_robot()
+    """Cierra sensores, Stockfish y robot aunque falle una etapa."""
+
+    shutdown_steps = (
+        ("sensores", sensors.shutdown_sensors),
+        ("Stockfish", shutdown_stockfish),
+        ("robot", shutdown_robot),
+    )
+
+    for name, close_function in shutdown_steps:
+        try:
+            close_function()
+        except Exception as error:
+            print(f"⚠️ Error al cerrar {name}: {error}")
 
 
 def handle_interrupt(signum, frame):
