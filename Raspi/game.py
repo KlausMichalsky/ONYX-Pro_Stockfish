@@ -248,3 +248,27 @@ def process_human_move(
         raise ValueError("Jugada ilegal. Corregí las piezas.")
 
     return logical_move, human_move
+
+
+def prepare_robot_move(board, stockfish_move, mirror_coordinates=False):
+    """Prepara la jugada física y los datos necesarios para una captura."""
+
+    move = create_move(stockfish_move)
+
+    robot_move = (
+        mirror_move(stockfish_move)
+        if mirror_coordinates
+        else stockfish_move
+    )
+
+    capture_square = None
+    from_square = None
+
+    if is_capture(board, move):
+        capture_square, from_square = get_capture_squares(move)
+
+        if mirror_coordinates:
+            capture_square = mirror_square(capture_square)
+            from_square = mirror_square(from_square)
+
+    return move, robot_move, capture_square, from_square

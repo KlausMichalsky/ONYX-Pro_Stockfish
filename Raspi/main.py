@@ -33,16 +33,13 @@ from stockfish import (
 
 from game import (
     create_board,
-    create_move,
     process_human_move,
     push_move,
-    is_capture,
-    get_capture_squares,
     is_game_over,
     get_result,
-    mirror_square,
     mirror_move,
     sensor_occupancy_from_board,
+    prepare_robot_move,
 )
 
 print("Reset RP2040...")
@@ -199,60 +196,45 @@ while True:
     # =====================
     else:
 
-        # Limpiar mensajes anteriores del buffer de entrada del puerto serie
+        # Limpiar mensajes anteriores del buffer de entrada del puerto serie.
         ser.reset_input_buffer()
 
-        # El board contiene la posición actual de la partida.
-        # Stockfish calcula su mejor jugada usando las coordenadas lógicas del tablero.
+        # Stockfish calcula su mejor jugada usando las coordenadas lógicas.
         stockfish_move = get_best_move(board)
 
-        # Convertir la jugada en texto UCI a un objeto Move de python-chess.
-        # Este objeto se utiliza para comprobar capturas y actualizar el tablero.
-        move = create_move(stockfish_move)
+        # Preparar la jugada lógica, las coordenadas físicas
+        # y los datos necesarios si hay una captura.
+        move, robot_move, capture_square, from_square = prepare_robot_move(
+            board,
+            stockfish_move,
+            mirror_coordinates,
+        )
 
-        # Mostrar la jugada original calculada por Stockfish, sin reflejar.
         print("🤖 Robot_Stockfish_Board:", stockfish_move)
-
-        # Reflejar las coordenadas para el tablero físico,
-        # porque la orientación del tablero nunca cambia.
-        robot_move = mirror_move(
-            stockfish_move) if mirror_coordinates else stockfish_move
-
-        # Mostrar la jugada que se enviará al RP2040.
         print("🤖 Robot_Physical_Board:", robot_move)
 
         # =====================
-        # CAPTURA
+        # EJECUTAR MOVIMIENTO
         # =====================
-        # Comprobar si la jugada de Stockfish captura una pieza.
-        if is_capture(board, move):
 
-            # Obtener las casillas de destino y origen de la captura.
-            capture_square, from_square = get_capture_squares(move)
-
-            # Reflejar ambas casillas si el tablero físico requiere transformación.
-            if mirror_coordinates:
-                capture_square = mirror_square(capture_square)
-                from_square = mirror_square(from_square)
-
+        if capture_square is not None and from_square is not None:
             execute_robot_move(
                 robot_move,
                 capture_square,
                 from_square,
             )
-
         else:
             execute_robot_move(robot_move)
 
-        # Actualizar el tablero lógico con la jugada original de Stockfish,
-        # nunca con las coordenadas reflejadas del tablero físico.
+        # Actualizar el tablero lógico con la jugada original de Stockfish.
         push_move(board, move)
 
         # Sincronizar sensores después del movimiento del robot.
         confirmed_state = sensors.read_stable_sensor_state()
 
         expected_state = sensor_occupancy_from_board(
-            board, mirror_coordinates
+            board,
+            mirror_coordinates,
         )
 
         if confirmed_state != expected_state:
@@ -276,6 +258,7 @@ while True:
 
         if differences:
             print("❌ Diferencias después del movimiento del robot:")
+
             for square in differences:
                 print(
                     f"{square}: sensor={confirmed_state[square]}, "
