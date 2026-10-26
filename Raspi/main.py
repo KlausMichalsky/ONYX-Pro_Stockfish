@@ -34,14 +34,14 @@ from stockfish import (
 
 from game import (
     create_board,
-    process_human_move,
     push_move,
     is_game_over,
     get_result,
-    mirror_move,
     sensor_occupancy_from_board,
     prepare_robot_move,
 )
+
+from controller import run_human_turn
 
 initialize_serial()
 
@@ -118,59 +118,15 @@ while True:
 
     if human_turn:
 
-        print("\n♟️ Mové tus piezas y pulsá el botón para confirmar.")
-        print("Podés corregir tus movimientos antes de confirmar.")
+        confirmed_state = run_human_turn(
+            board,
+            confirmed_state,
+            change_history,
+            mirror_coordinates,
+        )
 
-        while True:
+        human_turn = False
 
-            # Esperar a que se pulse el botón y obtener el estado del tablero.
-            current_state = sensors.wait_for_human_confirmation(
-                confirmed_state,
-                change_history,
-            )
-
-            # Si el tablero volvió a la posición confirmada.
-            if current_state is None:
-                print("↩️ Tablero restaurado. Podés volver a mover.")
-                continue
-
-            try:
-                # Identificar y validar la jugada humana.
-                logical_move, human_move = process_human_move(
-                    board,
-                    confirmed_state,
-                    current_state,
-                    change_history,
-                    mirror_coordinates,
-                )
-
-            except (ValueError, IndexError) as error:
-                print(f"❌ Jugada no confirmada: {error}")
-                print("Corregí las piezas y volvé a pulsar.")
-                continue
-
-            # Mostrar las coordenadas físicas y lógicas.
-            physical_move = (
-                mirror_move(logical_move)
-                if mirror_coordinates
-                else logical_move
-            )
-
-            push_move(board, human_move)
-
-            print("👤 Human_Physical_Board:", physical_move)
-            print("👤 Human_Stockfish_Board:", logical_move)
-
-            # Guardar la posición confirmada.
-            confirmed_state = current_state.copy()
-            change_history.clear()
-
-            human_turn = False
-            break
-
-    # =====================
-    # TURNO ROBOT
-    # =====================
     else:
 
         # Limpiar mensajes anteriores del buffer de entrada del puerto serie.
