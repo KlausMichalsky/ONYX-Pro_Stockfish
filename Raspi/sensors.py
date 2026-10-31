@@ -170,10 +170,16 @@ class MCP23017:
 
 
 # ============================================================
+# INICIALIZAR BOTON
+# ============================================================
+def init_button():
+    global button
+    button = Button(BUTTON_PIN, pull_up=True, bounce_time=0.05)
+
+
+# ============================================================
 # INICIALIZAR SENSORES
 # ============================================================
-
-
 def init_sensors():
     global i2c, mcps, button, previous_state
 
@@ -208,9 +214,6 @@ def init_sensors():
     # Leer el estado inicial del tablero
     read_all_sensors()
     previous_state = board_state.copy()
-
-    # Inicializar botón de confirmación en GPIO 18
-    button = Button(BUTTON_PIN, pull_up=True, bounce_time=0.05)
 
     print("ONYX-Pro: sensores inicializados")
 

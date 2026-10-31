@@ -44,6 +44,8 @@ initialize_stockfish()
 
 initialize_robot()
 
+sensors.init_button()
+
 board = create_board()
 
 
