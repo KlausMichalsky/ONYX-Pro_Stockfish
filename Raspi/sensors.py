@@ -386,11 +386,45 @@ def button_pressed():
 
 
 # ============================================================
+# SELECCIONAR QUIÉN EMPIEZA
+# ============================================================
+
+def select_start_mode():
+    """Corto = humano. Largo (1 segundo o más) = robot.
+    Esta funcion es provisoria y se puede cambiar por un menú en pantalla o un archivo de configuración."""
+
+    if button is None:
+        raise RuntimeError("El botón no está inicializado.")
+
+    print("\n🎮 Selección de inicio:")
+    print("   Pulsación corta: Humano")
+    print("   Pulsación larga: ONYX")
+    print("Esperando selección...")
+
+    while not button.is_pressed:
+        time.sleep(0.01)
+
+    start_time = time.monotonic()
+
+    wait_button_release()
+
+    duration = time.monotonic() - start_time
+
+    if duration >= 1.0:
+        print("🤖 Empieza ONYX")
+        return "2"
+
+    print("♟️ Empieza el humano")
+    return "1"
+
+# ============================================================
 # ESPERAR LIBERACIÓN DEL BOTÓN
 # ============================================================
 # Así espera hasta que sueltes el botón. time.sleep(0.01) sustituye a time.sleep_ms(10),
 # que no existe en Python normal de Linux sino en MicroPython.
 # Esto es para no bloquear el hilo principal durante demasiado tiempo.
+
+
 def wait_button_release():
     if button is None:
         return
